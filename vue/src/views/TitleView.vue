@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="title-view">
         <header class="title-container">
             <img src="../assets/logo.png" alt="Logo Image">
             <h1 class="title">Travel curation for the curious mind</h1>
@@ -81,19 +81,64 @@ function showSlides() {
     height: auto;
 }
 
-.title-container {
-    background-color: beige;
-    color: black;
-    padding: 20px;
+/* Font Styles */
+.title-view {
+    font-family: 'Helvetica', sans-serif;
 }
 
-.title {
-    font-size: 2em;
-    font-weight: bold;
+h1,
+h2,
+h3 {
+    font-family: 'Georgia', serif;
 }
 
-.subtitle {
-    color: gold;
-    font-size: 1.5em;
+/* Color Palette */
+:root {
+    --gold: #D7B740;
+    --jet-black: #292929;
+    --slate-gray: #708090;
+    --ivory: #FFFFF0;
+    --bronze: #CD7F32;
+}
+
+/* Layout and Whitespace */
+body {
+    background-image: linear-gradient(to bottom left, #3c3c3c, #020202);
+    background-attachment: fixed;
+}
+
+.text-center {
+    text-align: center;
+}
+
+img {
+    margin-bottom: -75px;
+}
+
+h1 {
+    color: #CD7F32;
+}
+
+.form-input-group {
+    margin-bottom: 1rem;
+    color: #FFFFF0;
+}
+
+form {
+    margin-top: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #FFFFF0;
+}
+
+label {
+    margin-right: 0.5rem;
+    color: #FFFFF0;
+}
+
+.login-link {
+    text-decoration: none;
+    color: #708090;
 }
 </style>
