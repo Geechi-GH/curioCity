@@ -17,6 +17,11 @@
         <p class="subtitle">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia placeat ipsam, iusto doloribus
             iste praesentium
             repellat vel facilis tempora corporis totam deleniti similique minima enim quod sequi itaque! Eum, vero?</p>
+        <section class="imagesHolder">
+            <img id="marketImg" src="src\assets\findley market.jpg" alt="">
+            <img id="musicImg" src="src\assets\music hall.jpg" alt="">
+            <img id="museumImg" src="src\assets\museum.jpg" alt="">
+        </section>
 
         <div class="slideshow-container">
             <div class="slide">
@@ -37,37 +42,46 @@
 export default {
     name: "TitleView",
 }
-let slideIndex = 0;
-showSlides();
+// let slideIndex = 0;
+// showSlides();
 
-function showSlides() {
-    let slides = document.getElementsByClassName("slide");
-    if (slides === null) {
-        return; // Stop function execution if slides is null
-    }
+// function showSlides() {
+//     let slides = document.getElementsByClassName("slide");
+//     if (slides === null) {
+//         return; // Stop function execution if slides is null
+//     }
 
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
+//     for (let i = 0; i < slides.length; i++) {
+//         slides[i].style.display = "none";
+//     }
 
-    slideIndex++;
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
-    }
+//     slideIndex++;
+//     if (slideIndex > slides.length) {
+//         slideIndex = 1;
+//     }
 
-    // if (slides[slideIndex - 1] === undefined) {
-    //     console.error(`Slide index out of bounds: ${slideIndex - 1}`);
-    //     return; // Stop function execution if slide index is out of bounds
-    // }
+//     // if (slides[slideIndex - 1] === undefined) {
+//     //     console.error(`Slide index out of bounds: ${slideIndex - 1}`);
+//     //     return; // Stop function execution if slide index is out of bounds
+//     // }
 
-    slides[slideIndex - 1].style.display = "block";
+//     slides[slideIndex - 1].style.display = "block";
 
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
-}
+//     setTimeout(showSlides, 2000); // Change image every 2 seconds
+// }
 </script>
 
 <style scoped>
 /* Color Palette */
+.imagesHolder {
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+
+
+}
+
+
 :root {
     --gold: #D7B740;
     --jet-black: #292929;
@@ -76,9 +90,7 @@ function showSlides() {
     --bronze: #CD7F32;
 }
 
-header {
-    display: flex;
-}
+
 
 h1.title {
     display: flex;
@@ -90,7 +102,7 @@ h1.title {
 }
 
 #logo {
-    width: 20%;
+    width: 30%;
     margin-bottom: 20px;
 }
 
@@ -134,6 +146,7 @@ p {
 /* Font Styles */
 .title-view {
     font-family: 'Helvetica', sans-serif;
+    text-align: center;
 }
 
 h1,
@@ -142,7 +155,9 @@ h3 {
     font-family: 'Georgia', serif;
 }
 
-
+h2 {
+    color: #CD7F32;
+}
 
 .text-center {
     text-align: center;
@@ -161,7 +176,7 @@ h1 {
     color: #FFFFF0;
 }
 
-form {
+.title-container {
     margin-top: 60px;
     padding-left: 10px;
     padding-right: 10px;
