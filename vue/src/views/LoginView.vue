@@ -1,7 +1,8 @@
 <template>
   <div id="login">
+    <img src="../assets/CurioCity.png" alt="Logo Image">
     <form v-on:submit.prevent="login">
-      <h1 >Please Sign In</h1>
+      <h1>Please Sign In</h1>
       <div role="alert" v-if="invalidCredentials">
         Invalid username and password!
       </div>
@@ -18,7 +19,8 @@
       </div>
       <button type="submit">Sign in</button>
       <p>
-      <router-link v-bind:to="{ name: 'register' }">Need an account? Sign up.</router-link></p>
+        <router-link v-bind:to="{ name: 'register' }" class="register-link">Need an account? Sign up.</router-link>
+      </p>
     </form>
   </div>
 </template>
@@ -61,10 +63,43 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-image: linear-gradient(to bottom left, #3c3c3c, #020202);
+  background-attachment: fixed;
+}
+
+#login {
+  text-align: center;
+}
+
+img {
+  margin-bottom: -75px;
+}
+
+h1 {
+  color: #CD7F32;
+}
+
 .form-input-group {
   margin-bottom: 1rem;
+  color: #FFFFF0;
 }
+
+form {
+  margin-top: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  color: #FFFFF0;
+}
+
 label {
   margin-right: 0.5rem;
+  color: #FFFFF0;
+}
+
+.register-link {
+  text-decoration: none;
+  color: #708090;
 }
 </style>
