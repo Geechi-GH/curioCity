@@ -1,16 +1,16 @@
 <template>
     <div class="title-view">
         <header class="title-container">
-            <img src="../assets/logo.png" alt="Logo Image">
+            <img id="logo" src="src\assets\CurioCity.png" alt="Logo Image">
             <h1 class="title">Travel curation for the curious mind</h1>
         </header>
-        <label for="register">New to the site? </label>
+        <label for="register">New to the site?</label>
 
-        <router-link id="register" to="/register">Register</router-link>
+        <router-link class="link" id="register" to="/register"> Register </router-link>
         <!-- <button id="register">Register</button> -->
         <label for="login"> Already have an account? </label>
 
-        <router-link id="login" to="/login">Login</router-link>
+        <router-link class="link" id="login" to="/login"> Login </router-link>
 
         <!-- <button id="login">login</button> -->
         <h2 class="title">Who we are</h2>
@@ -55,10 +55,10 @@ function showSlides() {
         slideIndex = 1;
     }
 
-    if (slides[slideIndex - 1] === undefined) {
-        console.error(`Slide index out of bounds: ${slideIndex - 1}`);
-        return; // Stop function execution if slide index is out of bounds
-    }
+    // if (slides[slideIndex - 1] === undefined) {
+    //     console.error(`Slide index out of bounds: ${slideIndex - 1}`);
+    //     return; // Stop function execution if slide index is out of bounds
+    // }
 
     slides[slideIndex - 1].style.display = "block";
 
@@ -67,18 +67,68 @@ function showSlides() {
 </script>
 
 <style scoped>
+/* Color Palette */
+:root {
+    --gold: #D7B740;
+    --jet-black: #292929;
+    --slate-gray: #708090;
+    --ivory: #FFFFF0;
+    --bronze: #CD7F32;
+}
+
+header {
+    display: flex;
+}
+
+h1.title {
+    display: flex;
+    justify-content: center;
+    /* Horizontally center the text */
+    align-items: center;
+    /* Vertically center the text */
+
+}
+
+#logo {
+    width: 20%;
+    margin-bottom: 20px;
+}
+
+/* Layout and Whitespace */
+body {
+    background-image: linear-gradient(to bottom left, #3c3c3c, #020202);
+    background-attachment: fixed;
+}
+
+.link {
+    color: #708090;
+    background-color: #D7B740;
+    border-radius: 5%;
+    padding: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 5px;
+    margin-top: 20px;
+}
+
+p {
+    color: white;
+}
+
 .slideshow-container {
+    display: flex;
+    justify-content: center;
     max-width: 100%;
     position: relative;
 }
 
 .slide {
     display: none;
+    width: 25%;
 }
 
 .slide img {
     width: 100%;
-    height: auto;
 }
 
 /* Font Styles */
@@ -92,20 +142,7 @@ h3 {
     font-family: 'Georgia', serif;
 }
 
-/* Color Palette */
-:root {
-    --gold: #D7B740;
-    --jet-black: #292929;
-    --slate-gray: #708090;
-    --ivory: #FFFFF0;
-    --bronze: #CD7F32;
-}
 
-/* Layout and Whitespace */
-body {
-    background-image: linear-gradient(to bottom left, #3c3c3c, #020202);
-    background-attachment: fixed;
-}
 
 .text-center {
     text-align: center;
