@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Landmarks</h1>
+        <input type="search">
         <section class="landmark-list">
             <LandmarkSimplified v-for="landmark in landmarks" :key="landmark.id" :landmark="landmark" />
         </section>
