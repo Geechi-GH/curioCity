@@ -1,19 +1,21 @@
 package com.techelevator.model;
 
+import java.sql.Time;
+
 public class Landmark {
     private int id;
     private String name;
     private String description;
-    private String weekdayOpen;
-    private String weekdayClose;
-    private String weekendOpen;
-    private String weekendClose;
+    private Time weekdayOpen;
+    private Time weekdayClose;
+    private Time weekendOpen;
+    private Time weekendClose;
     private String category;
     private int cityID;
     private int likeCount;
     private int dislikeCount;
 
-    public Landmark(int id, String name, String description, String weekdayOpen, String weekdayClose, String weekendOpen, String weekendClose,
+    public Landmark(int id, String name, String description, Time weekdayOpen, Time weekdayClose, Time weekendOpen, Time weekendClose,
                     String category, int cityID, int likeCount, int dislikeCount) {
         this.id = id;
         this.name = name;
@@ -40,19 +42,19 @@ public class Landmark {
         return description;
     }
 
-    public String getWeekdayOpen() {
+    public Time getWeekdayOpen() {
         return weekdayOpen;
     }
 
-    public String getWeekdayClose() {
+    public Time getWeekdayClose() {
         return weekdayClose;
     }
 
-    public String getWeekendOpen() {
+    public Time getWeekendOpen() {
         return weekendOpen;
     }
 
-    public String getWeekendClose() {
+    public Time getWeekendClose() {
         return weekendClose;
     }
 
