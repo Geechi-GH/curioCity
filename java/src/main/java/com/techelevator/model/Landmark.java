@@ -9,13 +9,12 @@ public class Landmark {
     private String weekendOpen;
     private String weekendClose;
     private String category;
-    private String imageUrl;
     private int cityID;
     private int likeCount;
     private int dislikeCount;
 
     public Landmark(int id, String name, String description, String weekdayOpen, String weekdayClose, String weekendOpen, String weekendClose,
-                    String category, String imageUrl, int cityID, int likeCount, int dislikeCount) {
+                    String category, int cityID, int likeCount, int dislikeCount) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -24,7 +23,6 @@ public class Landmark {
         this.weekendOpen = weekendOpen;
         this.weekendClose = weekendClose;
         this.category = category;
-        this.imageUrl = imageUrl;
         this.cityID = cityID;
         this.likeCount = likeCount;
         this.dislikeCount = dislikeCount;
@@ -60,10 +58,6 @@ public class Landmark {
 
     public String getCategory() {
         return category;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
     }
 
     public int getCityID() {

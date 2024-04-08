@@ -14,19 +14,17 @@ import org.springframework.web.server.ResponseStatusException;
 @CrossOrigin
 public class LandmarkController {
     final LandmarkDao landmarkDao;
+
     public LandmarkController(LandmarkDao landmarkDao) {
         this.landmarkDao = landmarkDao;
     }
 
     @GetMapping("/landmark/{id}")
-    public Landmark getLandmarkById(@PathVariable int id){
-        try{
+    public Landmark getLandmarkById(@PathVariable int id) {
+        try {
             return landmarkDao.getLandmark(id);
-        }catch (DaoException e){
+        } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
         }
     }
-
-    
-
 }

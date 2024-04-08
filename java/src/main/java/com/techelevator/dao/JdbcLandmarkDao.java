@@ -21,7 +21,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
         Landmark landmark = null;
 
         final String sql = "SELECT id, name, description, weekdayOpen, weekdayClose, weekendOpen, weekendClose, category, " +
-                "imageUrl, cityID, likeCount, dislikeCount" +
+                " cityID, likeCount, dislikeCount" +
                 "FROM landmarks" +
                 "WHERE landmarkId = ?";
 
@@ -45,10 +45,9 @@ public class JdbcLandmarkDao implements LandmarkDao {
                 results.getString("weekendOpen"),
                 results.getString("weekendClose"),
                 results.getString("category"),
-                results.getString("imageUrl"),
                 results.getInt("cityId"),
                 results.getInt("likeCount"),
                 results.getInt("dislikeCount"));
-                return landmark;
+        return landmark;
     }
 }
