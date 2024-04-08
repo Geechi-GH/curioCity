@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 public class LandmarkController {
@@ -19,10 +21,19 @@ public class LandmarkController {
         this.landmarkDao = landmarkDao;
     }
 
-    @GetMapping("/landmark/{id}")
-    public Landmark getLandmarkById(@PathVariable int id) {
+    @GetMapping("/landmarks/{id}")
+    public Landmark getLandmarkId(@PathVariable int id) {
         try {
-            return landmarkDao.getLandmark(id);
+            return landmarkDao.getLandmarkById(id);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
+        }
+    }
+
+    @GetMapping("/landmarks")
+    public List<Landmark> getAllLandmarks() {
+        try {
+            return landmarkDao.getAllLandmarks();
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
         }
