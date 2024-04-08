@@ -2,6 +2,7 @@
     <div>
         <h1>{{ landmark.name }}</h1>
         <p>{{ landmark.category }}</p>
+        <button v-on:click="() => $router.push({ name: 'landmark', params: { id: landmark.id } })">Details</button>
     </div>
 </template>
 
@@ -9,8 +10,9 @@
 export default {
     name: "LandmarkSimplified",
     props: {
-        propName: {
-            landmark: Object
+        landmark: {
+            type: Object,
+            required: true
         },
     },
 }

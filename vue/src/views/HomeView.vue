@@ -2,7 +2,7 @@
   <div class="home">
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
-    <p><router-link v-bind:to="{ name: 'landmarks' }">Landmarks</router-link></p>
+    <router-link v-bind:to="{ name: 'landmarks' }">Landmarks</router-link>
   </div>
 </template>
 

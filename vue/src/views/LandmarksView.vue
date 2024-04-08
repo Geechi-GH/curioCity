@@ -1,6 +1,9 @@
 <template>
     <div>
-        <LandmarkSimplified v-for="landmark in landmarks" :key="landmark.id" :landmark="landmark" />
+        <h1>Landmarks</h1>
+        <section class="landmark-list">
+            <LandmarkSimplified v-for="landmark in landmarks" :key="landmark.id" :landmark="landmark" />
+        </section>
     </div>
 </template>
 
@@ -20,11 +23,11 @@ export default {
     },
     created() {
         const landmarks = LandmarkService.getLandmarks()
-            .then((response) => {
+            .then(response => {
                 this.$store.commit('SET_LANDMARKS', response.data);
             });
-    }
-}
+    },
+};
 </script>
 
 <style scoped></style>

@@ -25,7 +25,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
         Landmark landmark = null;
 
         final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count\n" +
-        "\tFROM landmarks \n" +
+                "\tFROM landmarks \n" +
                 "WHERE landmark_id = ?";
 
         try {
@@ -41,7 +41,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
 
     @Override
     public List<Landmark> getAllLandmarks() {
-        List <Landmark> landmarkList = new ArrayList<>();
+        List<Landmark> landmarkList = new ArrayList<>();
 
         final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count\n" +
                 "\tFROM landmarks;";
