@@ -20,13 +20,13 @@ export default {
     },
     methods: {
         getLandmark(landmarkId) {
-            LandmarkService.getLandmark(landmarkId).then((response) => {
+            LandmarkService.getLandmarkById(landmarkId).then((response) => {
                 this.landmark = response.data;
             })
         }
     },
     created() {
-        this.getLandmark(this.$route.params.landmarkId);
+        this.getLandmarkById(this.$route.params.landmarkId);
     }
 }
 </script>

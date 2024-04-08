@@ -2,7 +2,10 @@ import axios from 'axios';
 
 export default {
 
-    getLandmark() {
+    getLandmarkById() {
         return axios.get('/landmarks/:landmarkId');
+    },
+    getLandmarks() {
+        return axios.get('/landmarks');
     }
 }

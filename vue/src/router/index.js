@@ -7,6 +7,7 @@ import LoginView from '../views/LoginView.vue';
 import LogoutView from '../views/LogoutView.vue';
 import RegisterView from '../views/RegisterView.vue';
 import TitleView from '../views/TitleView.vue';
+import LandmarksView from '../views/LandmarksView.vue';
 import LandmarkDetailsView from '../views/LandmarkDetailsView.vue';
 
 /**
@@ -57,6 +58,14 @@ const routes = [
     component: RegisterView,
     meta: {
       requiresAuth: false
+    }
+  },
+  {
+    path: "/landmarks",
+    name: "landmarks",
+    component: LandmarksView,
+    meta: {
+      requiresAuth: true
     }
   },
   {
