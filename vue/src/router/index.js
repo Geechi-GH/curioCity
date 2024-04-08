@@ -70,7 +70,7 @@ const routes = [
   },
   {
     path: "/landmark/:landmarkId",
-    name: "landmark",
+    name: "landmark-details",
     component: LandmarkDetailsView,
     meta: {
       requiresAuth: true

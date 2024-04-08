@@ -1,9 +1,10 @@
 <template>
-    <div>
-        <h1>{{ landmark.name }}</h1>
-        <p>{{ landmark.category }}</p>
-        <button v-on:click="() => $router.push({ name: 'landmark', params: { id: landmark.id } })">Details</button>
-    </div>
+    <router-link v-bind:to="{ name: 'landmark-details', params: { landmarkId: landmark.id } }" class="link">
+        <div>
+            <h1>{{ landmark.name }}</h1>
+            <p>{{ landmark.category }}</p>
+        </div>
+    </router-link>
 </template>
 
 <script>
@@ -18,18 +19,4 @@ export default {
 }
 </script>
 
-<style scoped>
-div {
-    border: 1px solid black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: auto;
-    max-width: 275px;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-}
-</style>
+<style scoped></style>

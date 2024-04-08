@@ -11,8 +11,11 @@
 export default {
     name: "LandmarkDetails",
     props: {
-        landmark: Object
-    }
+        landmark: {
+            type: Object,
+            required: true
+        },
+    },
 }
 </script>
 
