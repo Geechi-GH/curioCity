@@ -1,6 +1,6 @@
 <template>
     <div>
-        <LandmarkDetails v-bind:landmark="landmark" />
+        <landmark-details v-bind:landmark="landmark" />
     </div>
 </template>
 
@@ -9,7 +9,6 @@ import LandmarkService from '../services/LandmarkService';
 import LandmarkDetails from '../components/LandmarkDetails.vue';
 
 export default {
-    name: "LandmarkDetailsView",
     components: {
         LandmarkDetails
     },
@@ -19,14 +18,14 @@ export default {
         }
     },
     methods: {
-        getLandmark(landmarkId) {
-            LandmarkService.getLandmarkById(landmarkId).then((response) => {
+        getLandmark(id) {
+            LandmarkService.getLandmarkById(id).then(response => {
                 this.landmark = response.data;
             })
         }
     },
     created() {
-        this.getLandmarkById(this.$route.params.landmarkId);
+        this.getLandmark(this.$route.params.landmarkId);
     }
 }
 </script>
