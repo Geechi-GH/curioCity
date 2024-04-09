@@ -19,7 +19,6 @@ body {
   background-attachment: fixed;
   color: white;
   font-family: Helvetica, Arial, sans-serif;
-
 }
 
 h1 {
