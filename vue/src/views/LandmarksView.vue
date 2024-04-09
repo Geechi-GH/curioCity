@@ -62,7 +62,7 @@ export default {
 
 <style scoped>
 .title {
-    font-size: 2em;
+    font-size: 5em;
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
@@ -87,21 +87,20 @@ input[type="time"],
 
 .time [type="checkbox"] {
     margin-right: 10px;
+    width: 100%;
 }
 
 .landmark-list {
-    display: grid;
+    display: flex;
     flex-wrap: wrap;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    justify-content: center;
-
+    justify-content: space-around;
 }
 
 .landmark-list>* {
-    border: 3px solid #cd7f32;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid #d7b740;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    flex: 0 0 10%;
 }
 </style>
