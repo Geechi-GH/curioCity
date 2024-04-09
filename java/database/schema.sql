@@ -1,7 +1,10 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS land_itin_helper;
 DROP TABLE IF EXISTS landmarks;
+DROP TABLE IF EXISTS itinerarys;
+DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users (
 	user_id SERIAL,
@@ -10,6 +13,17 @@ CREATE TABLE users (
 	role varchar(50) NOT NULL,
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 );
+
+CREATE TABLE itinerarys (
+	itinerary_id SERIAL PRIMARY KEY,
+	title varchar(50) DEFAULT 'untitled',
+	city_id int DEFAULT 1,
+	user_id int,
+	date_of_travel date NOT NULL,
+	date_created date DEFAULT CURRENT_DATE,
+	FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 
 CREATE TABLE landmarks (
 	landmark_id SERIAL PRIMARY KEY,
@@ -24,6 +38,14 @@ CREATE TABLE landmarks (
 	like_count int,
 	dislike_count int,
 	imagePath varchar(100)
+);
+
+CREATE TABLE land_itin_helper (
+	itinerary_id int,
+	landmark_id int,
+	PRIMARY KEY (itinerary_id, landmark_id),
+	FOREIGN KEY (itinerary_id) REFERENCES itinerarys(itinerary_id),
+	FOREIGN KEY (landmark_id) REFERENCES landmarks(landmark_id)
 );
 
 
