@@ -1,15 +1,19 @@
 <template>
     <div>
-        <h1>Landmarks</h1>
-        <input type="text" v-model="searchQuery" placeholder="Search...">
-        <label for="weekendButton">isWeekend</label>
-        <input type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
-        <input type="time" v-model="timeQuery">
-
-        <select v-model="selectedCategory">
-            <option value="">All Categories</option>
-            <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
-        </select>
+        <h1 class="title">Landmarks</h1>
+        <div class="logo">
+            <img src="../assets/CurioCity.png" alt="Logo Image">
+        </div>
+        <div class="search-bar">
+            <input type="text" v-model="searchQuery" placeholder="Search...">
+            <label class="checkboxisweekend" for="weekendButton">Weekend</label>
+            <input class="checkboxisweekend" type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
+            <input class="time" type="time" v-model="timeQuery">
+            <select class="CategoryCS" v-model="selectedCategory">
+                <option value="">All Categories</option>
+                <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
+            </select>
+        </div>
         <section class="landmark-list">
             <LandmarkSimplified v-for="landmark in filteredLandmarks" :key="landmark.id" :landmark="landmark"
                 :isWeekend="isTheWeekend" />
@@ -28,7 +32,6 @@ export default {
             timeQuery: '',
             searchQuery: '',
             selectedCategory: '',
-
         };
     },
     name: "LandmarksView",
@@ -62,4 +65,97 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.logo {
+    text-align: center;
+    margin-bottom: 5px;
+
+}
+
+.title {
+    font-size: 5em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #d7b740;
+    -webkit-text-stroke: #292929 1px;
+
+    text-decoration-line: underline;
+    text-decoration-style: unset;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #708090;
+    -webkit-text-fill-color: #d7b740;
+
+}
+
+.search-bar input {
+    display: block;
+    width: 25%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #292929;
+    border-radius: 4px;
+    background-color: #292929;
+}
+
+.search-bar .checkboxisweekend {
+    display: inline-block;
+    width: 3%;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+
+.CategoryCS {
+    width: 15%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #292929;
+    border-radius: 4px;
+    background-color: #292929;
+}
+
+.checkboxisweekend {
+    display: inline-block;
+    margin: 10px 0;
+    width: fit-content;
+    font-weight: bold;
+    text-shadow: #292929 0 0 2px;
+}
+
+.time [type="checkbox"] {
+    margin-right: 10px;
+    width: 100%;
+}
+
+.landmark-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+
+}
+
+.landmark-list>* {
+    border: 3px solid #708090;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 10px;
+    flex: 0 0 10%;
+    color: #fffff0;
+}
+
+.landmark-list>*:hover {
+    background-color: #708090;
+    /* Change this to the color you want when hovered */
+    color: #d7b740;
+    /* Change this to the text color you want when hovered */
+}
+</style>

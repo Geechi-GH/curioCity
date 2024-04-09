@@ -8,7 +8,8 @@
                 '00:00:00' ?
                 'Closed' :
                 landmark.weekdayOpen }}</p>
-            <p v-if="!isWeekend"> Weekday Closing Hour: {{ landmark.weekdayOpen === '00:00:00' && landmark.weekdayClose ===
+            <p v-if="!isWeekend"> Weekday Closing Hour: {{ landmark.weekdayOpen === '00:00:00' && landmark.weekdayClose
+                ===
                 '00:00:00' ? '' :
                 landmark.weekdayClose }}</p>
             <br>
@@ -48,6 +49,10 @@ export default {
 img {
     height: 30vh;
     width: 30vh;
-    object-fit: cover;
+    object-position: center;
+    object-fit: contain;
+    border: 1px solid #708090;
+    border-radius: 4px;
+
 }
 </style>
