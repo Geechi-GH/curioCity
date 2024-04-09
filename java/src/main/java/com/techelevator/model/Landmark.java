@@ -14,9 +14,10 @@ public class Landmark {
     private int cityID;
     private int likeCount;
     private int dislikeCount;
+    private String imagePath;
 
     public Landmark(int id, String name, String description, Time weekdayOpen, Time weekdayClose, Time weekendOpen, Time weekendClose,
-                    String category, int cityID, int likeCount, int dislikeCount) {
+                    String category, int cityID, int likeCount, int dislikeCount, String imagePath) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -28,6 +29,7 @@ public class Landmark {
         this.cityID = cityID;
         this.likeCount = likeCount;
         this.dislikeCount = dislikeCount;
+        this.imagePath = imagePath;
     }
 
     public int getId() {
@@ -72,5 +74,9 @@ public class Landmark {
 
     public int getDislikeCount() {
         return dislikeCount;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 }

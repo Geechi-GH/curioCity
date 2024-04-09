@@ -1,7 +1,7 @@
 <template>
     <div class="title-view">
         <header class="title-container">
-            <img id="logo" src="src\assets\CurioCity.png" alt="Logo Image">
+            <img id="logo" src="../assets/CurioCity.png" alt="Logo Image">
             <h1 class="title">Travel curation for the curious mind</h1>
         </header>
         <label for="register">New to the site?</label>
@@ -18,22 +18,22 @@
             iste praesentium
             repellat vel facilis tempora corporis totam deleniti similique minima enim quod sequi itaque! Eum, vero?</p>
         <section class="imagesHolder">
-            <img id="marketImg" src="src\assets\findley market.jpg" alt="">
-            <img id="musicImg" src="src\assets\music hall.jpg" alt="">
-            <img id="museumImg" src="src\assets\museum.jpg" alt="">
+            <img id="marketImg" src="../assets/Findley Market.jpg" alt="">
+            <img id="musicImg" src="../assets/Music Hall.jpg" alt="">
+            <img id="museumImg" src="../assets/Museum.jpg" alt="">
         </section>
 
 
 
         <div class="slideshow-container">
             <div class="slide">
-                <img src="src\assets\findley market.jpg" alt="Slide 1">
+                <img src="../assets/Findley Market.jpg" alt="Slide 1">
             </div>
             <div class="slide">
-                <img src="src\assets\music hall.jpg" alt="Slide 2">
+                <img src="../assets/Music Hall.jpg" alt="Slide 2">
             </div>
             <div class="slide">
-                <img src="src\assets\museum.jpg" alt="Slide 3">
+                <img src="../assets/Museum.jpg" alt="Slide 3">
             </div>
         </div>
 
