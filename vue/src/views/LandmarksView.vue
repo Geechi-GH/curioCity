@@ -1,14 +1,19 @@
 <template>
     <div>
         <h1 class="title">Landmarks</h1>
-        <input type="text" v-model="searchQuery" placeholder="Search...">
-        <label class="checkboxisweekend" for="weekendButton">Weekend</label>
-        <input type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
-        <input class="time" type="time" v-model="timeQuery">
-        <select class="Category" v-model="selectedCategory">
-            <option value="">All Categories</option>
-            <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
-        </select>
+        <div class="logo">
+            <img src="../assets/CurioCity.png" alt="Logo Image">
+        </div>
+        <div class="search-bar">
+            <input type="text" v-model="searchQuery" placeholder="Search...">
+            <label class="checkboxisweekend" for="weekendButton">Weekend</label>
+            <input type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
+            <input class="time" type="time" v-model="timeQuery">
+            <select class="Category" v-model="selectedCategory">
+                <option value="">All Categories</option>
+                <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
+            </select>
+        </div>
         <section class="landmark-list">
             <LandmarkSimplified v-for="landmark in filteredLandmarks" :key="landmark.id" :landmark="landmark"
                 :isWeekend="isTheWeekend" />
@@ -62,12 +67,27 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+    text-align: center;
+    ;
+    margin-bottom: 20px;
+}
+
 .title {
     font-size: 5em;
     font-weight: bold;
     text-align: center;
     margin-bottom: 20px;
-    color: #d7b740
+    color: #d7b740;
+    text-decoration: underline;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+
 }
 
 input[type="text"],
@@ -78,12 +98,14 @@ input[type="time"],
     margin: 10px 0;
     border: 3px solid #708090;
     border-radius: 4px;
+
 }
 
 .checkboxisweekend {
     display: inline-block;
     margin: 10px 0;
     width: fit-content;
+    font-weight: bold;
 }
 
 .time [type="checkbox"] {
