@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @CrossOrigin
@@ -34,6 +35,15 @@ public class LandmarkController {
     public List<Landmark> getAllLandmarks() {
         try {
             return landmarkDao.getAllLandmarks();
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
+        }
+    }
+    
+    @GetMapping("/categories")
+    public Set<String> getAllCategories() {
+        try {
+            return landmarkDao.getAllCategories();
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
         }

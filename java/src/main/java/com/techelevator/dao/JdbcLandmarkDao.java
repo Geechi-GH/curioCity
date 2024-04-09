@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class JdbcLandmarkDao implements LandmarkDao {
@@ -55,6 +57,25 @@ public class JdbcLandmarkDao implements LandmarkDao {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return landmarkList;
+    }
+
+    @Override
+    public Set<String> getAllCategories() {
+        Set<String> categories = new HashSet<>();
+
+        String sql = "SELECT DISTINCT category\n" +
+                "\tFROM landmarks;";
+        try {
+            SqlRowSet results = this.jdbcTemplate.queryForRowSet(sql);
+            while(results.next()) {
+                String category = results.getString("category");
+                categories.add(category);
+            }
+            System.out.println(categories);
+        } catch (CannotGetJdbcConnectionException e){
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return categories;
     }
 
     public Landmark mapRowToLandmark(SqlRowSet results) {
