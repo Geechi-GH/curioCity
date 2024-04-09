@@ -1,6 +1,6 @@
 <template>
+    <img src="../assets/Fountain Square.jpg" alt="Fountain Square.jpg" class="landmark-image" />
     <div>
-        <!-- <img v-bind:src="landmark.imageUrl" v-bind:alt="landmark.name + ' image'" /> -->
         <h1>{{ landmark.name }}</h1>
         <p>{{ landmark.category }}</p>
         <p>{{ landmark.description }}</p>
@@ -19,4 +19,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+img {
+    height: 30vh;
+    width: 30vh;
+    object-fit: cover;
+}
+</style>

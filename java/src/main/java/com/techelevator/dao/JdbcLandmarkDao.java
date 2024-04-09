@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Component
 public class JdbcLandmarkDao implements LandmarkDao {
@@ -24,7 +26,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
     public Landmark getLandmarkById(int landmarkId) {
         Landmark landmark = null;
 
-        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count\n" +
+        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath\n" +
                 "\tFROM landmarks \n" +
                 "WHERE landmark_id = ?";
 
@@ -43,7 +45,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
     public List<Landmark> getAllLandmarks() {
         List<Landmark> landmarkList = new ArrayList<>();
 
-        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count\n" +
+        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath\n" +
                 "\tFROM landmarks;";
         try {
             final SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -57,6 +59,25 @@ public class JdbcLandmarkDao implements LandmarkDao {
         return landmarkList;
     }
 
+    @Override
+    public Set<String> getAllCategories() {
+        Set<String> categories = new HashSet<>();
+
+        String sql = "SELECT DISTINCT category\n" +
+                "\tFROM landmarks;";
+        try {
+            SqlRowSet results = this.jdbcTemplate.queryForRowSet(sql);
+            while(results.next()) {
+                String category = results.getString("category");
+                categories.add(category);
+            }
+            System.out.println(categories);
+        } catch (CannotGetJdbcConnectionException e){
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return categories;
+    }
+
     public Landmark mapRowToLandmark(SqlRowSet results) {
         Landmark landmark = new Landmark(results.getInt("landmark_id"),
                 results.getString("name"),
@@ -68,7 +89,8 @@ public class JdbcLandmarkDao implements LandmarkDao {
                 results.getString("category"),
                 results.getInt("city_id"),
                 results.getInt("like_count"),
-                results.getInt("dislike_count"));
+                results.getInt("dislike_count"),
+                results.getString("imagePath"));
         return landmark;
     }
 }

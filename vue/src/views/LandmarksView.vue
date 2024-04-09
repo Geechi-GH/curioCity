@@ -5,7 +5,7 @@
         <label for="weekendButton">isWeekend</label>
         <input type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
         <input type="time" v-model="timeQuery">
-        <!-- <input type="text" v-model="categoryQuery" placeholder="Category..."> -->
+
         <select v-model="selectedCategory">
             <option value="">All Categories</option>
             <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
@@ -28,21 +28,19 @@ export default {
             timeQuery: '',
             searchQuery: '',
             selectedCategory: '',
-            categories: ['Public Space', 'Attraction', 'Museum', 'Landmark', 'Botanical Garden', 'Entertainment', 'Observatory'],
+
         };
     },
     name: "LandmarksView",
     components: {
         LandmarkSimplified,
     },
-    // methods: {
-    //     checkboxClicked() {
-    //         this.isTheWeekend = !this.isTheWeekend;
-    //     }
-    // },
     computed: {
         landmarks() {
             return this.$store.state.landmarks;
+        },
+        categories() {
+            return this.$store.state.categories;
         },
         filteredLandmarks() {
             return this.landmarks.filter(landmark => {
@@ -56,6 +54,10 @@ export default {
             .then(response => {
                 this.$store.commit('SET_LANDMARKS', response.data);
             });
+        const categories = LandmarkService.getCategories()
+            .then(response => {
+                this.$store.commit('SET_CATEGORIES', response.data);
+            })
     },
 };
 </script>

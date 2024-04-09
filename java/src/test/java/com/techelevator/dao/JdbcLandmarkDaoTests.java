@@ -11,9 +11,9 @@ import java.util.List;
 
 public class JdbcLandmarkDaoTests extends BaseDaoTests{
 
-    private static final Landmark TEST_LANDMARK_1 = new Landmark(1,"Test Landmark 1", "Test Description 1", new Time(9,0,0), new Time(17,0,0), new Time(10,0,0), new Time(16,0,0), "Test Category 1", 1, 0, 0);
-    private static final Landmark TEST_LANDMARK_2 = new Landmark(2,"Test Landmark 2", "Test Description 2", new Time(9,0,0), new Time(17,0,0), new Time(10,0,0), new Time(16,0,0), "Test Category 1", 1, 0, 0);
-    private static final Landmark TEST_LANDMARK_3 = new Landmark(3,"Test Landmark 3", "Test Description 3", new Time(10,30,0), new Time(18,30,0), new Time(12,0,0), new Time(17,0,0), "Test Category 2", 1, 0, 0);
+    private static final Landmark TEST_LANDMARK_1 = new Landmark(1,"Test Landmark 1", "Test Description 1", new Time(9,0,0), new Time(17,0,0), new Time(10,0,0), new Time(16,0,0), "Test Category 1", 1, 0, 0, "../assets/CurioCity.png");
+    private static final Landmark TEST_LANDMARK_2 = new Landmark(2,"Test Landmark 2", "Test Description 2", new Time(9,0,0), new Time(17,0,0), new Time(10,0,0), new Time(16,0,0), "Test Category 1", 1, 0, 0, "../assets/CurioCity.png");
+    private static final Landmark TEST_LANDMARK_3 = new Landmark(3,"Test Landmark 3", "Test Description 3", new Time(10,30,0), new Time(18,30,0), new Time(12,0,0), new Time(17,0,0), "Test Category 2", 1, 0, 0, "../assets/CurioCity.png");
 
     private JdbcLandmarkDao sut;
 @Before

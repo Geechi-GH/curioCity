@@ -6,7 +6,8 @@ export function createStore(currentToken, currentUser) {
     state: {
       token: currentToken || '',
       user: currentUser || {},
-      landmarks: []
+      landmarks: [],
+      categories: []
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -27,6 +28,9 @@ export function createStore(currentToken, currentUser) {
       },
       SET_LANDMARKS(state, landmarks) {
         state.landmarks = landmarks;
+      },
+      SET_CATEGORIES(state, categories) {
+        state.categories = categories;
       }
     },
   });
