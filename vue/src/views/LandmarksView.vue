@@ -7,7 +7,7 @@
         <div class="search-bar">
             <input type="text" v-model="searchQuery" placeholder="Search...">
             <label class="checkboxisweekend" for="weekendButton">Weekend</label>
-            <input type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
+            <input class="checkboxisweekend" type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
             <input class="time" type="time" v-model="timeQuery">
             <select class="Category" v-model="selectedCategory">
                 <option value="">All Categories</option>
@@ -69,17 +69,20 @@ export default {
 <style scoped>
 .logo {
     text-align: center;
-    ;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
+
 }
 
 .title {
     font-size: 5em;
     font-weight: bold;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     color: #d7b740;
-    text-decoration: underline;
+    -webkit-text-stroke: #292929 1px;
+
+    text-decoration-line: underline;
+    text-decoration-style: unset;
 }
 
 .search-bar {
@@ -87,18 +90,37 @@ export default {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    background-color: #708090;
+    -webkit-text-fill-color: #d7b740;
 
 }
 
-input[type="text"],
-input[type="time"],
+.search-bar input {
+    display: block;
+    width: 25%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #292929;
+    border-radius: 4px;
+    background-color: #292929;
+}
+
+.search-bar .checkboxisweekend {
+    display: inline-block;
+    width: 3%;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+
+
 .Category {
     width: 15%;
     padding: 10px;
     margin: 10px 0;
-    border: 3px solid #708090;
+    border: 2px solid #292929;
     border-radius: 4px;
-
+    background-color: #292929;
 }
 
 .checkboxisweekend {
@@ -106,6 +128,7 @@ input[type="time"],
     margin: 10px 0;
     width: fit-content;
     font-weight: bold;
+    text-shadow: #292929 0 0 2px;
 }
 
 .time [type="checkbox"] {
@@ -117,13 +140,15 @@ input[type="time"],
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+
 }
 
 .landmark-list>* {
-    border: 3px solid #d7b740;
+    border: 3px solid #708090;
     border-radius: 4px;
     padding: 10px;
     margin: 10px;
     flex: 0 0 10%;
+    color: #708090;
 }
 </style>
