@@ -7,5 +7,9 @@ export default {
     },
     getLandmarks() {
         return axios.get('/landmarks');
+    },
+    // Gets categories from the server to be displayed in filter dropdown
+    getCategories() {
+        return axios.get('/categories');
     }
 }
