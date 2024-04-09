@@ -42,21 +42,7 @@
 
 <script>
 export default {
-    data() {
-        return {
-            currentIndex: 0
-        };
-    },
-    mounted() {
-        setInterval(() => {
-            this.currentIndex = (this.currentIndex + 1) % this.slides.length;
-        }, 2000);
-    },
-    computed: {
-        currentSlide() {
-            return this.slides[this.currentIndex];
-        }
-    }
+    name: "TitleView",
 }
 // let slideIndex = 0;
 // showSlides();
