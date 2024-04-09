@@ -9,7 +9,7 @@
             <label class="checkboxisweekend" for="weekendButton">Weekend</label>
             <input class="checkboxisweekend" type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
             <input class="time" type="time" v-model="timeQuery">
-            <select class="Category" v-model="selectedCategory">
+            <select class="CategoryCS" v-model="selectedCategory">
                 <option value="">All Categories</option>
                 <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
             </select>
@@ -32,7 +32,6 @@ export default {
             timeQuery: '',
             searchQuery: '',
             selectedCategory: '',
-
         };
     },
     name: "LandmarksView",
@@ -114,7 +113,7 @@ export default {
 }
 
 
-.Category {
+.CategoryCS {
     width: 15%;
     padding: 10px;
     margin: 10px 0;
@@ -141,6 +140,7 @@ export default {
     flex-wrap: wrap;
     justify-content: space-around;
 
+
 }
 
 .landmark-list>* {
@@ -149,6 +149,13 @@ export default {
     padding: 10px;
     margin: 10px;
     flex: 0 0 10%;
-    color: #708090;
+    color: #fffff0;
+}
+
+.landmark-list>*:hover {
+    background-color: #708090;
+    /* Change this to the color you want when hovered */
+    color: #d7b740;
+    /* Change this to the text color you want when hovered */
 }
 </style>

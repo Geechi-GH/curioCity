@@ -21,6 +21,6 @@ body {
 }
 
 h1 {
-  color: #CD7F32;
+  color: #D7b740;
 }
 </style>

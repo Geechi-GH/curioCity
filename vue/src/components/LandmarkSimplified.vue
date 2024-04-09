@@ -51,5 +51,8 @@ img {
     width: 30vh;
     object-position: center;
     object-fit: contain;
+    border: 1px solid #708090;
+    border-radius: 4px;
+
 }
 </style>
