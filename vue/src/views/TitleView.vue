@@ -23,6 +23,8 @@
             <img id="museumImg" src="src\assets\museum.jpg" alt="">
         </section>
 
+
+
         <div class="slideshow-container">
             <div class="slide">
                 <img src="src\assets\findley market.jpg" alt="Slide 1">
@@ -40,7 +42,21 @@
 
 <script>
 export default {
-    name: "TitleView",
+    data() {
+        return {
+            currentIndex: 0
+        };
+    },
+    mounted() {
+        setInterval(() => {
+            this.currentIndex = (this.currentIndex + 1) % this.slides.length;
+        }, 2000);
+    },
+    computed: {
+        currentSlide() {
+            return this.slides[this.currentIndex];
+        }
+    }
 }
 // let slideIndex = 0;
 // showSlides();
