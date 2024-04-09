@@ -62,5 +62,20 @@ export default {
 
 <style scoped>
 
+input[type= time] {
+    width: 30px;
+    height: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    text-align: center;
+
+}
+
 
 </style>
