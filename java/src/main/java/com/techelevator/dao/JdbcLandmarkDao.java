@@ -26,7 +26,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
     public Landmark getLandmarkById(int landmarkId) {
         Landmark landmark = null;
 
-        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count\n" +
+        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath\n" +
                 "\tFROM landmarks \n" +
                 "WHERE landmark_id = ?";
 
@@ -45,7 +45,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
     public List<Landmark> getAllLandmarks() {
         List<Landmark> landmarkList = new ArrayList<>();
 
-        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count\n" +
+        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath\n" +
                 "\tFROM landmarks;";
         try {
             final SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
@@ -89,7 +89,8 @@ public class JdbcLandmarkDao implements LandmarkDao {
                 results.getString("category"),
                 results.getInt("city_id"),
                 results.getInt("like_count"),
-                results.getInt("dislike_count"));
+                results.getInt("dislike_count"),
+                results.getString("imagePath"));
         return landmark;
     }
 }

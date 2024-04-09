@@ -22,7 +22,8 @@ CREATE TABLE landmarks (
 	category varchar(35) NOT NULL,
 	city_id int DEFAULT 1,
 	like_count int,
-	dislike_count int
+	dislike_count int,
+	imagePath varchar(100)
 );
 
 
