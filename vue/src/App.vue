@@ -18,6 +18,7 @@ body {
   background-image: linear-gradient(to bottom left, #3c3c3c, #020202);
   background-attachment: fixed;
   color: white;
+  font-family: Helvetica, Arial, sans-serif;
 }
 
 h1 {
