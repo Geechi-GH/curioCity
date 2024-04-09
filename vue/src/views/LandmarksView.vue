@@ -1,12 +1,12 @@
 <template>
     <div>
-        <h1>Landmarks</h1>
+        <h1 class="title">Landmarks</h1>
         <input type="text" v-model="searchQuery" placeholder="Search...">
-        <label for="weekendButton">isWeekend</label>
+        <label class="checkboxisweekend" for="weekendButton">Weekend</label>
         <input type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
-        <input type="time" v-model="timeQuery">
+        <input class="time" type="time" v-model="timeQuery">
         <!-- <input type="text" v-model="categoryQuery" placeholder="Category..."> -->
-        <select v-model="selectedCategory">
+        <select class="Category" v-model="selectedCategory">
             <option value="">All Categories</option>
             <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
         </select>
@@ -61,6 +61,47 @@ export default {
 </script>
 
 <style scoped>
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #d7b740
+}
 
+input[type="text"],
+input[type="time"],
+.Category {
+    width: 15%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 3px solid #708090;
+    border-radius: 4px;
+}
 
+.checkboxisweekend {
+    display: inline-block;
+    margin: 10px 0;
+    width: fit-content;
+}
+
+.time [type="checkbox"] {
+    margin-right: 10px;
+}
+
+.landmark-list {
+    display: grid;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+
+}
+
+.landmark-list>* {
+    border: 3px solid #cd7f32;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 </style>
