@@ -23,6 +23,8 @@
             <img id="museumImg" src="../assets/Museum.jpg" alt="">
         </section>
 
+
+
         <div class="slideshow-container">
             <div class="slide">
                 <img src="../assets/Findley Market.jpg" alt="Slide 1">

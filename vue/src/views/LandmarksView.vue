@@ -1,8 +1,18 @@
 <template>
     <div>
         <h1>Landmarks</h1>
+        <input type="text" v-model="searchQuery" placeholder="Search...">
+        <label for="weekendButton">isWeekend</label>
+        <input type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
+        <input type="time" v-model="timeQuery">
+        <!-- <input type="text" v-model="categoryQuery" placeholder="Category..."> -->
+        <select v-model="selectedCategory">
+            <option value="">All Categories</option>
+            <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
+        </select>
         <section class="landmark-list">
-            <LandmarkSimplified v-for="landmark in landmarks" :key="landmark.id" :landmark="landmark" />
+            <LandmarkSimplified v-for="landmark in filteredLandmarks" :key="landmark.id" :landmark="landmark"
+                :isWeekend="isTheWeekend" />
         </section>
     </div>
 </template>
@@ -12,14 +22,34 @@ import LandmarkService from '../services/LandmarkService';
 import LandmarkSimplified from '../components/LandmarkSimplified.vue';
 
 export default {
+    data() {
+        return {
+            isTheWeekend: false,
+            timeQuery: '',
+            searchQuery: '',
+            selectedCategory: '',
+            categories: ['Public Space', 'Attraction', 'Museum', 'Landmark', 'Botanical Garden', 'Entertainment', 'Observatory'],
+        };
+    },
     name: "LandmarksView",
     components: {
         LandmarkSimplified,
     },
+    // methods: {
+    //     checkboxClicked() {
+    //         this.isTheWeekend = !this.isTheWeekend;
+    //     }
+    // },
     computed: {
         landmarks() {
             return this.$store.state.landmarks;
-        }
+        },
+        filteredLandmarks() {
+            return this.landmarks.filter(landmark => {
+                return landmark.name.toLowerCase().includes(this.searchQuery.toLowerCase()) && (this.selectedCategory === '' || landmark.category.toLowerCase() === this.selectedCategory.toLowerCase()) && (this.timeQuery === '' || landmark.weekdayOpen <= this.timeQuery && landmark.weekdayClose > this.timeQuery);
+            });
+        },
+
     },
     created() {
         const landmarks = LandmarkService.getLandmarks()
@@ -30,4 +60,7 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+
+
+</style>
