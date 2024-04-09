@@ -35,11 +35,6 @@ export default {
     components: {
         LandmarkSimplified,
     },
-    // methods: {
-    //     checkboxClicked() {
-    //         this.isTheWeekend = !this.isTheWeekend;
-    //     }
-    // },
     computed: {
         landmarks() {
             return this.$store.state.landmarks;
