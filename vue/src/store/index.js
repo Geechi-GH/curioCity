@@ -7,7 +7,8 @@ export function createStore(currentToken, currentUser) {
       token: currentToken || '',
       user: currentUser || {},
       landmarks: [],
-      categories: []
+      categories: [],
+      itineraries: []
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -31,6 +32,9 @@ export function createStore(currentToken, currentUser) {
       },
       SET_CATEGORIES(state, categories) {
         state.categories = categories;
+      },
+      SET_ITINERARIES(state, itineraries) {
+        state.itineraries = itineraries;
       }
     },
   });
