@@ -11,5 +11,5 @@ export default {
     // Gets categories from the server to be displayed in filter dropdown
     getCategories() {
         return axios.get('/categories');
-    }
+    },
 }
