@@ -16,9 +16,9 @@ public class ItineraryController {
         this.itineraryDao = itineraryDao;
     }
 
-        @GetMapping("/itineraries")
-        public List<Itinerary> getAllMyItineraries() {
-            return null;
-        }
+    @GetMapping("/itineraries")
+    public List<Itinerary> getAllMyItineraries() {
+        return null;
+    }
 }
 
