@@ -6,9 +6,9 @@ INSERT INTO users (username,password_hash,role) VALUES ('user3','user3','ROLE_US
 
 INSERT INTO landmarks (landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath)
 VALUES
-(1, 'Test Landmark 1', 'Test Description 1', '09:00:00', '17:00:00', '10:00:00', '16:00:00', 'Test Category 1', 1, 0, 0, "../assets/CurioCity.png"),
-(2, 'Test Landmark 2', 'Test Description 2', '09:00:00', '17:00:00', '10:00:00', '16:00:00', 'Test Category 1', 1, 0, 0, "../assets/CurioCity.png"),
-(3, 'Test Landmark 3', 'Test Description 3', '10:30:00', '18:30:00', '12:00:00', '17:00:00', 'Test Category 2', 1, 0, 0, "../assets/CurioCity.png");
+(1, 'Test Landmark 1', 'Test Description 1', '09:00:00', '17:00:00', '10:00:00', '16:00:00', 'Test Category 1', 1, 0, 0, '../assets/CurioCity.png'),
+(2, 'Test Landmark 2', 'Test Description 2', '09:00:00', '17:00:00', '10:00:00', '16:00:00', 'Test Category 1', 1, 0, 0, '../assets/CurioCity.png'),
+(3, 'Test Landmark 3', 'Test Description 3', '10:30:00', '18:30:00', '12:00:00', '17:00:00', 'Test Category 2', 1, 0, 0, '../assets/CurioCity.png');
 
 
 COMMIT TRANSACTION;
