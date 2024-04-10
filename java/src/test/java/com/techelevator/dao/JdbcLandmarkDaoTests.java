@@ -21,7 +21,7 @@ public class JdbcLandmarkDaoTests extends BaseDaoTests{
     sut = new JdbcLandmarkDao(dataSource);
 }
 
-@Test
+    @Test
     public void get_all_landmarks_works() {
     //arrange
     List <Landmark> testList = new ArrayList<>();

@@ -46,4 +46,19 @@ VALUES ('Taft Museum of Art', 'A historic house museum showcasing fine art colle
 INSERT INTO landmarks (name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, like_count, dislike_count, imagePath)
 VALUES ('Cincinnati Observatory', 'An historic observatory offering stargazing opportunities and educational programs.', '19:00:00', '22:00:00', '19:00:00', '22:00:00', 'Observatory', 0, 0, '../assets/Observatory.jpg');
 
+-----------------------------------
+
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Trip to Cincinnati', 1, 1, '2024-05-15');
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Weekend Getaway', 1, 1, '2024-06-20');
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Family Vacation', 1, 1, '2024-07-10');
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Business Trip', 1, 1, '2024-08-05');
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Honeymoon', 1, 1, '2024-09-12');
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Adventure in the City', 1, 1, '2024-10-25');
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Water Park Vacation', 1, 1, '2024-11-08');
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Sightseeing Tour', 1, 1, '2024-12-17');
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Exploring Historical Sites', 1, 1, '2025-01-05');
+INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Cultural Exchange Program', 1, 1, '2025-02-20');
+
+
+
 COMMIT TRANSACTION;
