@@ -67,12 +67,12 @@ public class JdbcLandmarkDao implements LandmarkDao {
                 "\tFROM landmarks;";
         try {
             SqlRowSet results = this.jdbcTemplate.queryForRowSet(sql);
-            while(results.next()) {
+            while (results.next()) {
                 String category = results.getString("category");
                 categories.add(category);
             }
             System.out.println(categories);
-        } catch (CannotGetJdbcConnectionException e){
+        } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return categories;

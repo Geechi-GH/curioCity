@@ -27,5 +27,6 @@ public class ItineraryController {
         User user = this.userDao.getUserByUsername(principal.getName());
             return this.itineraryDao.getAllItineraries(user.getId());
         }
+
 }
 
