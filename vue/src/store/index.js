@@ -35,6 +35,9 @@ export function createStore(currentToken, currentUser) {
       },
       SET_ITINERARIES(state, itineraries) {
         state.itineraries = itineraries;
+      },
+      ADD_ITINERARY(state, itinerary) {
+        state.itineraries.push(itinerary);
       }
     },
   });

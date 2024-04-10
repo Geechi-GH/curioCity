@@ -4,6 +4,7 @@ import com.techelevator.dao.ItineraryDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Itinerary;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import com.techelevator.dao.UserDao;
@@ -17,10 +18,10 @@ import java.util.List;
 
 @RestController
 @CrossOrigin
+@PreAuthorize("isAuthenticated()")
 public class ItineraryController {
     private ItineraryDao itineraryDao;
     private UserDao userDao;
-
 
     public ItineraryController(ItineraryDao itineraryDao, UserDao userDao) {
         this.itineraryDao = itineraryDao;
@@ -44,9 +45,11 @@ public class ItineraryController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/itineraries")
-    public Itinerary create(@RequestBody Itinerary itinerary) {
+    public Itinerary create(@RequestBody Itinerary itinerary, Principal principal) {
+        String username = principal.getName();
+        final User user = this.userDao.getUserByUsername(username);
         try {
-            return itineraryDao.create(itinerary);
+            return itineraryDao.create(itinerary, user);
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "Something went wrong");
         }

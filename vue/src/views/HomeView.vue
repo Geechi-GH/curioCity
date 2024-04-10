@@ -4,6 +4,7 @@
     <p>You must be authenticated to see this</p>
     <router-link v-bind:to="{ name: 'landmarks' }" class="link">Landmarks</router-link>
     <ItinerariesSimplified v-for="itinerary in itineraries" v-bind:key="itinerary.id" v-bind:itinerary="itinerary" />
+    <button class="btn-add" v-on:click="this.$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
   </div>
   <div>
 

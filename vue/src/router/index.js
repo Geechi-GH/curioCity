@@ -9,6 +9,7 @@ import RegisterView from '../views/RegisterView.vue';
 import TitleView from '../views/TitleView.vue';
 import LandmarksView from '../views/LandmarksView.vue';
 import LandmarkDetailsView from '../views/LandmarkDetailsView.vue';
+import AddItineraryView from '../views/AddItineraryView.vue';
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -72,6 +73,14 @@ const routes = [
     path: "/landmark/:landmarkId",
     name: "landmark-details",
     component: LandmarkDetailsView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/itinerary/create",
+    name: "add-itinerary",
+    component: AddItineraryView,
     meta: {
       requiresAuth: true
     }
