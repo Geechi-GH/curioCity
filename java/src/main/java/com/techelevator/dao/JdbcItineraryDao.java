@@ -2,6 +2,7 @@ package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Itinerary;
+import com.techelevator.model.User;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -45,7 +46,8 @@ public class JdbcItineraryDao implements ItineraryDao {
     public Itinerary getItineraryById(int id) {
         Itinerary itinerary = null;
         final String sql = "SELECT itinerary_id, title, city_id, user_id, date_of_travel, date_created\n" +
-                "\tFROM itinerarys;";
+                "\tFROM itinerarys " +
+                "WHERE itinerary_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
             if (results.next()) {
@@ -58,13 +60,14 @@ public class JdbcItineraryDao implements ItineraryDao {
     }
 
     @Override
-    public Itinerary create(Itinerary itinerary) {
+    public Itinerary create(Itinerary itinerary, User user) {
         Itinerary newItinerary = null;
         final String sql = "INSERT INTO itinerarys(title, city_id, user_id, date_of_travel, date_created)\n" +
-                "VALUES (?, ?, ?, ?, ?);";
+                "VALUES (?, ?, ?, ?, ?)" +
+                "RETURNING itinerary_id;";
         try {
-            int newItineraryId = jdbcTemplate.queryForObject(sql, int.class, itinerary.getTitle(), itinerary.getCityId(),
-                    itinerary.getUserId(), itinerary.getDateOfTravel(), itinerary.getDateCreated());
+            int newItineraryId = jdbcTemplate.queryForObject(sql, int.class, itinerary.getTitle(), 1,
+                    user.getId(), itinerary.getDateOfTravel(), itinerary.getDateCreated());
             newItinerary = getItineraryById(newItineraryId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
@@ -74,15 +77,14 @@ public class JdbcItineraryDao implements ItineraryDao {
         return newItinerary;
     }
 
-
     private Itinerary mapRowToItinerary(SqlRowSet results) {
         final Itinerary itinerary = new Itinerary(
                 results.getInt("itinerary_id"),
                 results.getString("title"),
                 results.getInt("city_id"),
                 results.getInt("user_id"),
-                results.getDate("date_of_travel"),
-                results.getDate("date_created")
+                results.getDate("date_of_travel").toLocalDate(),
+                results.getDate("date_created").toLocalDate()
         );
         return itinerary;
     }

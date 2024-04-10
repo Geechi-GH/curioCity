@@ -14,9 +14,9 @@ public class JdbcItineraryDaoTests extends BaseDaoTests{
 
 
     // Test Data Set 1
-    private static final Itinerary TEST_ITINERARY_1 = new Itinerary(1, "Test 1", 1, 1, Date.valueOf(LocalDate.of(2024, 5, 15)), Date.valueOf(LocalDate.of(2024, 4, 10)));
-    private static final Itinerary TEST_ITINERARY_2 = new Itinerary(2, "Test 2", 1, 1, Date.valueOf(LocalDate.of(2024, 6, 20)), Date.valueOf(LocalDate.of(2024, 4, 10)) );
-    private static final Itinerary TEST_ITINERARY_3 = new Itinerary(3, "Test 3", 1, 1, Date.valueOf(LocalDate.of(2024, 5, 15)), Date.valueOf(LocalDate.of(2024, 4, 10)));
+    private static final Itinerary TEST_ITINERARY_1 = new Itinerary(1, "Test 1", 1, 1, LocalDate.of(2024, 5, 15), LocalDate.of(2024, 4, 10));
+    private static final Itinerary TEST_ITINERARY_2 = new Itinerary(2, "Test 2", 1, 1, LocalDate.of(2024, 6, 20), LocalDate.of(2024, 4, 10));
+    private static final Itinerary TEST_ITINERARY_3 = new Itinerary(3, "Test 3", 1, 1, LocalDate.of(2024, 5, 15), LocalDate.of(2024, 4, 10));
 
 
     private JdbcItineraryDao sut;
