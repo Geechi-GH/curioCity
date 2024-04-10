@@ -23,8 +23,6 @@ public class Itinerary {
         this.dateCreated = dateCreated;
     }
 
-
-
     public int getItineraryId() {
         return itineraryId;
     }
@@ -85,4 +83,3 @@ public class Itinerary {
                 '}';
     }
 }
-

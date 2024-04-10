@@ -7,4 +7,8 @@ import java.util.List;
 public interface ItineraryDao {
 
     public List<Itinerary> getAllItineraries(int userId);
+
+    Itinerary getItineraryById(int id);
+
+    Itinerary create(Itinerary itinerary);
 }
