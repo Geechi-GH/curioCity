@@ -1,5 +1,8 @@
 package com.techelevator.model;
 
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Itinerary {
@@ -7,6 +10,7 @@ public class Itinerary {
     private String title;
     private int cityId;
     private int userId;
+    @Future(message = "date must be in the future")
     private Date dateOfTravel;
     private Date dateCreated;
 
@@ -18,6 +22,8 @@ public class Itinerary {
         this.dateOfTravel = dateOfTravel;
         this.dateCreated = dateCreated;
     }
+
+
 
     public int getItineraryId() {
         return itineraryId;
