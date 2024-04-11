@@ -1,24 +1,32 @@
 <template>
     <body>
-        <img v-bind:src="image" v-bind:alt="landmark.name" />
         <div>
-            <h1>{{ landmark.name }}</h1>
-            <p>Category: {{ landmark.category }}</p>
-            <section class="hours">
+            <div id="title-image-container">
+                <img id="image" v-bind:src="image" v-bind:alt="landmark.name" />
+                <h1 id="title">{{ landmark.name }}</h1>
+            </div>
+            <p id="category">Category: {{ landmark.category }}</p>
+            <p id="description">Description: {{ landmark.description }}</p>
+            <section>
                 <div id="weekday">
                     <h2>Weekday Hours</h2>
+                </div>
+                <div id="weekdayhours">
                     <p>Opens: {{ formatTime(landmark.weekdayOpen) }}</p>
                     <p>Closes: {{ formatTime(landmark.weekdayClose) }}</p>
                 </div>
+
                 <div id="weekend">
                     <h2>Weekend Hours</h2>
+                </div>
+                <div id="weekendhours">
                     <p>Opens: {{ formatTime(landmark.weekendOpen) }}</p>
                     <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
                 </div>
+
             </section>
         </div>
     </body>
-    <p>Description: {{ landmark.description }}</p>
 </template>
 
 <script>
@@ -57,49 +65,112 @@ export default {
 </script>
 
 <style scoped>
-img {
-    height: 50vh;
-    width: 50vh;
-    object-fit: cover;
-}
-
-body {
+#title-image-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-div {
-    align-self: flex-start;
-    padding-left: 30px;
+#image {
+    height: 60%;
+    width: 60%;
+    object-fit: contain;
+    border: 1px solid #708090;
+    border-radius: 4px;
 }
 
-h1 {
-    margin-top: 0;
-    font-size: 3rem;
+#title {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    font-weight: bold;
+    font-family: serif;
+    -webkit-text-stroke: #292929 1px;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    color: #fffff0;
+
 }
 
-.hours {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas:
-        "weekday weekend"
-    ;
+#category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1 em;
+    font-weight: bold;
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 5px;
+    color: #fffff0;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    background-color: #708090;
+    border: 1px solid #292929
 }
+
+#description {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 1.5em;
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    color: #fffff0;
+    border-bottom: 3px solid #708090;
+}
+
 
 #weekday {
-    grid-area: weekday;
-    border: white 1px solid;
-    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    font-size: smaller;
+    text-decoration: underline #708090;
+    border-top: #708090 3px solid;
+}
+
+#weekdayhours {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+
 
 }
 
 #weekend {
-    grid-area: weekend;
-    border: white 1px solid;
-    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    font-size: smaller;
+    text-decoration: underline #708090;
+    justify-content: center;
 }
 
-p {
-    font-size: 1.25rem;
+#weekend #weekday {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    font-size: smaller;
+    justify-content: center;
+
+}
+
+#weekendhours {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
 }
 </style>
