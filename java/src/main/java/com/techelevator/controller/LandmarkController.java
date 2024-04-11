@@ -4,10 +4,7 @@ import com.techelevator.dao.LandmarkDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Landmark;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -48,4 +45,6 @@ public class LandmarkController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
         }
     }
+
+
 }

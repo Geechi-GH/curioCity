@@ -4,10 +4,10 @@
     <p>You must be authenticated to see this</p>
     <router-link :to="{ name: 'landmarks' }" class="link">Landmarks</router-link>
     <section id="itineraries">
-
       <ItinerariesSimplified class="itinerary-list" v-for="itinerary in itineraries" :key="itinerary.id"
         :itinerary="itinerary" />
     </section>
+    <button class="btn-add" @click="$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
   </div>
 </template>
 

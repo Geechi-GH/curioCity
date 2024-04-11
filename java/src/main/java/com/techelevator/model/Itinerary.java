@@ -1,5 +1,10 @@
 package com.techelevator.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import java.time.LocalDate;
@@ -11,10 +16,14 @@ public class Itinerary {
     private int cityId;
     private int userId;
     @Future(message = "date must be in the future")
-    private Date dateOfTravel;
-    private Date dateCreated;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate dateOfTravel;
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    private LocalDate dateCreated;
 
-    public Itinerary(int itineraryId, String title, int cityId, int userId, Date dateOfTravel, Date dateCreated) {
+    public Itinerary(int itineraryId, String title, int cityId, int userId, LocalDate dateOfTravel, LocalDate dateCreated) {
         this.itineraryId = itineraryId;
         this.title = title;
         this.cityId = cityId;
@@ -55,19 +64,19 @@ public class Itinerary {
         this.userId = userId;
     }
 
-    public Date getDateOfTravel() {
+    public LocalDate getDateOfTravel() {
         return dateOfTravel;
     }
 
-    public void setDateOfTravel(Date dateOfTravel) {
+    public void setDateOfTravel(LocalDate dateOfTravel) {
         this.dateOfTravel = dateOfTravel;
     }
 
-    public Date getDateCreated() {
+    public LocalDate getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
 

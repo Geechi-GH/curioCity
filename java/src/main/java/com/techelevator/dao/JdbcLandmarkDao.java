@@ -22,6 +22,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+
     @Override
     public Landmark getLandmarkById(int landmarkId) {
         Landmark landmark = null;
@@ -77,6 +78,8 @@ public class JdbcLandmarkDao implements LandmarkDao {
         }
         return categories;
     }
+
+
 
     public Landmark mapRowToLandmark(SqlRowSet results) {
         Landmark landmark = new Landmark(results.getInt("landmark_id"),
