@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.Landit;
 import com.techelevator.model.Landmark;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,9 +19,14 @@ public class JdbcLandmarkDao implements LandmarkDao {
 
     private final JdbcTemplate jdbcTemplate;
 
+
+    public JdbcLandmarkDao(DataSource dataSource, Landit landit) {
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
+    }
     public JdbcLandmarkDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
 
     @Override
     public Landmark getLandmarkById(int landmarkId) {
@@ -76,6 +82,25 @@ public class JdbcLandmarkDao implements LandmarkDao {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return categories;
+    }
+
+
+    // Delete this Method once we find a better way to do this.
+    @Override
+    public Landit createLandmarkInItinerary(int landmarkId, int itineraryId) {
+        Landit landit = new Landit();
+        String sql = "INSERT INTO land_itin_helper(\n" +
+                "\titinerary_id, landmark_id)\n" +
+                "\tVALUES (?, ?) RETURNING;";
+
+        try {
+            Integer result = this.jdbcTemplate.queryForObject(sql, int.class, itineraryId, landmarkId);
+            landit.setItineraryId(itineraryId);
+            landit.setLandmarkId(landmarkId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return landit;
     }
 
     public Landmark mapRowToLandmark(SqlRowSet results) {

@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Itinerary;
+import com.techelevator.model.User;
 
 import java.util.List;
 
@@ -10,5 +11,5 @@ public interface ItineraryDao {
 
     Itinerary getItineraryById(int id);
 
-    Itinerary create(Itinerary itinerary);
+    Itinerary create(Itinerary itinerary, User user);
 }

@@ -6,12 +6,16 @@
 <<<<<<< HEAD
 
     <ItinerariesSimplified v-for="itinerary in itineraries" v-bind:key="itinerary.id" v-bind:itinerary="itinerary" />
+<<<<<<< HEAD
 =======
     <section id="itineraries">
       <ItinerariesSimplified class="itinerary-list" v-for="itinerary in itineraries" v-bind:key="itinerary.id"
         v-bind:itinerary="itinerary" />
     </section>
 >>>>>>> 965f980493e5f8cdd2d4fa55076ff304e7896450
+=======
+    <button class="btn-add" v-on:click="this.$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
+>>>>>>> 9bb8f6cf3d9d6aa2bf3bd0857b7803949d4a3a1b
   </div>
   <div>
 
