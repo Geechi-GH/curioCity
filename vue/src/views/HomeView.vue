@@ -3,8 +3,8 @@
     <h1 class="title">Home</h1>
     <p>You must be authenticated to see this</p>
     <div class="button-container">
-    <router-link :to="{ name: 'landmarks' }" class="link">See Landmarks</router-link> 
-    <button class="btn-add" @click="$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
+      <router-link :to="{ name: 'landmarks' }" class="link">See Landmarks</router-link>
+      <button class="btn-add" @click="$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
     </div>
     <section id="itineraries">
       <ItinerariesSimplified class="itinerary-list" v-for="itinerary in itineraries" :key="itinerary.id"
@@ -53,7 +53,7 @@ export default {
 }
 
 .button-container {
-  display: flex; 
+  display: flex;
   justify-content: space-between;
   align-items: center;
   margin-right: 10px;
@@ -91,7 +91,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   border: 1px solid #d7b740;
-  margin-top: 1%;S;
+  margin-top: 1%;
 
 
 }
