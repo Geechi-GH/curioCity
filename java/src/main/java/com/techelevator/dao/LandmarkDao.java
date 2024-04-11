@@ -12,4 +12,5 @@ public interface LandmarkDao {
 
     Set<String> getAllCategories();
 
+
 }

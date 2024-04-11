@@ -1,9 +1,6 @@
 <template>
     <div>
         <h1 class="title">Landmarks</h1>
-        <div class="logo">
-            <img src="../assets/CurioCity.png" alt="Logo Image">
-        </div>
         <div class="search-bar">
             <input type="text" v-model="searchQuery" placeholder="Search...">
             <label class="checkboxisweekend" for="weekendButton">Weekend</label>
@@ -66,22 +63,18 @@ export default {
 </script>
 
 <style scoped>
-.logo {
-    text-align: center;
-    margin-bottom: 5px;
-
-}
-
 .title {
     font-size: 5em;
     font-weight: bold;
+    font-family: serif;
+    -webkit-text-stroke: #292929 1px;
     text-align: center;
     margin-bottom: 5px;
-    color: #d7b740;
-    -webkit-text-stroke: #292929 1px;
+    margin-top: 0px;
+    color: #fffff0;
 
-    text-decoration-line: underline;
-    text-decoration-style: unset;
+
+
 }
 
 .search-bar {
@@ -90,9 +83,22 @@ export default {
     align-items: center;
     margin-bottom: 20px;
     background-color: #708090;
-    -webkit-text-fill-color: #d7b740;
+    -webkit-text-fill-color: #fffff0;
+
 
 }
+
+.search-bar .time {
+    display: inline-block;
+    width: 4%;
+    padding: 10px;
+    margin-right: 10px;
+    border: 2px solid #292929;
+    border-radius: 4px;
+    background-color: #292929;
+}
+
+
 
 .search-bar input {
     display: block;
@@ -110,6 +116,7 @@ export default {
     padding: 10px;
     margin-right: 10px;
     border-radius: 4px;
+
 }
 
 
@@ -120,6 +127,7 @@ export default {
     border: 2px solid #292929;
     border-radius: 4px;
     background-color: #292929;
+    color: #fffff0;
 }
 
 .checkboxisweekend {
@@ -130,10 +138,7 @@ export default {
     text-shadow: #292929 0 0 2px;
 }
 
-.time [type="checkbox"] {
-    margin-right: 10px;
-    width: 100%;
-}
+
 
 .landmark-list {
     display: flex;
@@ -155,7 +160,7 @@ export default {
 .landmark-list>*:hover {
     background-color: #708090;
     /* Change this to the color you want when hovered */
-    color: #d7b740;
+    color: #292929;
     /* Change this to the text color you want when hovered */
 }
 </style>
