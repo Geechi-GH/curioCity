@@ -2,40 +2,38 @@
     <div class="title-view">
         <header class="title-container">
             <img id="logo" src="../assets/CurioCity.png" alt="Logo Image">
-            <h1 class="title">Travel curation for the curious mind</h1>
+            <div class="login">
+                <label for="login"> Welcome to CurioCity! </label>
+            </div>
+            <div>
+                <router-link class="login-link" to="/login"> Login </router-link>
+            </div>
+            <div class="register">
+                <label for="register">New to the site?</label>
+                <router-link class="link" id="register" to="/register"> Register </router-link>
+                <!-- <button id="register">Register</button> -->
+            </div>
+            <h1 class="intro">Travel curation for the curious mind</h1>
         </header>
-        <label for="register">New to the site?</label>
-
-        <router-link class="link" id="register" to="/register"> Register </router-link>
-        <!-- <button id="register">Register</button> -->
-        <label for="login"> Already have an account? </label>
-
-        <router-link class="link" id="login" to="/login"> Login </router-link>
-
         <!-- <button id="login">login</button> -->
-        <h2 class="title">Who we are</h2>
-        <p class="subtitle">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia placeat ipsam, iusto doloribus
+        <h2 class="about-title">Who we are</h2>
+        <p class="about-info">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia placeat ipsam, iusto
+            doloribus
             iste praesentium
             repellat vel facilis tempora corporis totam deleniti similique minima enim quod sequi itaque! Eum, vero?</p>
         <section class="imagesHolder">
+
+            <img id="cincyImg" src="../assets/cincyskyline.jpg" alt="">
             <img id="marketImg" src="../assets/Findley Market.jpg" alt="">
             <img id="musicImg" src="../assets/Music Hall.jpg" alt="">
             <img id="museumImg" src="../assets/Museum.jpg" alt="">
+            <img id="parkImg" src="../assets/bridgeatnight.jpg" alt="">
+            <img id="paycore stadium" src="../assets/paycore.jpg" alt="">
+
         </section>
 
 
 
-        <div class="slideshow-container">
-            <div class="slide">
-                <img src="../assets/Findley Market.jpg" alt="Slide 1">
-            </div>
-            <div class="slide">
-                <img src="../assets/Music Hall.jpg" alt="Slide 2">
-            </div>
-            <div class="slide">
-                <img src="../assets/Museum.jpg" alt="Slide 3">
-            </div>
-        </div>
 
     </div>
 </template>
@@ -44,41 +42,22 @@
 export default {
     name: "TitleView",
 }
-// let slideIndex = 0;
-// showSlides();
 
-// function showSlides() {
-//     let slides = document.getElementsByClassName("slide");
-//     if (slides === null) {
-//         return; // Stop function execution if slides is null
-//     }
-
-//     for (let i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";
-//     }
-
-//     slideIndex++;
-//     if (slideIndex > slides.length) {
-//         slideIndex = 1;
-//     }
-
-//     // if (slides[slideIndex - 1] === undefined) {
-//     //     console.error(`Slide index out of bounds: ${slideIndex - 1}`);
-//     //     return; // Stop function execution if slide index is out of bounds
-//     // }
-
-//     slides[slideIndex - 1].style.display = "block";
-
-//     setTimeout(showSlides, 2000); // Change image every 2 seconds
-// }
 </script>
+
+
 
 <style scoped>
 /* Color Palette */
 .imagesHolder {
     display: flex;
     justify-content: center;
-    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: safe center;
+    flex-wrap: wrap;
+
 
 
 }
@@ -92,20 +71,85 @@ export default {
     --bronze: #CD7F32;
 }
 
+#logo {
+    width: 60%;
+    margin-bottom: -50px;
+    margin-top: -75px;
+}
 
-
-h1.title {
-    display: flex;
-    justify-content: center;
-    /* Horizontally center the text */
-    align-items: center;
-    /* Vertically center the text */
+.login-link {
+    font-size: 3em;
+    font-weight: bold;
+    font-family: serif;
+    -webkit-text-stroke: #292929 1px;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: -50px;
+    color: #D7B740;
+    border-bottom: #708090 3px solid;
 
 }
 
-#logo {
-    width: 30%;
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
+    background-color: #708090;
+    -webkit-text-fill-color: #fffff0;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: serif;
+    -webkit-text-stroke: #292929 1px;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    color: #fffff0;
+}
+
+.register {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.intro {
+    font-size: 3em;
+    font-weight: bold;
+    font-family: serif;
+    -webkit-text-stroke: #292929 1px;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    color: #fffff0;
+    border-top: #708090 3px solid;
+    border-radius: 20px;
+}
+
+.about-title {
+    font-size: 2em;
+    font-weight: bold;
+    font-family: serif;
+    -webkit-text-stroke: #292929 1px;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    color: #D7B740;
+    text-decoration: underline;
+    text-decoration-color: #708090;
+
+}
+
+.about-info {
+    font-size: 1.5em;
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    color: #fffff0;
+    border-bottom: #708090 3px solid;
+    border-radius: 20px;
+
 }
 
 /* Layout and Whitespace */
@@ -115,84 +159,31 @@ body {
 }
 
 .link {
-    color: #708090;
-    background-color: #D7B740;
+    color: #D7B740;
     border-radius: 5%;
     padding: 1px;
     padding-left: 5px;
     padding-right: 5px;
     margin: 5px;
-    margin-top: 20px;
+    margin-top: 0px;
 }
 
 p {
     color: white;
 }
 
-.slideshow-container {
-    display: flex;
-    justify-content: center;
-    max-width: 100%;
-    position: relative;
-}
-
-.slide {
-    display: none;
-    width: 25%;
-}
-
-.slide img {
-    width: 100%;
-}
-
 /* Font Styles */
 .title-view {
     font-family: 'Helvetica', sans-serif;
     text-align: center;
-}
-
-h1,
-h2,
-h3 {
-    font-family: 'Georgia', serif;
-}
-
-h2 {
-    color: #CD7F32;
-}
-
-.text-center {
-    text-align: center;
-}
-
-img {
-    margin-bottom: -75px;
-}
-
-h1 {
-    color: #CD7F32;
-}
-
-.form-input-group {
-    margin-bottom: 1rem;
     color: #FFFFF0;
 }
 
 .title-container {
-    margin-top: 60px;
-    padding-left: 10px;
-    padding-right: 10px;
+    margin-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
     font-family: Helvetica, Arial, sans-serif;
     color: #FFFFF0;
-}
-
-label {
-    margin-right: 0.5rem;
-    color: #FFFFF0;
-}
-
-.login-link {
-    text-decoration: none;
-    color: #708090;
 }
 </style>
