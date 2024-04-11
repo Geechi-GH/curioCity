@@ -91,7 +91,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   border: 1px solid #d7b740;
-  margin-top: 1%;S;
+  margin-top: 1%;
 
 
 }
