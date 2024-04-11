@@ -2,19 +2,12 @@
   <div class="home">
     <h1 class="title">Home</h1>
     <p>You must be authenticated to see this</p>
-    <router-link v-bind:to="{ name: 'landmarks' }" class="link">Landmarks</router-link>
-<<<<<<< HEAD
-
-    <ItinerariesSimplified v-for="itinerary in itineraries" v-bind:key="itinerary.id" v-bind:itinerary="itinerary" />
-=======
+    <router-link :to="{ name: 'landmarks' }" class="link">Landmarks</router-link>
     <section id="itineraries">
-      <ItinerariesSimplified class="itinerary-list" v-for="itinerary in itineraries" v-bind:key="itinerary.id"
-        v-bind:itinerary="itinerary" />
-    </section>
->>>>>>> 965f980493e5f8cdd2d4fa55076ff304e7896450
-  </div>
-  <div>
 
+      <ItinerariesSimplified class="itinerary-list" v-for="itinerary in itineraries" :key="itinerary.id"
+        :itinerary="itinerary" />
+    </section>
   </div>
 </template>
 
