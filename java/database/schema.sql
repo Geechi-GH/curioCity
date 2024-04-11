@@ -43,6 +43,7 @@ CREATE TABLE landmarks (
 CREATE TABLE land_itin_helper (
 	itinerary_id int,
 	landmark_id int,
+	sequence int,
 	PRIMARY KEY (itinerary_id, landmark_id),
 	FOREIGN KEY (itinerary_id) REFERENCES itinerarys(itinerary_id),
 	FOREIGN KEY (landmark_id) REFERENCES landmarks(landmark_id)

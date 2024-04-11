@@ -2,15 +2,19 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.NumberDeserializers;
+import com.fasterxml.jackson.datatype.jsr310.deser.InstantDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Itinerary {
+
     private int itineraryId;
     private String title;
     private int cityId;
@@ -22,6 +26,7 @@ public class Itinerary {
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate dateCreated;
+    private int[] landmarksArray;
 
     public Itinerary(int itineraryId, String title, int cityId, int userId, LocalDate dateOfTravel, LocalDate dateCreated) {
         this.itineraryId = itineraryId;
@@ -78,6 +83,14 @@ public class Itinerary {
 
     public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public int[] getLandmarksArray() {
+        return landmarksArray;
+    }
+
+    public void setLandmarksArray(int[] landmarksArray) {
+        this.landmarksArray = landmarksArray;
     }
 
     @Override
