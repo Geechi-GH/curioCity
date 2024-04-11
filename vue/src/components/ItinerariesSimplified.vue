@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="itinerary-card">
         <h1>{{ itinerary.title }}</h1>
         <p>{{ itinerary.dateOfTravel }}</p>
 
@@ -23,7 +23,24 @@ export default {
 h1 {
     margin-top: 0;
     font-size: 1.5rem;
+    padding: 10px;
+    text-align: center;
 }
+
+p {
+    display: flex;
+    padding: 10px;
+    margin-top: auto;
+    text-align: center;
+    justify-content: center;
+
+}
+
+.itinerary-title {
+    text-align: center;
+}
+
+
 
 div {
 

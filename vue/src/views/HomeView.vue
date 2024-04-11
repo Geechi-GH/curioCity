@@ -2,12 +2,14 @@
   <div class="home">
     <h1 class="title">Home</h1>
     <p>You must be authenticated to see this</p>
-    <router-link :to="{ name: 'landmarks' }" class="link">Landmarks</router-link>
+    <div class="button-container">
+    <router-link :to="{ name: 'landmarks' }" class="link">See Landmarks</router-link> 
+    <button class="btn-add" @click="$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
+    </div>
     <section id="itineraries">
       <ItinerariesSimplified class="itinerary-list" v-for="itinerary in itineraries" :key="itinerary.id"
         :itinerary="itinerary" />
     </section>
-    <button class="btn-add" @click="$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
   </div>
 </template>
 
@@ -42,15 +44,44 @@ export default {
   font-weight: bold;
   text-align: center !important;
   margin-bottom: 5px;
-  color: #d7b740;
+  color: #fffff0;
   justify-content: center;
   -webkit-text-stroke: #292929 1px;
-
+  font-family: serif;
   text-decoration-line: underline;
   text-decoration-style: unset;
 }
 
+.button-container {
+  display: flex; 
+  justify-content: space-between;
+  align-items: center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
 
+.link {
+  text-decoration: none;
+  border: 2px solid #d7b740;
+  padding: 5px 10px;
+  font-family: serif;
+  font-weight: bold;
+  color: #d7b740;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.btn-add {
+  text-decoration: none;
+  color: #292929;
+  border: 2px solid #d7b740;
+  padding: 5px 10px;
+  font-family: serif;
+  font-weight: bold;
+  font-size: 1em;
+}
 
 
 #itineraries {
@@ -58,17 +89,23 @@ export default {
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
+  justify-content: space-between;
+  border: 1px solid #d7b740;
+  margin-top: 1%;S;
+
 
 }
 
 .itinerary-list {
-  display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   justify-content: center;
+  align-items: center;
 }
 
+
 .itinerary-list>* {
+  display: flex;
   border: 3px solid #708090;
   border-radius: 4px;
   padding: 10px;
