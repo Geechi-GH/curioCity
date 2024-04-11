@@ -80,7 +80,7 @@ public class JdbcItineraryDao implements ItineraryDao {
 
     @Override
     public Itinerary addingLandmarkToItinerary(int userId, Itinerary itinerary) {
-        Itinerary newItinerary = null;
+
         int[] landmarkArray = itinerary.getLandmarksArray();
 
         String sql = "INSERT INTO land_itin_helper(\n" +
