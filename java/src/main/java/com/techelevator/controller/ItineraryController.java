@@ -55,7 +55,7 @@ public class ItineraryController {
         }
     }
 
-    @PostMapping("/test")
+    @PostMapping("/itinerary/{id}")
     public Itinerary addingLandmarkToItinerary(@RequestBody Itinerary itinerary, Principal principal) {
         User user = this.userDao.getUserByUsername(principal.getName());
         try {

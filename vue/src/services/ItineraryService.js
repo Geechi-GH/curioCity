@@ -7,5 +7,11 @@ export default {
 
     create(itinerary) {
         return axios.post('/itineraries', itinerary);
+    },
+    addingLandmarkToItinerary(itinerary, id) {
+        return axios.post(`/itinerary/${id}`, itinerary);
+    },
+    getItineraryById(id) {
+        return axios.get(`/itinerary/${id}`);
     }
 }
