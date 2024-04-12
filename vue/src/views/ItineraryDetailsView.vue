@@ -1,27 +1,34 @@
 <template>
     <div>
-        <ItineraryDetails v-bind:itinerary="itinerary"></ItineraryDetails>
-        <CheatingLandmarks v-for="landmark in populateLandmarks" :key="landmark.id" :landmark="landmark"
-            v-bind:itinerary="itinerary" @add-landmark="addLandmark">
-        </CheatingLandmarks>
+        <p>_________YOUR LANDMARKS___________</p>
+        <section v-for="landmark in populateLandmarks" :key="landmark.id">
+            <LandmarksMinus :landmark="landmark" v-if="itinerary.landmarksArray.includes(landmark.id)"
+                v-bind:itinerary="itinerary" @remove-landmark="removeLandmark">
+            </LandmarksMinus>
+        </section>
+        <p>_________LANDMARKS TO ADD___________</p>
+        <section v-for="landmark in populateLandmarks" :key="landmark.id">
+            <LandmarksPlus :landmark="landmark" v-if="!itinerary.landmarksArray.includes(landmark.id)"
+                v-bind:itinerary="itinerary" @add-landmark="addLandmark">
+            </LandmarksPlus>
+        </section>
     </div>
 </template>
 
 <script>
 import ItineraryService from '../services/ItineraryService';
-import CheatingLandmarks from '../components/CheatingLandmarks.vue';
-import ItineraryDetails from '../components/ItineraryDetails.vue';
 import LandmarkService from '../services/LandmarkService';
+import LandmarksPlus from '../components/LandmarksPlus.vue';
+import LandmarksMinus from '../components/LandmarksMinus.vue';
 export default {
     components: {
-        CheatingLandmarks,
-        ItineraryDetails
+        LandmarksPlus,
+        LandmarksMinus
     },
     data() {
         return {
             itinerary: {
-
-                landmarksArray: []
+                landmarksArray: [],
             }
         }
     },
@@ -31,7 +38,6 @@ export default {
                 this.itinerary = response.data;
                 this.itinerary.landmarksArray = response.data.landmarksArray;
             })
-
         },
         addLandmark(landmark) {
             this.itinerary.landmarksArray.push(landmark.id);
@@ -42,20 +48,13 @@ export default {
             ItineraryService.getItineraryById(this.itinerary.itineraryId).then(response => {
                 this.itinerary.landmarksArray = response.data.landmarksArray
             })
-
-
         },
-
     },
     created() {
         const landmarks = LandmarkService.getLandmarks()
             .then(response => {
                 this.$store.commit('SET_LANDMARKS', response.data);
             });
-
-        // const itinerary = ItineraryService.getItineraryById(this.$route.params.id).then(response => {
-        //     this.itinerary = response.data;
-        // })
         this.getItinerary(this.$route.params.itineraryId)
     },
     computed: {
@@ -67,7 +66,6 @@ export default {
         }
     }
 }
-
 </script>
 
 <style scoped></style>

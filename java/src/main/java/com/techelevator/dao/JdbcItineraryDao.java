@@ -89,7 +89,6 @@ public class JdbcItineraryDao implements ItineraryDao {
 
     @Override
     public Itinerary addingLandmarkToItinerary(int userId, Itinerary itinerary) {
-
         int[] landmarkArray = itinerary.getLandmarksArray();
 
         String sql = "INSERT INTO land_itin_helper(\n" +
@@ -97,7 +96,33 @@ public class JdbcItineraryDao implements ItineraryDao {
                 "\tVALUES (?, ?, ?) " +
                 "RETURNING itinerary_id;";
         try {
-            jdbcTemplate.queryForObject(sql, int.class, itinerary.getItineraryId(), landmarkArray[landmarkArray.length - 1], landmarkArray.length - 1);
+            jdbcTemplate.queryForObject(sql, int.class, itinerary.getItineraryId(), landmarkArray[landmarkArray.length - 1],
+                    landmarkArray.length - 1);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return itinerary;
+    }
+
+    public Itinerary flushAndFill(int[] landmarkArray, Itinerary itinerary) {
+
+        String flushSql = "DELETE FROM land_itin_helper WHERE itinerary_id = ?;";
+
+        try {
+            jdbcTemplate.update(flushSql, itinerary.getItineraryId());
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        ;
+
+        String fillSql = "INSERT INTO land_itin_helper (itinerary_id, landmark_id, sequence)\n" +
+                "VALUES (?, ?, ?);";
+        try {
+            int i = 0;
+            for (int landmark : landmarkArray) {
+                jdbcTemplate.update(fillSql, itinerary.getItineraryId(), landmarkArray[i], i);
+                i++;
+            }
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
@@ -117,8 +142,8 @@ public class JdbcItineraryDao implements ItineraryDao {
 
     private int[] mapRowToArray(SqlRowSet results) {
         List<Integer> myList = new ArrayList<>();
-        while(results.next()) {
-           myList.add( results.getInt("landmark_id"));
+        while (results.next()) {
+            myList.add(results.getInt("landmark_id"));
         }
         int[] myArray = new int[myList.size()];
         for (int i = 0; i < myArray.length; i++) {
