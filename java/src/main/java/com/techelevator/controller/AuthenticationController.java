@@ -64,11 +64,8 @@ public class AuthenticationController {
             } else {
                 userDao.createUser(newUser);
             }
-        }
-        catch (DaoException e) {
+        } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "User registration failed.");
         }
     }
-
 }
-

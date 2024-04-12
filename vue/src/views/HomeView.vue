@@ -22,13 +22,11 @@ export default {
   components: {
     ItinerariesSimplified,
   },
-
   computed: {
     itineraries() {
       return this.$store.state.itineraries;
     }
   },
-
   created() {
     const itineraries = ItineraryService.getItineraries()
       .then(response => {
@@ -92,8 +90,6 @@ export default {
   justify-content: space-between;
   border: 1px solid #d7b740;
   margin-top: 1%;
-
-
 }
 
 .itinerary-list {

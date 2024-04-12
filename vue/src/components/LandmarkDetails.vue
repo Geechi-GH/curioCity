@@ -15,7 +15,6 @@
                     <p>Opens: {{ formatTime(landmark.weekdayOpen) }}</p>
                     <p>Closes: {{ formatTime(landmark.weekdayClose) }}</p>
                 </div>
-
                 <div id="weekend">
                     <h2>Weekend Hours</h2>
                 </div>
@@ -23,7 +22,6 @@
                     <p>Opens: {{ formatTime(landmark.weekendOpen) }}</p>
                     <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
                 </div>
-
             </section>
         </div>
     </body>
@@ -92,7 +90,6 @@ export default {
     margin-bottom: 5px;
     margin-top: 0px;
     color: #fffff0;
-
 }
 
 #category {
@@ -142,8 +139,6 @@ export default {
     align-self: center;
     justify-content: center;
     align-items: center;
-
-
 }
 
 #weekend {

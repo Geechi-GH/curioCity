@@ -19,6 +19,15 @@ public class LandmarkController {
         this.landmarkDao = landmarkDao;
     }
 
+    @GetMapping("/landmarks")
+    public List<Landmark> getAllLandmarks() {
+        try {
+            return landmarkDao.getAllLandmarks();
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
+        }
+    }
+
     @GetMapping("/landmarks/{id}")
     public Landmark getLandmarkId(@PathVariable int id) {
         try {
@@ -28,15 +37,6 @@ public class LandmarkController {
         }
     }
 
-    @GetMapping("/landmarks")
-    public List<Landmark> getAllLandmarks() {
-        try {
-            return landmarkDao.getAllLandmarks();
-        } catch (DaoException e) {
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
-        }
-    }
-    
     @GetMapping("/categories")
     public Set<String> getAllCategories() {
         try {
@@ -45,6 +45,4 @@ public class LandmarkController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
         }
     }
-
-
 }

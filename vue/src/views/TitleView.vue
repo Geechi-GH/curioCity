@@ -22,19 +22,13 @@
             iste praesentium
             repellat vel facilis tempora corporis totam deleniti similique minima enim quod sequi itaque! Eum, vero?</p>
         <section class="imagesHolder">
-
             <img id="cincyImg" src="../assets/cincyskyline.jpg" alt="">
             <img id="marketImg" src="../assets/Findley Market.jpg" alt="">
             <img id="musicImg" src="../assets/Music Hall.jpg" alt="">
             <img id="museumImg" src="../assets/Museum.jpg" alt="">
             <img id="parkImg" src="../assets/bridgeatnight.jpg" alt="">
             <img id="paycore stadium" src="../assets/paycore.jpg" alt="">
-
         </section>
-
-
-
-
     </div>
 </template>
 
@@ -42,10 +36,7 @@
 export default {
     name: "TitleView",
 }
-
 </script>
-
-
 
 <style scoped>
 /* Color Palette */
@@ -57,11 +48,7 @@ export default {
     width: 100%;
     align-items: safe center;
     flex-wrap: wrap;
-
-
-
 }
-
 
 :root {
     --gold: #D7B740;
@@ -87,7 +74,6 @@ export default {
     margin-top: -50px;
     color: #D7B740;
     border-bottom: #708090 3px solid;
-
 }
 
 .login {
@@ -137,7 +123,6 @@ export default {
     color: #D7B740;
     text-decoration: underline;
     text-decoration-color: #708090;
-
 }
 
 .about-info {
@@ -149,7 +134,6 @@ export default {
     color: #fffff0;
     border-bottom: #708090 3px solid;
     border-radius: 20px;
-
 }
 
 /* Layout and Whitespace */

@@ -20,7 +20,6 @@
             <p v-if="isWeekend"> Weekend Closing Hour: {{ landmark.weekendOpen === '00:00:00' && landmark.weekendClose ===
                 '00:00:00' ? '' :
                 landmark.weekendClose }}</p>
-
         </div>
     </router-link>
 </template>

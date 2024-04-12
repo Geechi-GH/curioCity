@@ -19,9 +19,7 @@ export default {
     },
     data() {
         return {
-
             itinerary: {
-
                 landmarksArray: []
             }
         }
@@ -43,7 +41,6 @@ export default {
             });
 
         this.getItinerary(this.$route.params.itineraryId);
-
     },
     computed: {
         landmarksArray() {
@@ -52,7 +49,6 @@ export default {
         populateLandmarks() {
             return this.$store.state.landmarks
         }
-
     }
 }
 </script>
