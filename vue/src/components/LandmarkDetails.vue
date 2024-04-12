@@ -22,6 +22,10 @@
                     <p>Opens: {{ formatTime(landmark.weekendOpen) }}</p>
                     <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
                 </div>
+                <div>
+                    <p>{{ landmark.likeCount }}</p>
+                    <p>{{ landmark.dislikeCount }}</p>
+                </div>
             </section>
         </div>
     </body>
