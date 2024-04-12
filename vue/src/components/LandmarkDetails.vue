@@ -23,8 +23,8 @@
                     <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
                 </div>
                 <div>
-                    <p>{{ landmark.likeCount }}</p>
-                    <p>{{ landmark.dislikeCount }}</p>
+                    <p id="likes" v-on:click="likeLandmark(landmark)">Likes: {{ landmark.likeCount }}</p>
+                    <p id="dislikes" v-on:click="dislikeLandmark(landmark)">Dislikes: {{ landmark.dislikeCount }}</p>
                 </div>
             </section>
         </div>
@@ -32,18 +32,29 @@
 </template>
 
 <script>
+import LandmarkService from '../services/LandmarkService';
 export default {
     name: "LandmarkDetails",
     props: {
         landmark: {
             type: Object,
-            required: true
+            required: true,
         },
+
     },
     computed: {
         image() {
             return (new URL(this.landmark.imagePath, import.meta.url)).href;
+        },
+        computed: {
+            updatedLikeCount() {
+                return this.landmark.likeCount;
+            },
+            updatedDislikeCount() {
+                return this.landmark.dislikeCount;
+            }
         }
+
     },
     methods: {
         formatTime(timeString) {
@@ -61,6 +72,12 @@ export default {
             const amOrPm = date.getHours() < 12 ? 'AM' : 'PM';
             // Return the formatted time string
             return `${formattedHours}:${formattedMinutes} ${amOrPm}`;
+        },
+        likeLandmark(landmark) {
+            LandmarkService.likeLandmark(landmark)
+        },
+        dislikeLandmark(landmark) {
+            LandmarkService.dislikeLandmark(landmark)
         }
     }
 }

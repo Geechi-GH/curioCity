@@ -11,4 +11,10 @@ export default {
     getCategories() {
         return axios.get('/categories');
     },
+    likeLandmark(landmark) {
+        return axios.put('/likes', landmark);
+    },
+    dislikeLandmark(landmark) {
+        return axios.put('/dislikes', landmark);
+    }
 }

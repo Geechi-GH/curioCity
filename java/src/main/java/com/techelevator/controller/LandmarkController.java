@@ -54,7 +54,7 @@ public class LandmarkController {
     @PutMapping("/likes")
     public Landmark likeALandmark(@RequestBody Landmark landmark, Principal principal) {
         User user = this.userDao.getUserByUsername(principal.getName());
-        System.out.println(landmark.getId() + " Now I am in the controller!!!!");
+
         try {
             return landmarkDao.likeALandmark(landmark, user.getId());
         } catch (DaoException e) {
@@ -66,7 +66,7 @@ public class LandmarkController {
     @PutMapping("/dislikes")
     public Landmark dislikeALandmark(@RequestBody Landmark landmark, Principal principal) {
         User user = this.userDao.getUserByUsername(principal.getName());
-        System.out.println(landmark.getId() + " Now I am in the Controller!!! (disliking)");
+
         try{
             return landmarkDao.dislikeALandmark(landmark, user.getId());
         } catch (DaoException e) {
