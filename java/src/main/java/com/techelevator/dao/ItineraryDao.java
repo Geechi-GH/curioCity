@@ -14,4 +14,5 @@ public interface ItineraryDao {
     Itinerary create(Itinerary itinerary, User user);
 
     Itinerary addingLandmarkToItinerary(int userId, Itinerary itinerary);
+    Itinerary flushAndFill(int[] landmarkArray, Itinerary itinerary);
 }
