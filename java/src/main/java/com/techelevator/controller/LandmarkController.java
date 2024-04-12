@@ -45,4 +45,6 @@ public class LandmarkController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
         }
     }
+
+
 }

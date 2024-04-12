@@ -2,6 +2,7 @@
     <div>
         <section>
             <p>{{ itinerary.landmarksArray }}</p>
+
         </section>
     </div>
 </template>
