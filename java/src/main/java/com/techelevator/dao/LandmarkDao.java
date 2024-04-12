@@ -12,4 +12,7 @@ public interface LandmarkDao {
     Landmark getLandmarkById(int landmarkId);
 
     Set<String> getAllCategories();
+
+    Landmark likeALandmark(Landmark landmark, int userId);
+    Landmark dislikeALandmark(Landmark landmark, int userId);
 }

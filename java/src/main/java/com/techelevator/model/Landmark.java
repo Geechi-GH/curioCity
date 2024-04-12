@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.deser.std.NumberDeserializers;
 import java.sql.Time;
 
 public class Landmark {
-    @JsonDeserialize(using = NumberDeserializers.IntegerDeserializer.class)
+
     private int id;
     private String name;
     private String description;

@@ -1,12 +1,15 @@
 package com.techelevator.controller;
 
 import com.techelevator.dao.LandmarkDao;
+import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
 import com.techelevator.model.Landmark;
+import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Set;
 
@@ -14,9 +17,11 @@ import java.util.Set;
 @CrossOrigin
 public class LandmarkController {
     final LandmarkDao landmarkDao;
+    final UserDao userDao;
 
-    public LandmarkController(LandmarkDao landmarkDao) {
+    public LandmarkController(LandmarkDao landmarkDao, UserDao userDao) {
         this.landmarkDao = landmarkDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/landmarks")
@@ -46,5 +51,26 @@ public class LandmarkController {
         }
     }
 
+    @PutMapping("/likes")
+    public Landmark likeALandmark(@RequestBody Landmark landmark, Principal principal) {
+        User user = this.userDao.getUserByUsername(principal.getName());
+        System.out.println(landmark.getId() + " Now I am in the controller!!!!");
+        try {
+            return landmarkDao.likeALandmark(landmark, user.getId());
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
+        }
+    }
 
+
+    @PutMapping("/dislikes")
+    public Landmark dislikeALandmark(@RequestBody Landmark landmark, Principal principal) {
+        User user = this.userDao.getUserByUsername(principal.getName());
+        System.out.println(landmark.getId() + " Now I am in the Controller!!! (disliking)");
+        try{
+            return landmarkDao.dislikeALandmark(landmark, user.getId());
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
+        }
+    }
 }

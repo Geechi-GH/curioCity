@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS ratings;
 DROP TABLE IF EXISTS land_itin_helper;
 DROP TABLE IF EXISTS landmarks;
 DROP TABLE IF EXISTS itinerarys;
@@ -46,6 +47,15 @@ CREATE TABLE land_itin_helper (
 	sequence int,
 	PRIMARY KEY (itinerary_id, landmark_id),
 	FOREIGN KEY (itinerary_id) REFERENCES itinerarys(itinerary_id),
+	FOREIGN KEY (landmark_id) REFERENCES landmarks(landmark_id)
+);
+
+CREATE TABLE ratings (
+	user_id int,
+	landmark_id int,
+	isLiked boolean,
+	PRIMARY KEY (user_id, landmark_id),
+	FOREIGN KEY (user_id) REFERENCES users(user_id),
 	FOREIGN KEY (landmark_id) REFERENCES landmarks(landmark_id)
 );
 
