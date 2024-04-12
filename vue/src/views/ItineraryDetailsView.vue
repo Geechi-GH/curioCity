@@ -20,6 +20,7 @@ export default {
     data() {
         return {
             itinerary: {
+
                 landmarksArray: []
             }
         }
@@ -28,11 +29,23 @@ export default {
         getItinerary(id) {
             ItineraryService.getItineraryById(id).then(response => {
                 this.itinerary = response.data;
+                this.itinerary.landmarksArray = response.data.landmarksArray;
             })
+
         },
         addLandmark(landmark) {
-            this.itinerary.landmarksArray.push(landmark);
-        }
+            this.itinerary.landmarksArray.push(landmark.id);
+            ItineraryService.addingLandmarkToItinerary(this.itinerary, this.itinerary.itineraryId)
+                .then(response => {
+                    this.itinerary = response.data;
+                });
+            ItineraryService.getItineraryById(this.itinerary.itineraryId).then(response => {
+                this.itinerary.landmarksArray = response.data.landmarksArray
+            })
+
+
+        },
+
     },
     created() {
         const landmarks = LandmarkService.getLandmarks()
@@ -40,7 +53,10 @@ export default {
                 this.$store.commit('SET_LANDMARKS', response.data);
             });
 
-        this.getItinerary(this.$route.params.itineraryId);
+        // const itinerary = ItineraryService.getItineraryById(this.$route.params.id).then(response => {
+        //     this.itinerary = response.data;
+        // })
+        this.getItinerary(this.$route.params.itineraryId)
     },
     computed: {
         landmarksArray() {
@@ -51,6 +67,7 @@ export default {
         }
     }
 }
+
 </script>
 
 <style scoped></style>

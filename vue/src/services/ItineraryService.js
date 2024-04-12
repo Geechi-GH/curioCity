@@ -11,6 +11,6 @@ export default {
         return axios.post(`/itinerary/${id}`, itinerary);
     },
     getItineraryById(id) {
-        return axios.get(`/itinerary/${id}`);
+        return axios.get(`/itineraries/${id}`);
     }
 }

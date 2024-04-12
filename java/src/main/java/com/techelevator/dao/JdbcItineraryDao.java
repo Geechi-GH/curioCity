@@ -43,18 +43,28 @@ public class JdbcItineraryDao implements ItineraryDao {
     }
 
     @Override
-    public Itinerary getItineraryById(int id) {
+    public Itinerary getItineraryById(int id, int userId) {
         Itinerary itinerary = null;
         final String sql = "SELECT itinerary_id, title, city_id, user_id, date_of_travel, date_created\n" +
-                "\tFROM itinerarys " +
-                "WHERE itinerary_id = ?;";
+                "\tFROM itinerarys\n" +
+                "\tWHERE itinerary_id = ? AND user_id = ?;";
+
+        final String landitSql = "\tSELECT landmark_id\n" +
+                "\tFROM land_itin_helper\n" +
+                "\tWHERE itinerary_id = ? \n" +
+                "\tORDER BY sequence;";
         try {
-            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+            SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id, userId);
             if (results.next()) {
                 itinerary = mapRowToItinerary(results);
             }
+            SqlRowSet newResults = jdbcTemplate.queryForRowSet(landitSql, itinerary.getItineraryId());
+            int[] landmarkArray = mapRowToArray(newResults);
+            itinerary.setLandmarksArray(landmarkArray);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
+        } catch (NullPointerException e) {
+            throw new DaoException("We found a null");
         }
         return itinerary;
     }
@@ -68,7 +78,7 @@ public class JdbcItineraryDao implements ItineraryDao {
         try {
             Integer newItineraryId = jdbcTemplate.queryForObject(sql, int.class, itinerary.getTitle(), 1,
                     user.getId(), itinerary.getDateOfTravel(), itinerary.getDateCreated());
-            newItinerary = getItineraryById(newItineraryId);
+            newItinerary = getItineraryById(newItineraryId, user.getId());
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
@@ -103,5 +113,17 @@ public class JdbcItineraryDao implements ItineraryDao {
                 results.getDate("date_of_travel").toLocalDate(),
                 results.getDate("date_created").toLocalDate());
         return itinerary;
+    }
+
+    private int[] mapRowToArray(SqlRowSet results) {
+        List<Integer> myList = new ArrayList<>();
+        while(results.next()) {
+           myList.add( results.getInt("landmark_id"));
+        }
+        int[] myArray = new int[myList.size()];
+        for (int i = 0; i < myArray.length; i++) {
+            myArray[i] = myList.get(i);
+        }
+        return myArray;
     }
 }

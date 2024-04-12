@@ -2,7 +2,7 @@
     <!-- <router-link v-bind:to="{ name: 'landmark-details', params: { landmarkId: landmark.id } }" class="link"> -->
     <div>
         <h1>{{ landmark.name }}</h1>
-        <button @click="landmarkToArray()">Add to Itinerary: {{ itinerary.name }} </button>
+        <button @click="landmarkToArray()">Add to Itinerary: {{ itinerary.title }} </button>
     </div>
     <!-- </router-link> -->
 </template>

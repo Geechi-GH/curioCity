@@ -35,9 +35,10 @@ public class ItineraryController {
     }
 
     @GetMapping("/itineraries/{id}")
-    public Itinerary getItineraryById(@PathVariable int id) {
+    public Itinerary getItineraryById(@PathVariable int id,  Principal principal) {
+        User user = this.userDao.getUserByUsername(principal.getName());
         try {
-            return itineraryDao.getItineraryById(id);
+            return itineraryDao.getItineraryById(id, user.getId());
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
         }
@@ -63,10 +64,5 @@ public class ItineraryController {
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "Something went wrong");
         }
-    }
-
-    @PutMapping("/itinerary/{id}")
-    public Itinerary updatingItinerary(Principal principal, @RequestBody Itinerary itinerary) {
-        return null;
     }
 }
