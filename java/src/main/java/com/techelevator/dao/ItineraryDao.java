@@ -9,7 +9,7 @@ public interface ItineraryDao {
 
     public List<Itinerary> getAllItineraries(int userId);
 
-    Itinerary getItineraryById(int id);
+    Itinerary getItineraryById(int id, int userId);
 
     Itinerary create(Itinerary itinerary, User user);
 
