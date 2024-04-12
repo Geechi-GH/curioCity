@@ -14,6 +14,9 @@
                 <!-- <button id="register">Register</button> -->
             </div>
             <h1 class="intro">Travel curation for the curious mind</h1>
+            <div>
+                <img id="cincysundown" src="../assets/cincysundown.jpg" alt="">
+            </div>
         </header>
         <!-- <button id="login">login</button> -->
         <h2 class="about-title">Who we are</h2>
@@ -23,7 +26,6 @@
             repellat vel facilis tempora corporis totam deleniti similique minima enim quod sequi itaque! Eum, vero?</p>
         <section class="imagesHolder">
 
-            <img id="bluestadium" src="../assets/cincysundown.jpg" alt="">
             <img id="redstadium" src="../assets/redsstadium.jpg" alt="">
 
         </section>
@@ -71,6 +73,10 @@ export default {
     border-bottom: #708090 3px solid;
 }
 
+.login-link:hover {
+    color: #FFFFF0;
+}
+
 .login {
     display: flex;
     justify-content: center;
@@ -93,6 +99,7 @@ export default {
     justify-content: center;
     margin-top: 20px;
 }
+
 
 .intro {
     font-size: 3em;
@@ -145,6 +152,10 @@ body {
     padding-right: 5px;
     margin: 5px;
     margin-top: 0px;
+}
+
+.link:hover {
+    color: #FFFFF0;
 }
 
 p {

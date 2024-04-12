@@ -106,11 +106,15 @@ export default {
     text-align: center;
     margin-bottom: 20px;
     margin-top: 5px;
-    color: #fffff0;
+    color: #d7b740;
     padding-bottom: 5px;
     padding-top: 5px;
     background-color: #708090;
-    border: 1px solid #292929
+
+    border-radius: 15px;
+    text-decoration: #292929 underline;
+    text-decoration-style: solid;
+
 }
 
 #description {
@@ -135,6 +139,7 @@ export default {
     font-size: smaller;
     text-decoration: underline #708090;
     border-top: #708090 3px solid;
+    color: #d7b740;
 }
 
 #weekdayhours {
@@ -153,6 +158,7 @@ export default {
     font-size: smaller;
     text-decoration: underline #708090;
     justify-content: center;
+    color: #d7b740;
 }
 
 #weekend #weekday {

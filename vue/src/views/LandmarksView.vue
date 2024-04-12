@@ -80,6 +80,9 @@ export default {
     margin-bottom: 20px;
     background-color: #708090;
     -webkit-text-fill-color: #fffff0;
+    border-radius: 15px;
+
+
 }
 
 .search-bar .time {
@@ -87,8 +90,8 @@ export default {
     width: 4%;
     padding: 10px;
     margin-right: 10px;
-    border: 2px solid #292929;
-    border-radius: 4px;
+    border: 1px solid #d7b740;
+    border-radius: 15px;
     background-color: #292929;
 }
 
@@ -97,8 +100,8 @@ export default {
     width: 25%;
     padding: 10px;
     margin-right: 10px;
-    border: 2px solid #292929;
-    border-radius: 4px;
+    border: 1px solid #d7b740;
+    border-radius: 15px;
     background-color: #292929;
 }
 
@@ -115,8 +118,8 @@ export default {
     width: 15%;
     padding: 10px;
     margin: 10px 0;
-    border: 2px solid #292929;
-    border-radius: 4px;
+    border: 1px solid #d7b740;
+    border-radius: 15px;
     background-color: #292929;
     color: #fffff0;
 }

@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <h1 class="title">Home</h1>
-    <p>You must be authenticated to see this</p>
     <div class="button-container">
       <router-link :to="{ name: 'landmarks' }" class="link">See Landmarks</router-link>
       <button class="btn-add" @click="$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
@@ -48,37 +47,54 @@ export default {
   font-family: serif;
   text-decoration-line: underline;
   text-decoration-style: unset;
+
 }
 
 .button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 10px;
-  margin-left: 10px;
+  border: #708090 2px solid;
+  background-color: #708090;
+  padding: 5px;
+  border-radius: 15px;
 }
 
 .link {
   text-decoration: none;
-  border: 2px solid #d7b740;
+
   padding: 5px 10px;
   font-family: serif;
   font-weight: bold;
-  color: #d7b740;
+  color: #fffff0;
+  background-color: #292929;
+  border: #d7b740 1px solid;
+  border-radius: 15px;
 }
 
 .link:hover {
   text-decoration: underline;
 }
 
+.btn-add:hover {
+  text-decoration: underline;
+}
+
+.itinerary-list:hover {
+  background-color: #708090;
+}
+
 .btn-add {
   text-decoration: none;
-  color: #292929;
-  border: 2px solid #d7b740;
+  color: #fffff0;
   padding: 5px 10px;
   font-family: serif;
   font-weight: bold;
   font-size: 1em;
+  background-color: #292929;
+  border: #d7b740 2px solid;
+  border-radius: 15px;
+
 }
 
 
@@ -87,9 +103,13 @@ export default {
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
-  border: 1px solid #d7b740;
-  margin-top: 1%;
+  border-top: 1px solid #d7b740;
+  border-bottom: 1px solid #d7b740;
+  border-radius: 15px;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
 }
 
 .itinerary-list {
