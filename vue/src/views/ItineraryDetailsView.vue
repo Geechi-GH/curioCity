@@ -1,12 +1,12 @@
 <template>
     <div>
-        <p>_________YOUR LANDMARKS___________</p>
+        <p>YOUR LANDMARKS</p>
         <section v-for="landmark in populateLandmarks" :key="landmark.id">
             <LandmarksMinus :landmark="landmark" v-if="itinerary.landmarksArray.includes(landmark.id)"
                 v-bind:itinerary="itinerary" @remove-landmark="removeLandmark">
             </LandmarksMinus>
         </section>
-        <p>_________LANDMARKS TO ADD___________</p>
+        <p>LANDMARKS TO ADD</p>
         <section v-for="landmark in populateLandmarks" :key="landmark.id">
             <LandmarksPlus :landmark="landmark" v-if="!itinerary.landmarksArray.includes(landmark.id)"
                 v-bind:itinerary="itinerary" @add-landmark="addLandmark">
@@ -49,6 +49,16 @@ export default {
                 this.itinerary.landmarksArray = response.data.landmarksArray
             })
         },
+        removeLandmark(landmark) {
+            this.itinerary.landmarksArray.splice(this.itinerary.landmarksArray.indexOf(landmark.id), 1);
+            ItineraryService.flushAndFill(this.itinerary, this.itinerary.itineraryId)
+                .then(response => {
+                    this.itinerary = response.data;
+                });
+            ItineraryService.getItineraryById(this.itinerary.itineraryId).then(response => {
+                this.itinerary.landmarksArray = response.data.landmarksArray
+            })
+        }
     },
     created() {
         const landmarks = LandmarkService.getLandmarks()

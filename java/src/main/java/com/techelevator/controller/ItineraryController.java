@@ -68,10 +68,10 @@ public class ItineraryController {
 
     @PutMapping("/itinerary/{id}")
     public Itinerary flushAndFill(@RequestBody Itinerary itinerary) {
-//        try {
-        return itineraryDao.flushAndFill(itinerary.getLandmarksArray(), itinerary);
-//        } catch (DaoException e) {
-//            throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "Something went wrong");
+        try {
+            return itineraryDao.flushAndFill(itinerary.getLandmarksArray(), itinerary);
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "Something went wrong");
+        }
     }
-
 }

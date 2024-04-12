@@ -13,7 +13,7 @@ export default {
     addingLandmarkToItinerary(itinerary, id) {
         return axios.post(`/itinerary/${id}`, itinerary);
     },
-    removingLandmarkFromItinerary(itinerary, id) {
-        return axios.delete(`/itinerary/${id}`, itinerary);
+    flushAndFill(itinerary, id) {
+        return axios.put(`/itinerary/${id}`, itinerary);
     }
 }

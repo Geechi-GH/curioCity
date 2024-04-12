@@ -1,10 +1,10 @@
 <template>
-    <!-- <router-link v-bind:to="{ name: 'landmark-details', params: { landmarkId: landmark.id } }" class="link"> -->
     <div>
-        <h1>{{ landmark.name }}</h1>
-        <button @click="landmarkFromArray()">Remove from Itinerary: {{ itinerary.name }} </button>
+        <router-link v-bind:to="{ name: 'landmark-details', params: { landmarkId: landmark.id } }" class="link">
+            <h1>{{ landmark.name }}</h1>
+        </router-link>
+        <button @click="landmarkFromArray()">Remove from Itinerary</button>
     </div>
-    <!-- </router-link> -->
 </template>
 
 <script>
