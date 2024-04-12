@@ -10,6 +10,7 @@ import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,10 +64,10 @@ public class JdbcItineraryDao implements ItineraryDao {
     public Itinerary create(Itinerary itinerary, User user) {
         Itinerary newItinerary = null;
         final String sql = "INSERT INTO itinerarys(title, city_id, user_id, date_of_travel, date_created)\n" +
-                "VALUES (?, ?, ?, ?, ?)" +
+                "VALUES (?, ?, ?, ?, ?) " +
                 "RETURNING itinerary_id;";
         try {
-            int newItineraryId = jdbcTemplate.queryForObject(sql, int.class, itinerary.getTitle(), 1,
+            Integer newItineraryId = jdbcTemplate.queryForObject(sql, int.class, itinerary.getTitle(), 1,
                     user.getId(), itinerary.getDateOfTravel(), itinerary.getDateCreated());
             newItinerary = getItineraryById(newItineraryId);
         } catch (CannotGetJdbcConnectionException e) {
@@ -77,6 +78,26 @@ public class JdbcItineraryDao implements ItineraryDao {
         return newItinerary;
     }
 
+    @Override
+    public Itinerary addingLandmarkToItinerary(int userId, Itinerary itinerary) {
+
+        int[] landmarkArray = itinerary.getLandmarksArray();
+
+        String sql = "INSERT INTO land_itin_helper(\n" +
+                "\titinerary_id, landmark_id, sequence)\n" +
+                "\tVALUES (?, ?, ?) " +
+                "RETURNING itinerary_id;";
+
+        try {
+             jdbcTemplate.queryForObject(sql, int.class, itinerary.getItineraryId(), landmarkArray[landmarkArray.length - 1], landmarkArray.length - 1);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+
+        return itinerary;
+    }
+
+
     private Itinerary mapRowToItinerary(SqlRowSet results) {
         final Itinerary itinerary = new Itinerary(
                 results.getInt("itinerary_id"),
@@ -84,8 +105,9 @@ public class JdbcItineraryDao implements ItineraryDao {
                 results.getInt("city_id"),
                 results.getInt("user_id"),
                 results.getDate("date_of_travel").toLocalDate(),
-                results.getDate("date_created").toLocalDate()
-        );
+                results.getDate("date_created").toLocalDate());
         return itinerary;
     }
+
+
 }
