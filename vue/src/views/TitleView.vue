@@ -22,12 +22,10 @@
             iste praesentium
             repellat vel facilis tempora corporis totam deleniti similique minima enim quod sequi itaque! Eum, vero?</p>
         <section class="imagesHolder">
-            <img id="cincyImg" src="../assets/cincyskyline.jpg" alt="">
-            <img id="marketImg" src="../assets/Findley Market.jpg" alt="">
-            <img id="musicImg" src="../assets/Music Hall.jpg" alt="">
-            <img id="museumImg" src="../assets/Museum.jpg" alt="">
-            <img id="parkImg" src="../assets/bridgeatnight.jpg" alt="">
-            <img id="paycore stadium" src="../assets/paycore.jpg" alt="">
+
+            <img id="bluestadium" src="../assets/cincysundown.jpg" alt="">
+            <img id="redstadium" src="../assets/redsstadium.jpg" alt="">
+
         </section>
     </div>
 </template>
@@ -44,9 +42,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-    align-items: safe center;
     flex-wrap: wrap;
 }
 
@@ -82,7 +77,7 @@ export default {
     align-items: center;
     margin-bottom: 20px;
     background-color: #708090;
-    -webkit-text-fill-color: #fffff0;
+    -webkit-text-fill-color: #020202;
     font-size: 2em;
     font-weight: bold;
     font-family: serif;
@@ -90,7 +85,7 @@ export default {
     text-align: center;
     margin-bottom: 5px;
     margin-top: 0px;
-    color: #fffff0;
+    color: #020202;
 }
 
 .register {
