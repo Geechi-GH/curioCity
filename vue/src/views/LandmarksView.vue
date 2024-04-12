@@ -47,7 +47,6 @@ export default {
                 return landmark.name.toLowerCase().includes(this.searchQuery.toLowerCase()) && (this.selectedCategory === '' || landmark.category.toLowerCase() === this.selectedCategory.toLowerCase()) && (this.timeQuery === '' || landmark.weekdayOpen <= this.timeQuery && landmark.weekdayClose > this.timeQuery);
             });
         },
-
     },
     created() {
         const landmarks = LandmarkService.getLandmarks()
@@ -72,9 +71,6 @@ export default {
     margin-bottom: 5px;
     margin-top: 0px;
     color: #fffff0;
-
-
-
 }
 
 .search-bar {
@@ -84,8 +80,6 @@ export default {
     margin-bottom: 20px;
     background-color: #708090;
     -webkit-text-fill-color: #fffff0;
-
-
 }
 
 .search-bar .time {
@@ -97,8 +91,6 @@ export default {
     border-radius: 4px;
     background-color: #292929;
 }
-
-
 
 .search-bar input {
     display: block;
@@ -116,7 +108,6 @@ export default {
     padding: 10px;
     margin-right: 10px;
     border-radius: 4px;
-
 }
 
 
@@ -138,14 +129,10 @@ export default {
     text-shadow: #292929 0 0 2px;
 }
 
-
-
 .landmark-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-
-
 }
 
 .landmark-list>* {

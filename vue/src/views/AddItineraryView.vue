@@ -6,22 +6,20 @@
 <script>
 import ItineraryForm from "../components/ItineraryForm.vue";
 
-    export default {
-        components: {
-            ItineraryForm,
-        },
-        data() {
-            return {
-                itinerary: {
-                    title: '',
-                    dateOfTravel: '',
-                    dateCreated: new Date(),
-                }
+export default {
+    components: {
+        ItineraryForm,
+    },
+    data() {
+        return {
+            itinerary: {
+                title: '',
+                dateOfTravel: '',
+                dateCreated: new Date(),
             }
         }
     }
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -20,25 +20,25 @@
 <script>
 import ItineraryService from '../services/ItineraryService';
 
-    export default {
-        props: {
-            itinerary: {
-                type: Object,
-                required: true
+export default {
+    props: {
+        itinerary: {
+            type: Object,
+            required: true
+        }
+    },
+    data() {
+        return {
+            editItinerary: {
+                title: this.itinerary.title,
+                dateOfTravel: this.itinerary.dateOfTravel,
+                dateCreated: this.itinerary.dateCreated
             }
-        },
-        data() {
-            return {
-                editItinerary: {
-                    title: this.itinerary.title,
-                    dateOfTravel: this.itinerary.dateOfTravel,
-                    dateCreated: this.itinerary.dateCreated
-                }
-            }
-        },
-        methods: {
-            createItinerary() {
-                ItineraryService.create(this.editItinerary)
+        }
+    },
+    methods: {
+        createItinerary() {
+            ItineraryService.create(this.editItinerary)
                 .then(response => {
                     this.$store.commit('ADD_ITINERARY', response.data)
                     this.$router.push({ name: 'home' })
@@ -46,11 +46,9 @@ import ItineraryService from '../services/ItineraryService';
                 .catch(error => {
                     const response = error.response;
                 })
-            }
         }
     }
+}
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

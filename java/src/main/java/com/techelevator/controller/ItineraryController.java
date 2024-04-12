@@ -64,6 +64,7 @@ public class ItineraryController {
             throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "Something went wrong");
         }
     }
+
     @PutMapping("/itinerary/{id}")
     public Itinerary updatingItinerary(Principal principal, @RequestBody Itinerary itinerary) {
         return null;

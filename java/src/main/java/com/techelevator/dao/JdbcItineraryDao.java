@@ -32,7 +32,6 @@ public class JdbcItineraryDao implements ItineraryDao {
 
         try {
             SqlRowSet results = this.jdbcTemplate.queryForRowSet(sql, userId);
-
             while (results.next()) {
                 Itinerary itinerary = mapRowToItinerary(results);
                 myList.add(itinerary);
@@ -87,16 +86,13 @@ public class JdbcItineraryDao implements ItineraryDao {
                 "\titinerary_id, landmark_id, sequence)\n" +
                 "\tVALUES (?, ?, ?) " +
                 "RETURNING itinerary_id;";
-
         try {
-             jdbcTemplate.queryForObject(sql, int.class, itinerary.getItineraryId(), landmarkArray[landmarkArray.length - 1], landmarkArray.length - 1);
+            jdbcTemplate.queryForObject(sql, int.class, itinerary.getItineraryId(), landmarkArray[landmarkArray.length - 1], landmarkArray.length - 1);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
-
         return itinerary;
     }
-
 
     private Itinerary mapRowToItinerary(SqlRowSet results) {
         final Itinerary itinerary = new Itinerary(
@@ -108,6 +104,4 @@ public class JdbcItineraryDao implements ItineraryDao {
                 results.getDate("date_created").toLocalDate());
         return itinerary;
     }
-
-
 }
