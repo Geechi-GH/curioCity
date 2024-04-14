@@ -81,8 +81,6 @@ export default {
     background-color: #708090;
     -webkit-text-fill-color: #fffff0;
     border-radius: 15px;
-
-
 }
 
 .search-bar .time {

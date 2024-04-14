@@ -67,7 +67,7 @@ public class LandmarkController {
     public Landmark dislikeALandmark(@RequestBody Landmark landmark, Principal principal) {
         User user = this.userDao.getUserByUsername(principal.getName());
         System.out.println(landmark.getId() + " Now I am in the Controller!!! (disliking)");
-        try{
+        try {
             return landmarkDao.dislikeALandmark(landmark, user.getId());
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");

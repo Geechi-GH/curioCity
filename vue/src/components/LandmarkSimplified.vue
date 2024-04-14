@@ -4,22 +4,8 @@
         <div>
             <h1>{{ landmark.name }}</h1>
             <p>{{ landmark.category }}</p>
-            <p v-if="!isWeekend"> Weekday Opening Hour: {{ landmark.weekdayOpen == '00:00:00' && landmark.weekdayClose ===
-                '00:00:00' ?
-                'Closed' :
-                landmark.weekdayOpen }}</p>
-            <p v-if="!isWeekend"> Weekday Closing Hour: {{ landmark.weekdayOpen === '00:00:00' && landmark.weekdayClose
-                ===
-                '00:00:00' ? '' :
-                landmark.weekdayClose }}</p>
-            <br>
-            <p v-if="isWeekend"> Weekend Opening Hour: {{ landmark.weekendOpen == '00:00:00' && landmark.weekendClose ===
-                '00:00:00' ?
-                'Closed' :
-                landmark.weekendOpen }}</p>
-            <p v-if="isWeekend"> Weekend Closing Hour: {{ landmark.weekendOpen === '00:00:00' && landmark.weekendClose ===
-                '00:00:00' ? '' :
-                landmark.weekendClose }}</p>
+            <p v-if="!isWeekend"> Weekdays: {{ convertedTimeRange }}</p>
+            <p v-if="isWeekend"> Weekends: {{ convertedTimeRange }}</p>
         </div>
     </router-link>
 </template>
@@ -36,9 +22,31 @@ export default {
             type: Boolean,
         }
     },
+    methods: {
+        convertTimeFormat(time) {
+            const date = new Date();
+            const [hours, minutes] = time.split(':').map(Number);
+            date.setHours(hours);
+            date.setMinutes(minutes);
+
+            const formattedHours = date.getHours() % 12 || 12;
+            const amPm = date.getHours() < 12 ? 'am' : 'pm';
+
+            return `${formattedHours}${amPm}`;
+        },
+        formatTimeRange(startTime, endTime) {
+            const formattedStartTime = this.convertTimeFormat(startTime);
+            const formattedEndTime = this.convertTimeFormat(endTime);
+
+            return `${formattedStartTime} - ${formattedEndTime}`;
+        }
+    },
     computed: {
         image() {
             return (new URL(this.landmark.imagePath, import.meta.url)).href;
+        },
+        convertedTimeRange() {
+            return this.formatTimeRange(this.landmark.weekdayOpen, this.landmark.weekdayClose);
         }
     },
 }
@@ -52,6 +60,5 @@ img {
     object-fit: contain;
     border: 1px solid #708090;
     border-radius: 4px;
-
 }
 </style>

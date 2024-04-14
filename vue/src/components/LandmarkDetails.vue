@@ -110,11 +110,9 @@ export default {
     padding-bottom: 5px;
     padding-top: 5px;
     background-color: #708090;
-
     border-radius: 15px;
     text-decoration: #292929 underline;
     text-decoration-style: solid;
-
 }
 
 #description {
@@ -129,7 +127,6 @@ export default {
     color: #fffff0;
     border-bottom: 3px solid #708090;
 }
-
 
 #weekday {
     display: flex;

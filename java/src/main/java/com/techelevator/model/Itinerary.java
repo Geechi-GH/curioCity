@@ -2,19 +2,14 @@ package com.techelevator.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.deser.std.NumberDeserializers;
-import com.fasterxml.jackson.datatype.jsr310.deser.InstantDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import javax.validation.constraints.Future;
-import javax.validation.constraints.Min;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Date;
+
 
 public class Itinerary {
-
     private int itineraryId;
     private String title;
     private int cityId;

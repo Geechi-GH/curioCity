@@ -3,7 +3,6 @@
     <div id=cornerContainer>
       <div class="logo">
         <img src="./assets/CurioCityTransparent.png" alt="Logo Image">
-
       </div>
       <div id="nav">
         <router-link v-bind:to="{ name: 'home' }" class="link">Home</router-link>&nbsp;|&nbsp;

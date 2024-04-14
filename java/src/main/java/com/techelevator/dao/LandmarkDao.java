@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Set;
 
 public interface LandmarkDao {
-
     List<Landmark> getAllLandmarks();
 
     Landmark getLandmarkById(int landmarkId);
@@ -14,5 +13,6 @@ public interface LandmarkDao {
     Set<String> getAllCategories();
 
     Landmark likeALandmark(Landmark landmark, int userId);
+
     Landmark dislikeALandmark(Landmark landmark, int userId);
 }

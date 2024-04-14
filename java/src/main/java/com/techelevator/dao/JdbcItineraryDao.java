@@ -29,7 +29,6 @@ public class JdbcItineraryDao implements ItineraryDao {
         String sql = "SELECT itinerary_id, title, city_id, user_id, date_of_travel, date_created\n" +
                 "\tFROM itinerarys\n" +
                 "\tWHERE user_id = ? ;";
-
         try {
             SqlRowSet results = this.jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
@@ -87,33 +86,14 @@ public class JdbcItineraryDao implements ItineraryDao {
         return newItinerary;
     }
 
-    @Override
-    public Itinerary addingLandmarkToItinerary(int userId, Itinerary itinerary) {
-        int[] landmarkArray = itinerary.getLandmarksArray();
-
-        String sql = "INSERT INTO land_itin_helper(\n" +
-                "\titinerary_id, landmark_id, sequence)\n" +
-                "\tVALUES (?, ?, ?) " +
-                "RETURNING itinerary_id;";
-        try {
-            jdbcTemplate.queryForObject(sql, int.class, itinerary.getItineraryId(), landmarkArray[landmarkArray.length - 1],
-                    landmarkArray.length - 1);
-        } catch (DataIntegrityViolationException e) {
-            throw new DaoException("Data integrity violation", e);
-        }
-        return itinerary;
-    }
-
     public Itinerary flushAndFill(int[] landmarkArray, Itinerary itinerary) {
 
         String flushSql = "DELETE FROM land_itin_helper WHERE itinerary_id = ?;";
-
         try {
             jdbcTemplate.update(flushSql, itinerary.getItineraryId());
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
-        ;
 
         String fillSql = "INSERT INTO land_itin_helper (itinerary_id, landmark_id, sequence)\n" +
                 "VALUES (?, ?, ?);";
