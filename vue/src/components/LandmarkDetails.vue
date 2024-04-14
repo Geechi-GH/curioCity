@@ -23,8 +23,8 @@
                     <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
                 </div>
                 <div>
-                    <p id="likes" v-on:click="likeLandmark(landmark)">Likes: {{ updatedLikeCount }}</p>
-                    <p id="dislikes" v-on:click="dislikeLandmark(landmark)">Dislikes: {{ updatedDislikeCount }}</p>
+                    <p id="likes" v-on:click="likeLandmark()">Likes: {{ landmark.likeCount }}</p>
+                    <p id="dislikes" v-on:click="dislikeLandmark(landmark)">Dislikes: {{ landmark.dislikeCount }}</p>
                 </div>
             </section>
         </div>
@@ -46,15 +46,6 @@ export default {
         image() {
             return (new URL(this.landmark.imagePath, import.meta.url)).href;
         },
-        computed: {
-            updatedLikeCount() {
-                return this.landmark.likeCount;
-            },
-            updatedDislikeCount() {
-                return this.landmark.dislikeCount;
-            }
-        }
-
     },
     methods: {
         formatTime(timeString) {
@@ -73,11 +64,11 @@ export default {
             // Return the formatted time string
             return `${formattedHours}:${formattedMinutes} ${amOrPm}`;
         },
-        likeLandmark(landmark) {
-            LandmarkService.likeLandmark(landmark)
+        likeLandmark() {
+            this.$emit('update-likes', this.landmark);
         },
-        dislikeLandmark(landmark) {
-            LandmarkService.dislikeLandmark(landmark)
+        dislikeLandmark() {
+            this.$emit('dislike-landmark', this.landmark);
         }
     }
 }
@@ -127,9 +118,11 @@ export default {
     padding-bottom: 5px;
     padding-top: 5px;
     background-color: #708090;
+
     border-radius: 15px;
     text-decoration: #292929 underline;
     text-decoration-style: solid;
+
 }
 
 #description {
@@ -144,6 +137,7 @@ export default {
     color: #fffff0;
     border-bottom: 3px solid #708090;
 }
+
 
 #weekday {
     display: flex;

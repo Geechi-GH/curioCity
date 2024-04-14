@@ -1,6 +1,7 @@
 <template>
     <div>
-        <landmark-details v-bind:landmark="landmark" />
+        <landmark-details v-bind:landmark="landmark" v-on:update-likes="likeLandmark"
+            v-on:dislike-landmark="dislikeLandmark" />
     </div>
 </template>
 
@@ -22,8 +23,19 @@ export default {
             LandmarkService.getLandmarkById(id).then(response => {
                 this.landmark = response.data;
             });
+        },
+        likeLandmark() {
+            LandmarkService.likeLandmark(this.landmark).then(response => {
+                this.landmark = response.data;
+            })
+        },
+        dislikeLandmark() {
+            LandmarkService.dislikeLandmark(this.landmark).then(response => {
+                this.landmark = response.data;
+            })
         }
     },
+
     created() {
         this.getLandmark(this.$route.params.landmarkId);
     }
