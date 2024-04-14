@@ -23,8 +23,8 @@
                     <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
                 </div>
                 <div>
-                    <p id="likes" v-on:click="likeLandmark(landmark)">Likes: {{ landmark.likeCount }}</p>
-                    <p id="dislikes" v-on:click="dislikeLandmark(landmark)">Dislikes: {{ landmark.dislikeCount }}</p>
+                    <p id="likes" v-on:click="likeLandmark(landmark)">Likes: {{ updatedLikeCount }}</p>
+                    <p id="dislikes" v-on:click="dislikeLandmark(landmark)">Dislikes: {{ updatedDislikeCount }}</p>
                 </div>
             </section>
         </div>
