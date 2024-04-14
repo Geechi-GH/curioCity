@@ -22,8 +22,11 @@
                     <p>Opens: {{ formatTime(landmark.weekendOpen) }}</p>
                     <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
                 </div>
+                <div id="website">
+                    <a v-bind:href="landmark.website" target="_blank">Visit Website</a>
+                </div>
                 <div>
-                    <p id="likes" v-on:click="likeLandmark(landmark)">Likes: {{ landmark.likeCount }}</p>
+                    <p id="likes" v-on:click="likeLandmark()">Likes: {{ landmark.likeCount }}</p>
                     <p id="dislikes" v-on:click="dislikeLandmark(landmark)">Dislikes: {{ landmark.dislikeCount }}</p>
                 </div>
             </section>
@@ -33,6 +36,7 @@
 
 <script>
 import LandmarkService from '../services/LandmarkService';
+
 export default {
     name: "LandmarkDetails",
     props: {
@@ -40,21 +44,11 @@ export default {
             type: Object,
             required: true,
         },
-
     },
     computed: {
         image() {
             return (new URL(this.landmark.imagePath, import.meta.url)).href;
         },
-        computed: {
-            updatedLikeCount() {
-                return this.landmark.likeCount;
-            },
-            updatedDislikeCount() {
-                return this.landmark.dislikeCount;
-            }
-        }
-
     },
     methods: {
         formatTime(timeString) {
@@ -73,11 +67,11 @@ export default {
             // Return the formatted time string
             return `${formattedHours}:${formattedMinutes} ${amOrPm}`;
         },
-        likeLandmark(landmark) {
-            LandmarkService.likeLandmark(landmark)
+        likeLandmark() {
+            this.$emit('update-likes', this.landmark);
         },
-        dislikeLandmark(landmark) {
-            LandmarkService.dislikeLandmark(landmark)
+        dislikeLandmark() {
+            this.$emit('dislike-landmark', this.landmark);
         }
     }
 }
@@ -182,7 +176,6 @@ export default {
     align-self: center;
     font-size: smaller;
     justify-content: center;
-
 }
 
 #weekendhours {
@@ -191,5 +184,16 @@ export default {
     align-self: center;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+}
+
+#website {
+    text-align: center;
+}
+
+#website a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #4285f4;
 }
 </style>

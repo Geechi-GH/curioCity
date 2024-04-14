@@ -41,7 +41,6 @@ export default {
             this.itinerary.landmarksArray = this.landmarksToVisit.map(landmark => landmark.id);
             ItineraryService.flushAndFill(this.itinerary, this.itinerary.itineraryId)
                 .then(response => {
-                    console.log(response.data);
                     this.itinerary = response.data;
                 });
         },
