@@ -82,7 +82,6 @@ public class JdbcLandmarkDao implements LandmarkDao {
     public Landmark likeALandmark(Landmark landmark, int userId) {
         int landmarkId = landmark.getId();
         int veryUniqueLandmarkId = 0;
-        System.out.println(landmarkId + " look at me here!!!");
 
         String sqlSelect = "SELECT isLiked\n" +
                 "FROM ratings\n" +
