@@ -100,7 +100,6 @@ export default {
     margin-top: 20px;
 }
 
-
 .intro {
     font-size: 3em;
     font-weight: bold;

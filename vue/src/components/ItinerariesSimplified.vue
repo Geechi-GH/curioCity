@@ -2,7 +2,6 @@
     <div class="itinerary-card">
         <h1>{{ itinerary.title }}</h1>
         <p>{{ itinerary.dateOfTravel }}</p>
-
     </div>
 </template>
 

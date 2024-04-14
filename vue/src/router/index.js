@@ -103,7 +103,6 @@ const router = createRouter({
 });
 
 router.beforeEach((to) => {
-
   // Get the Vuex store
   const store = useStore();
 

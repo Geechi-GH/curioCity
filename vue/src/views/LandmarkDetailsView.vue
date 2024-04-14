@@ -21,7 +21,7 @@ export default {
         getLandmark(id) {
             LandmarkService.getLandmarkById(id).then(response => {
                 this.landmark = response.data;
-            })
+            });
         }
     },
     created() {

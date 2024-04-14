@@ -6,8 +6,9 @@
       <button class="btn-add" @click="$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
     </div>
     <section id="itineraries">
-      <ItinerariesSimplified class="itinerary-list" v-for="itinerary in itineraries" :key="itinerary.id"
-        :itinerary="itinerary" />
+      <router-link :to="`/itinerary/${itinerary.itineraryId}`" v-for="itinerary in itineraries" :key="itinerary.id">
+        <ItinerariesSimplified class="itinerary-list" :itinerary="itinerary" />
+      </router-link>
     </section>
   </div>
 </template>
@@ -47,7 +48,6 @@ export default {
   font-family: serif;
   text-decoration-line: underline;
   text-decoration-style: unset;
-
 }
 
 .button-container {
@@ -62,7 +62,6 @@ export default {
 
 .link {
   text-decoration: none;
-
   padding: 5px 10px;
   font-family: serif;
   font-weight: bold;
@@ -94,9 +93,7 @@ export default {
   background-color: #292929;
   border: #d7b740 2px solid;
   border-radius: 15px;
-
 }
-
 
 #itineraries {
   display: flex;
@@ -118,7 +115,6 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
 
 .itinerary-list>* {
   display: flex;

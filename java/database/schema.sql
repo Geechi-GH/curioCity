@@ -6,7 +6,6 @@ DROP TABLE IF EXISTS landmarks;
 DROP TABLE IF EXISTS itinerarys;
 DROP TABLE IF EXISTS users;
 
-
 CREATE TABLE users (
 	user_id SERIAL,
 	username varchar(50) NOT NULL UNIQUE,
@@ -24,7 +23,6 @@ CREATE TABLE itinerarys (
 	date_created date DEFAULT CURRENT_DATE,
 	FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
-
 
 CREATE TABLE landmarks (
 	landmark_id SERIAL PRIMARY KEY,
@@ -58,6 +56,5 @@ CREATE TABLE ratings (
 	FOREIGN KEY (user_id) REFERENCES users(user_id),
 	FOREIGN KEY (landmark_id) REFERENCES landmarks(landmark_id)
 );
-
 
 COMMIT TRANSACTION;
