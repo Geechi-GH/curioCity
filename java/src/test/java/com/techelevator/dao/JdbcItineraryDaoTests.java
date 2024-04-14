@@ -10,16 +10,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcItineraryDaoTests extends BaseDaoTests{
-
-
-    // Test Data Set 1
+public class JdbcItineraryDaoTests extends BaseDaoTests {
     private static final Itinerary TEST_ITINERARY_1 = new Itinerary(1, "Test 1", 1, 1, LocalDate.of(2024, 5, 15), LocalDate.of(2024, 4, 10));
     private static final Itinerary TEST_ITINERARY_2 = new Itinerary(2, "Test 2", 1, 1, LocalDate.of(2024, 6, 20), LocalDate.of(2024, 4, 10));
     private static final Itinerary TEST_ITINERARY_3 = new Itinerary(3, "Test 3", 1, 1, LocalDate.of(2024, 5, 15), LocalDate.of(2024, 4, 10));
 
-
     private JdbcItineraryDao sut;
+
     @Before
     public void setup() {
         sut = new JdbcItineraryDao(dataSource);
@@ -29,13 +26,14 @@ public class JdbcItineraryDaoTests extends BaseDaoTests{
     public void get_all_itineraries_from_user1() {
         // arrange
         List<Itinerary> myList = new ArrayList<>();
+
         // act
         myList = sut.getAllItineraries(TEST_ITINERARY_1.getUserId());
+
         // assert
         Assert.assertEquals(2, myList.size());
         assertItinerariesEqual(TEST_ITINERARY_1, myList.get(0));
         assertItinerariesEqual(TEST_ITINERARY_2, myList.get(1));
-
     }
 
     public void assertItinerariesEqual(Itinerary expected, Itinerary actual) {

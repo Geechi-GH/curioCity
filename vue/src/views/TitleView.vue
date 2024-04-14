@@ -14,7 +14,7 @@
                 <!-- <button id="register">Register</button> -->
             </div>
             <h1 class="intro">Travel curation for the curious mind</h1>
-            <div>
+            <div class="cincysundown">
                 <img id="cincysundown" src="../assets/cincysundown.jpg" alt="">
             </div>
         </header>

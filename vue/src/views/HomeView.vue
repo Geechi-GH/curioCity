@@ -91,7 +91,7 @@ export default {
   font-weight: bold;
   font-size: 1em;
   background-color: #292929;
-  border: #d7b740 2px solid;
+  border: #d7b740 1px solid;
   border-radius: 15px;
 }
 
