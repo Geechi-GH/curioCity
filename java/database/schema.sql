@@ -27,7 +27,7 @@ CREATE TABLE itinerarys (
 CREATE TABLE landmarks (
 	landmark_id SERIAL PRIMARY KEY,
 	name varchar(64) NOT NULL,
-	description varchar(500) DEFAULT 'No Description Provided',
+	description varchar(550) DEFAULT 'No Description Provided',
 	weekday_open time DEFAULT '00:00:00',
 	weekday_close time DEFAULT '00:00:00',
 	weekend_open time DEFAULT '00:00:00',
@@ -36,7 +36,8 @@ CREATE TABLE landmarks (
 	city_id int DEFAULT 1,
 	like_count int,
 	dislike_count int,
-	imagePath varchar(100)
+	imagePath varchar(100),
+    website varchar(250)
 );
 
 CREATE TABLE land_itin_helper (

@@ -22,6 +22,9 @@
                     <p>Opens: {{ formatTime(landmark.weekendOpen) }}</p>
                     <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
                 </div>
+                <div id="website">
+                    <a v-bind:href="landmark.website" target="_blank">Visit Website</a>
+                </div>
                 <div>
                     <p id="likes" v-on:click="likeLandmark()">Likes: {{ landmark.likeCount }}</p>
                     <p id="dislikes" v-on:click="dislikeLandmark(landmark)">Dislikes: {{ landmark.dislikeCount }}</p>
@@ -33,6 +36,7 @@
 
 <script>
 import LandmarkService from '../services/LandmarkService';
+
 export default {
     name: "LandmarkDetails",
     props: {
@@ -40,7 +44,6 @@ export default {
             type: Object,
             required: true,
         },
-
     },
     computed: {
         image() {
@@ -118,11 +121,9 @@ export default {
     padding-bottom: 5px;
     padding-top: 5px;
     background-color: #708090;
-
     border-radius: 15px;
     text-decoration: #292929 underline;
     text-decoration-style: solid;
-
 }
 
 #description {
@@ -137,7 +138,6 @@ export default {
     color: #fffff0;
     border-bottom: 3px solid #708090;
 }
-
 
 #weekday {
     display: flex;
@@ -176,7 +176,6 @@ export default {
     align-self: center;
     font-size: smaller;
     justify-content: center;
-
 }
 
 #weekendhours {
@@ -185,5 +184,16 @@ export default {
     align-self: center;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
+}
+
+#website {
+    text-align: center;
+}
+
+#website a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: #4285f4;
 }
 </style>
