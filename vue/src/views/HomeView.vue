@@ -3,6 +3,7 @@
     <h1 class="title">Home</h1>
     <div class="button-container">
       <router-link :to="{ name: 'landmarks' }" class="link">See Landmarks</router-link>
+      <h2 class="title-sub">Your Itineraries</h2>
       <button class="btn-add" @click="$router.push({ name: 'add-itinerary' })">Add Itinerary</button>
     </div>
     <section id="itineraries">
@@ -10,7 +11,18 @@
         <ItinerariesSimplified class="itinerary-list" :itinerary="itinerary" />
       </router-link>
     </section>
+
+    <h2 class="footer">Travel curation for the curious mind</h2>
+    <h3 class="footer-sub">CurioCity</h3>
   </div>
+
+  <body>
+    <div class="container">
+
+      <!-- background image -->
+      <img class="gfg" src="../assets/verylargecinciy.jpg" alt="fireworks">
+    </div>
+  </body>
 </template>
 
 <script>
@@ -41,7 +53,7 @@ export default {
   font-size: 5em;
   font-weight: bold;
   text-align: center !important;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
   color: #fffff0;
   justify-content: center;
   -webkit-text-stroke: #292929 1px;
@@ -50,14 +62,25 @@ export default {
   text-decoration-style: unset;
 }
 
+.title-sub {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center !important;
+  margin-bottom: 15px;
+  color: #292929;
+  justify-content: center;
+  font-family: serif;
+}
+
 .button-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border: #708090 2px solid;
   background-color: #708090;
-  padding: 5px;
+  padding: 0px;
   border-radius: 15px;
+  margin-bottom: 40px;
 }
 
 .link {
@@ -79,8 +102,21 @@ export default {
   text-decoration: underline;
 }
 
+.itinerary-list {
+  text-decoration: none;
+  color: #fffff0;
+  padding: 5px 10px;
+  font-family: serif;
+  font-weight: bold;
+  font-size: 1em;
+  background-color: #292929;
+  border: #d7b740 1px solid;
+  border-radius: 15px;
+  margin: 10px;
+}
+
 .itinerary-list:hover {
-  background-color: #708090;
+  background-color: #292929;
 }
 
 .btn-add {
@@ -97,16 +133,26 @@ export default {
 
 #itineraries {
   display: flex;
-  flex-direction: row;
-  align-items: center;
   flex-wrap: wrap;
-  border-top: 1px solid #d7b740;
-  border-bottom: 1px solid #d7b740;
-  border-radius: 15px;
-  margin-top: 2%;
-  margin-bottom: 2%;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #fffff0;
+  font-family: serif;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  padding: 10px;
+
+
+  color: #fffff0;
+  padding: 10px;
+  margin: 10px;
+  flex: 0 0 10%;
+  color: #fffff0;
+  margin-bottom: 10px;
 }
 
 .itinerary-list {
@@ -114,6 +160,18 @@ export default {
   justify-content: space-around;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #fffff0;
+  font-family: serif;
+  font-weight: bold;
+  font-size: 1em;
+  text-align: center;
+  padding: 10px;
+  border: 1.5px solid #708090;
+  border-radius: 4px;
 }
 
 .itinerary-list>* {
@@ -131,5 +189,36 @@ export default {
   /* Change this to the color you want when hovered */
   color: #d7b740;
   /* Change this to the text color you want when hovered */
+}
+
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #d7b740;
+  font-family: serif;
+  font-size: 2em;
+  text-align: center;
+  padding: 10px;
+  border-top: #708090 1px solid;
+  border-bottom: #708090 1px solid;
+  border-radius: 20px;
+  text-decoration-style: double;
+  text-decoration-thickness: 1px;
+
+
+}
+
+/* blurring the image */
+.gfg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 </style>
