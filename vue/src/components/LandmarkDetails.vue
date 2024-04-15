@@ -22,7 +22,7 @@
                 </div>
             </div>
             <p id="category">Category: {{ landmark.category }}</p>
-            <p id="description">Description: {{ landmark.description }}</p>
+            <p id="description">{{ landmark.description }}</p>
             <section>
                 <div id="hours-container">
                     <div id="weekday">
@@ -30,14 +30,14 @@
                     </div>
                     <div id="weekdayhours">
                         <p>Opens: {{ formatTime(landmark.weekdayOpen) }} | </p>
-                        <p> Closes: {{ formatTime(landmark.weekdayClose) }}</p>
+                        <p class="close-w"> Closes: {{ formatTime(landmark.weekdayClose) }}</p>
                     </div>
                     <div id="weekend">
                         <h2>Weekend Hours</h2>
                     </div>
                     <div id="weekendhours">
                         <p>Opens: {{ formatTime(landmark.weekendOpen) }} | </p>
-                        <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
+                        <p class="close-w"> Closes: {{ formatTime(landmark.weekendClose) }}</p>
                     </div>
                 </div>
                 <div id="website-text">
@@ -274,7 +274,9 @@ button i {
     background-color: rgba(112, 128, 144, 0.2);
 }
 
-#weekend #weekday {}
+.close-w {
+    padding-left: 3px;
+}
 
 #weekendhours {
     display: flex;
