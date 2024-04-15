@@ -11,9 +11,9 @@
         <ItinerariesSimplified class="itinerary-list" :itinerary="itinerary" />
       </router-link>
     </section>
-
+    <h3 class="footer-title">CurioCity</h3>
     <h2 class="footer">Travel curation for the curious mind</h2>
-    <h3 class="footer-sub">CurioCity</h3>
+
   </div>
 
   <body>
@@ -79,8 +79,9 @@ export default {
   border: #708090 2px solid;
   background-color: #708090;
   padding: 0px;
-  border-radius: 15px;
   margin-bottom: 40px;
+  margin-right: -10px;
+  margin-left: -10px;
 }
 
 .link {
@@ -93,6 +94,12 @@ export default {
   border: #d7b740 1px solid;
   border-radius: 15px;
 }
+
+.btn-add {
+  margin-left: 0px;
+}
+
+
 
 .link:hover {
   text-decoration: underline;
@@ -116,7 +123,7 @@ export default {
 }
 
 .itinerary-list:hover {
-  background-color: #292929;
+  background-color: #708090;
 }
 
 .btn-add {
@@ -191,34 +198,52 @@ export default {
   /* Change this to the text color you want when hovered */
 }
 
+.footer-title {
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center !important;
+  margin-bottom: 0px;
+  color: #d7b740;
+  justify-content: center;
+  -webkit-text-stroke: #292929 .5px;
+  font-family: serif;
+  text-decoration-line: underline;
+}
 
 .footer {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 0px;
   margin-bottom: 20px;
   color: #d7b740;
+  -webkit-text-stroke: #292929 .5px;
+
+  font-weight: bold;
   font-family: serif;
-  font-size: 2em;
+  font-size: 1.5em;
   text-align: center;
   padding: 10px;
   border-top: #708090 1px solid;
   border-bottom: #708090 1px solid;
   border-radius: 20px;
+  background-color: #708090;
   text-decoration-style: double;
   text-decoration-thickness: 1px;
+  background-color: rgba(112, 128, 144, 0.7);
 
 
 }
 
-/* blurring the image */
+
 .gfg {
   position: absolute;
-  top: 0;
+
+  top: 28%;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -1;
+  opacity: 25%;
 }
 </style>

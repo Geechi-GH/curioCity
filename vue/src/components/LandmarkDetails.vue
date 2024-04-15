@@ -22,24 +22,29 @@
                 </div>
             </div>
             <p id="category">Category: {{ landmark.category }}</p>
-            <p id="description">Description: {{ landmark.description }}</p>
+            <p id="description">{{ landmark.description }}</p>
             <section>
-                <div id="weekday">
-                    <h2>Weekday Hours</h2>
+                <div id="hours-container">
+                    <div id="weekday">
+                        <h2>Weekday Hours</h2>
+                    </div>
+                    <div id="weekdayhours">
+                        <p>Opens: {{ formatTime(landmark.weekdayOpen) }} | </p>
+                        <p class="close-w"> Closes: {{ formatTime(landmark.weekdayClose) }}</p>
+                    </div>
+                    <div id="weekend">
+                        <h2>Weekend Hours</h2>
+                    </div>
+                    <div id="weekendhours">
+                        <p>Opens: {{ formatTime(landmark.weekendOpen) }} | </p>
+                        <p class="close-w"> Closes: {{ formatTime(landmark.weekendClose) }}</p>
+                    </div>
                 </div>
-                <div id="weekdayhours">
-                    <p>Opens: {{ formatTime(landmark.weekdayOpen) }}</p>
-                    <p>Closes: {{ formatTime(landmark.weekdayClose) }}</p>
-                </div>
-                <div id="weekend">
-                    <h2>Weekend Hours</h2>
-                </div>
-                <div id="weekendhours">
-                    <p>Opens: {{ formatTime(landmark.weekendOpen) }}</p>
-                    <p>Closes: {{ formatTime(landmark.weekendClose) }}</p>
+                <div id="website-text">
+                    <h2>For additional information</h2>
                 </div>
                 <div id="website">
-                    <a v-bind:href="landmark.website" target="_blank">Visit Website</a>
+                    <a v-bind:href="landmark.website" target="_blank">Visit Landmark Website</a>
                 </div>
             </section>
         </div>
@@ -126,6 +131,7 @@ export default {
     object-fit: contain;
     border: 1px solid #708090;
     border-radius: 4px;
+
 }
 
 #title {
@@ -230,62 +236,98 @@ button i {
     font-size: 1.5em;
     font-family: serif;
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     margin-top: 0px;
     color: #fffff0;
     border-bottom: 3px solid #708090;
 }
 
-#weekday {
+#hours-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    font-size: smaller;
-    text-decoration: underline #708090;
-    border-top: #708090 3px solid;
-    color: #d7b740;
+    border-bottom: #708090 2px solid;
+}
+
+#weekday {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+    margin-left: 15px;
+    font-size: .8em;
+    border: #708090 1px solid;
+    padding-right: 5px;
+    padding-left: 5px;
+    background-color: rgba(112, 128, 144, 0.2);
+
 }
 
 #weekdayhours {
     display: flex;
-    flex-direction: column;
-    align-self: center;
-    justify-content: center;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    margin-left: 15px;
 }
 
 #weekend {
     display: flex;
     flex-direction: row;
     align-items: center;
-    align-self: center;
-    font-size: smaller;
-    text-decoration: underline #708090;
     justify-content: center;
-    color: #d7b740;
+    margin-right: 5px;
+    margin-left: 15px;
+    font-size: .8em;
+    border: #708090 1px solid;
+    padding-right: 5px;
+    padding-left: 5px;
+    background-color: rgba(112, 128, 144, 0.2);
 }
 
-#weekend #weekday {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-self: center;
-    font-size: smaller;
-    justify-content: center;
+.close-w {
+    padding-left: 3px;
 }
 
 #weekendhours {
     display: flex;
-    flex-direction: column;
-    align-self: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+#website-text {
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    font-size: .5em;
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    color: #fffff0;
+
 }
 
 #website {
     text-align: center;
+    color: #708090;
+    font-weight: bold;
+    font-size: .7em;
+    text-decoration: #292929 underline;
+    text-decoration-style: solid;
+    margin-bottom: 20px;
+    margin-top: 0px;
+
+
+}
+
+#website a:hover {
+    color: #fffff0;
 }
 
 #website a {
