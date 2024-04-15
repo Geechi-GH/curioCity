@@ -45,8 +45,11 @@ public class JdbcLandmarkDao implements LandmarkDao {
     public List<Landmark> getAllLandmarks() {
         List<Landmark> landmarkList = new ArrayList<>();
 
-        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website\n" +
-                "\tFROM landmarks;";
+
+        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website \n" +
+                "\tFROM landmarks " +
+                "ORDER BY landmark_id ASC;";
+
         try {
             final SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
             while (results.next()) {

@@ -58,4 +58,20 @@ INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Sights
 INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Exploring Historical Sites', 1, 1, '2025-01-05');
 INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Cultural Exchange Program', 1, 1, '2025-02-20');
 
+
+INSERT INTO reviews (user_id, landmark_id, title, review, name) VALUES
+(1, 1, 'Breathtaking View', 'The scenic beauty of this place is absolutely stunning and well worth a visit. The atmosphere is serene and peaceful.', 'John Doe');
+
+INSERT INTO reviews (user_id, landmark_id, title, review, name) VALUES
+(2, 1, 'Historic Marvel', 'A deep dive into the history and architectural brilliance of this landmark. Highly recommended for history buffs!', 'Jane Smith');
+
+INSERT INTO reviews (user_id, landmark_id, title, review, name) VALUES
+(1, 2, 'Just OK', 'It was alright but quite crowded and a bit overrated. Could be better managed.', 'Mike Johnson');
+
+INSERT INTO reviews (user_id, landmark_id, title, review, name) VALUES
+(2, 2, 'Must Visit', 'An incredible experience, the guided tours are informative and the view is spectacular. Make sure to bring your camera for some stunning photos!', 'Alice Martin');
+
+INSERT INTO reviews (user_id, landmark_id, title, review) VALUES
+(1, 3, 'Lovely Spot', 'The park surrounding the landmark is perfect for a family day out. Lots of space and very clean.');
+
 COMMIT TRANSACTION;

@@ -1,5 +1,6 @@
 BEGIN TRANSACTION;
 
+DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS ratings;
 DROP TABLE IF EXISTS land_itin_helper;
 DROP TABLE IF EXISTS landmarks;
@@ -53,6 +54,17 @@ CREATE TABLE ratings (
 	user_id int,
 	landmark_id int,
 	isLiked boolean,
+	PRIMARY KEY (user_id, landmark_id),
+	FOREIGN KEY (user_id) REFERENCES users(user_id),
+	FOREIGN KEY (landmark_id) REFERENCES landmarks(landmark_id)
+);
+
+CREATE TABLE reviews (
+	user_id int,
+	landmark_id int,
+	title varchar(30),
+	review varchar(750),
+	name varchar(20) DEFAULT 'anonymous',
 	PRIMARY KEY (user_id, landmark_id),
 	FOREIGN KEY (user_id) REFERENCES users(user_id),
 	FOREIGN KEY (landmark_id) REFERENCES landmarks(landmark_id)
