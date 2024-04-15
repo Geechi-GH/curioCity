@@ -38,8 +38,7 @@ CREATE TABLE landmarks (
 	like_count int,
 	dislike_count int,
 	imagePath varchar(100),
-    website varchar(250),
-    vote_rep int DEFAULT 0
+    website varchar(250)
 );
 
 CREATE TABLE land_itin_helper (
@@ -54,7 +53,7 @@ CREATE TABLE land_itin_helper (
 CREATE TABLE ratings (
 	user_id int,
 	landmark_id int,
-	isLiked boolean,
+	like_status int DEFAULT 0,
 	PRIMARY KEY (user_id, landmark_id),
 	FOREIGN KEY (user_id) REFERENCES users(user_id),
 	FOREIGN KEY (landmark_id) REFERENCES landmarks(landmark_id)

@@ -1,5 +1,6 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.LandRatDTO;
 import com.techelevator.model.Landmark;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface LandmarkDao {
 
     Set<String> getAllCategories();
 
-    Landmark likeALandmark(Landmark landmark, int userId);
+    LandRatDTO likeALandmark(Landmark landmark, int userId);
 
-    Landmark dislikeALandmark(Landmark landmark, int userId);
+    LandRatDTO dislikeALandmark(Landmark landmark, int userId);
 }

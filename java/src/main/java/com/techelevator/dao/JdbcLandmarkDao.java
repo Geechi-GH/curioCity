@@ -1,6 +1,7 @@
 package com.techelevator.dao;
 
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.LandRatDTO;
 import com.techelevator.model.Landmark;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.CannotGetJdbcConnectionException;
@@ -20,9 +21,6 @@ public class JdbcLandmarkDao implements LandmarkDao {
     private final int UNCLICKED = -1;
     private final int NO_CLICK = 0;
 
-    private final int RED = -1;
-    private final int GREEN = 1;
-    private final int WHITE = 0;
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcLandmarkDao(DataSource dataSource) {
@@ -87,113 +85,111 @@ public class JdbcLandmarkDao implements LandmarkDao {
         return categories;
     }
 
+    private final String SELECT_JOIN_RATINGS_SQL = "SELECT l.landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagepath, website, like_status\n" +
+            "\tFROM landmarks AS l\n" +
+            "\tLEFT OUTER JOIN ratings AS r ON l.landmark_id = r.landmark_id AND r.user_id = ? \n" +
+            "\tWHERE l.landmark_id = ?;";
+    private final String INSERT_RATING_SQL = "INSERT INTO ratings(user_id, landmark_id, like_status)\n" +
+            "\"VALUES( ?, ?, ?)\n" +
+            "\"RETURNING landmark_id;";
+    private final String UPDATE_LANDMARK_SQL = "UPDATE landmarks\n" +
+            "\tSET like_count = like_count + ?, dislike_count = dislike_count + ?\n" +
+            "\tWHERE landmark_id = ? ;";
+    private final String UPDATE_RATING_SQL = "UPDATE ratings\n" +
+            "\tSET like_status = ? \n" +
+            "\tWHERE user_id = ? AND landmark_id = ? \n" +
+            "\tRETURNING landmark_id;";
+    private final String DELETE_RATING_SQL = "DELETE FROM ratings\n" +
+            "\tWHERE landmark_id = ? AND user_id = ?\n" +
+            "RETURNING landmark_id;";
+    private final int DISLIKED = -1;
+    private final int LIKED = 1;
+    private final int NO_ENTRY = 0;
+
     @Override
-    public Landmark likeALandmark(Landmark landmark, int userId) {
+    public LandRatDTO likeALandmark(Landmark landmark, int userId) {
         int landmarkId = landmark.getId();
         int veryUniqueLandmarkId = 0;
+        LandRatDTO landRatDTO = null;
 
-        String sqlSelect = "SELECT isLiked\n" +
-                "FROM ratings\n" +
-                "WHERE user_id = ? AND landmark_id = ? ;\n";
-
-        String sqlInsert = "INSERT INTO ratings(user_id, landmark_id, isLiked)\n" +
-                "VALUES(?,?,true)" +
-                "RETURNING landmark_id;";
-
-        String sqlUpdateLandmarks = "\n" +
-                "UPDATE landmarks\n" +
-                "SET like_count = like_count + ?, dislike_count = dislike_count + ?, vote_rep = ? \n" +
-                "WHERE landmark_id = ? ;";
-
-        String sqlUpdateRatings = "UPDATE ratings\n" +
-                "SET isLiked = true\n" +
-                "WHERE user_id = ? AND landmark_id = ? " +
-                "RETURNING landmark_id;";
-
-        String sqlDeleteRating = "DELETE FROM ratings\n" +
-                "\tWHERE landmark_id = ? AND user_id = ?" +
-                "RETURNING landmark_id;";
         try {
-            boolean result = this.jdbcTemplate.queryForObject(sqlSelect, boolean.class, userId, landmarkId);
-            // if we selected a rating that is there and the rating is false (disliked)
-            if (!result) {
-                veryUniqueLandmarkId = jdbcTemplate.queryForObject(sqlUpdateRatings, int.class, userId, landmarkId);
-                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, CLICKED, UNCLICKED, GREEN, landmarkId);
+            SqlRowSet results = this.jdbcTemplate.queryForRowSet(SELECT_JOIN_RATINGS_SQL, userId, landmarkId);
+            landRatDTO = mapRowToLandRat(results);
+            int likeStatus = landRatDTO.getLikeStatus();
+            // if it is disliked
+            if (likeStatus == DISLIKED) {
+                veryUniqueLandmarkId = jdbcTemplate.queryForObject(UPDATE_RATING_SQL, int.class, LIKED, userId, landmarkId);
+                int moreRowsTouched = jdbcTemplate.update(UPDATE_LANDMARK_SQL, CLICKED, UNCLICKED, landmarkId);
                 if (moreRowsTouched < 1) {
                     throw new DaoException("Did not properly update the ratings or landmarks when the rating existed");
                 }
-            }
-            if (result) {
-                veryUniqueLandmarkId = jdbcTemplate.queryForObject(sqlDeleteRating, int.class, landmarkId, userId);
-                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, UNCLICKED, NO_CLICK, WHITE, landmarkId);
+                return landmarkToLandRat(getLandmarkById(veryUniqueLandmarkId), LIKED);
+            } else
+            // if it is already liked
+            if (likeStatus == LIKED) {
+                veryUniqueLandmarkId = jdbcTemplate.queryForObject(DELETE_RATING_SQL, int.class, landmarkId, userId);
+                int moreRowsTouched = jdbcTemplate.update(UPDATE_LANDMARK_SQL, UNCLICKED, NO_CLICK,landmarkId);
                 if (moreRowsTouched < 1) {
                     throw new DaoException("Did not properly remove the like");
                 }
+                return landmarkToLandRat(getLandmarkById(veryUniqueLandmarkId), LIKED);
+            } else
+            // if there is no like entry
+            if (likeStatus == NO_ENTRY) {
+                int newLandmarkId = this.jdbcTemplate.queryForObject(INSERT_RATING_SQL, int.class, userId, landmarkId, LIKED);
+                int rowsAffected = this.jdbcTemplate.update(UPDATE_LANDMARK_SQL, CLICKED, NO_CLICK, newLandmarkId);
+                if (rowsAffected < 1) {
+                    throw new DaoException("cannot update rating");
+                }
+                return landmarkToLandRat(getLandmarkById(newLandmarkId), LIKED);
+            } else {
+                throw new DaoException("Something broke");
             }
         } catch (EmptyResultDataAccessException e) {
-            // if there is no
-            int newLandmarkId = this.jdbcTemplate.queryForObject(sqlInsert, int.class, userId, landmarkId);
-            int rowsAffected = this.jdbcTemplate.update(sqlUpdateLandmarks, CLICKED, NO_CLICK, GREEN, newLandmarkId);
-            if (rowsAffected < 1) {
-                throw new DaoException("cannot update rating");
-            }
-            return getLandmarkById(newLandmarkId);
+            throw new DaoException("Couldnt access the data");
         }
-        return getLandmarkById(veryUniqueLandmarkId);
     }
 
     @Override
-    public Landmark dislikeALandmark(Landmark landmark, int userId) {
+    public LandRatDTO dislikeALandmark(Landmark landmark, int userId) {
         int landmarkId = landmark.getId();
         int veryUniqueLandmarkId = 0;
+        LandRatDTO landRatDTO = null;
 
-        String sqlSelect = "SELECT isLiked\n" +
-                "FROM ratings\n" +
-                "WHERE user_id = ? AND landmark_id = ? ;\n";
-
-        String sqlInsert = "INSERT INTO ratings(user_id, landmark_id, isLiked)\n" +
-                "VALUES(?,?,false)" +
-                "RETURNING landmark_id;";
-
-        String sqlUpdateLandmarks = "\n" +
-                "UPDATE landmarks\n" +
-                "SET like_count = like_count + ?, dislike_count = dislike_count + ?, vote_rep = ? \n" +
-                "WHERE landmark_id = ? ;";
-
-        String sqlUpdateRatings = "UPDATE ratings\n" +
-                "SET isLiked = false\n" +
-                "WHERE user_id = ? AND landmark_id = ? " +
-                "RETURNING landmark_id;";
-
-        String sqlDeleteRating = "DELETE FROM ratings\n" +
-                "\tWHERE landmark_id = ? AND user_id = ?" +
-                "RETURNING landmark_id;";
         try {
-            boolean result = this.jdbcTemplate.queryForObject(sqlSelect, boolean.class, userId, landmarkId);
-            // if we selected a rating that is there and the rating is false (disliked)
-            if (result) {
-                veryUniqueLandmarkId = jdbcTemplate.queryForObject(sqlUpdateRatings, int.class, userId, landmarkId);
-                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, UNCLICKED, CLICKED, RED, landmarkId);
+            SqlRowSet results = this.jdbcTemplate.queryForRowSet(SELECT_JOIN_RATINGS_SQL, userId, landmarkId);
+            landRatDTO = mapRowToLandRat(results);
+            int likeStatus = landRatDTO.getLikeStatus();
+            if (likeStatus == LIKED) {
+                veryUniqueLandmarkId = jdbcTemplate.queryForObject(UPDATE_RATING_SQL, int.class, DISLIKED, userId, landmarkId);
+                int moreRowsTouched = jdbcTemplate.update(UPDATE_LANDMARK_SQL, UNCLICKED, CLICKED, landmarkId);
                 if (moreRowsTouched < 1) {
                     throw new DaoException("Did not properly update the ratings or landmarks when the rating existed");
                 }
-            }
-            if (!result) {
-                veryUniqueLandmarkId = jdbcTemplate.queryForObject(sqlDeleteRating, int.class, landmarkId, userId);
-                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, NO_CLICK, UNCLICKED, WHITE, landmarkId);
+                return landmarkToLandRat(getLandmarkById(veryUniqueLandmarkId), DISLIKED);
+
+            } else
+            if (likeStatus == DISLIKED) {
+                veryUniqueLandmarkId = jdbcTemplate.queryForObject(DELETE_RATING_SQL, int.class, landmarkId, userId);
+                int moreRowsTouched = jdbcTemplate.update(UPDATE_LANDMARK_SQL, NO_CLICK, UNCLICKED,landmarkId);
                 if (moreRowsTouched < 1) {
                     throw new DaoException("Did not properly remove the like");
                 }
+                return landmarkToLandRat(getLandmarkById(veryUniqueLandmarkId), DISLIKED);
+            } else
+            if (likeStatus == NO_ENTRY) {
+                int newLandmarkId = this.jdbcTemplate.queryForObject(INSERT_RATING_SQL, int.class, userId, landmarkId, DISLIKED);
+                int rowsAffected = this.jdbcTemplate.update(UPDATE_LANDMARK_SQL, NO_CLICK, CLICKED, newLandmarkId);
+                if (rowsAffected < 1) {
+                    throw new DaoException("cannot update rating");
+                }
+                return landmarkToLandRat(getLandmarkById(newLandmarkId), DISLIKED);
+            } else {
+                throw new DaoException("something went terribly wrong, restart computer");
             }
         } catch (EmptyResultDataAccessException e) {
-            int newLandmarkId = this.jdbcTemplate.queryForObject(sqlInsert, int.class, userId, landmarkId);
-            int rowsAffected = this.jdbcTemplate.update(sqlUpdateLandmarks, NO_CLICK, CLICKED, RED, newLandmarkId);
-            if (rowsAffected < 1) {
-                throw new DaoException("cannot update rating");
-            }
-            return getLandmarkById(newLandmarkId);
+                throw new DaoException("Something went wrong");
         }
-        return getLandmarkById(veryUniqueLandmarkId);
     }
 
     public Landmark mapRowToLandmark(SqlRowSet results) {
@@ -209,8 +205,38 @@ public class JdbcLandmarkDao implements LandmarkDao {
                 results.getInt("like_count"),
                 results.getInt("dislike_count"),
                 results.getString("imagePath"),
-                results.getString("website"),
-                results.getInt("vote_rep"));
+                results.getString("website"));
         return landmark;
+    }
+
+    public LandRatDTO mapRowToLandRat(SqlRowSet results) {
+        LandRatDTO landRat = new LandRatDTO();
+        Landmark landmark = new Landmark(
+                results.getInt("landmark_id"),
+                results.getString("name"),
+                results.getString("description"),
+                results.getTime("weekday_open"),
+                results.getTime("weekday_close"),
+                results.getTime("weekend_open"),
+                results.getTime("weekend_close"),
+                results.getString("category"),
+                results.getInt("city_id"),
+                results.getInt("like_count"),
+                results.getInt("dislike_count"),
+                results.getString("imagePath"),
+                results.getString("website")
+        );
+        int likeStatus = results.getInt("like_status");
+        landRat.setLandmark(landmark);
+        landRat.setLikeStatus(likeStatus);
+
+        return landRat;
+
+    }
+    public LandRatDTO landmarkToLandRat(Landmark landmark, int likeStatus) {
+        LandRatDTO landRatDTO = new LandRatDTO();
+        landRatDTO.setLandmark(landmark);
+        landRatDTO.setLikeStatus(likeStatus);
+        return landRatDTO;
     }
 }
