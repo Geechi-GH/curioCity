@@ -1,17 +1,29 @@
 <template>
     <div>
-        <p>YOUR LANDMARKS</p>
+        <h1 class="section-names">Your Travel Itinerary</h1>
+        <hr class="full-width-lines">
+        <h2>Plan Your Trip</h2>
+        <p>Drag landmarks to order your itinerary</p>
         <draggable v-model="landmarksToVisit" item-key="id" @end="saveItinerary">
             <template #item="{ element }">
-                <LandmarksMinus :landmark="element" :itinerary="itinerary" @remove-landmark="removeLandmark">
+                <LandmarksMinus class="landmarks" id="top-landmarks" :landmark="element" :itinerary="itinerary"
+                    @remove-landmark="removeLandmark">
+
                 </LandmarksMinus>
             </template>
         </draggable>
-        <p>LANDMARKS TO ADD</p>
-        <section v-for="landmark in availableLandmarks" :key="landmark.id">
-            <LandmarksPlus :landmark="landmark" v-bind:itinerary="itinerary" @add-landmark="addLandmark">
-            </LandmarksPlus>
-        </section>
+        <h3 class="section-names">Landmarks</h3>
+        <hr class="full-width-lines">
+
+        <div class="flex-container">
+            <section v-for="landmark in availableLandmarks" :key="landmark.id">
+
+                <LandmarksPlus class="landmarks" id="bottom-landmarks" :landmark="landmark" v-bind:itinerary="itinerary"
+                    @add-landmark="addLandmark">
+                </LandmarksPlus>
+
+            </section>
+        </div>
     </div>
 </template>
 
@@ -81,4 +93,71 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.section-names {
+    font-size: 2em;
+    text-align: center;
+    color: #D7B740;
+}
+
+.full-width-line {
+    border: none;
+    border-top: 1px solid #ddd;
+    /* Adjust the color as needed */
+    width: 100%;
+    margin: 20px 0;
+    /* Adjust the margin as needed */
+
+}
+
+h2 {
+    text-align: center;
+    color: #FFFFF0;
+    text-shadow: -1px -1px 0 #708090, 1px -1px 0 #708090, -1px 1px 0 #708090, 1px 1px 0 #708090;
+
+}
+
+p {
+    text-align: center;
+    color: #708090;
+
+}
+
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-between; */
+    width: calc(100% + 20px);
+    /* Adjust for border and margin */
+    margin: 0 -10px;
+    /* Adjust for negative margin */
+    margin-left: 5px;
+
+}
+
+.landmarks {
+    border: 2px solid #FFFFF0;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: #708090;
+    text-shadow: -1px -1px 0 #292929, 1px -1px 0 #292929, -1px 1px 0 #292929, 1px 1px 0 #292929;
+
+}
+
+.landmarks:hover {
+    background-color: #292929;
+}
+
+#bottom-landmarks {
+
+    flex-basis: calc(33.33% - 20px);
+    flex-grow: 1;
+    margin: 5px;
+    margin-left: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding: 10px;
+
+}
+</style>
