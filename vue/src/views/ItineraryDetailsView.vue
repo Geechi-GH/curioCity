@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="section-names">Your Travel Itinerary</h1>
+        <h1 class="section-names"> {{ itinerary.title }} Itinerary</h1>
         <hr class="full-width-lines">
         <h2>Plan Your Trip</h2>
         <p>Drag landmarks to order your itinerary</p>
@@ -8,20 +8,18 @@
             <template #item="{ element }">
                 <LandmarksMinus class="landmarks" id="top-landmarks" :landmark="element" :itinerary="itinerary"
                     @remove-landmark="removeLandmark">
-
                 </LandmarksMinus>
             </template>
         </draggable>
-        <h3 class="section-names">Landmarks</h3>
+
         <hr class="full-width-lines">
+        <h3 class="subtitle-landmarks">Landmarks</h3>
 
         <div class="flex-container">
             <section v-for="landmark in availableLandmarks" :key="landmark.id">
-
                 <LandmarksPlus class="landmarks" id="bottom-landmarks" :landmark="landmark" v-bind:itinerary="itinerary"
                     @add-landmark="addLandmark">
                 </LandmarksPlus>
-
             </section>
         </div>
     </div>
@@ -88,6 +86,9 @@ export default {
             const selectedLandmarkIds = this.landmarksToVisit.map(landmark => landmark.id);
             return this.$store.state.landmarks
                 .filter(lm => !selectedLandmarkIds.includes(lm.id));
+        },
+        image() {
+            return (new URL(this.landmark.imagePath, import.meta.url)).href;
         }
     }
 }
@@ -100,29 +101,30 @@ export default {
     color: #D7B740;
 }
 
+.subtitle-landmarks {
+    font-size: 1.5em;
+    text-align: center;
+    color: #FFFFF0;
+    text-shadow: -1px -1px 0 #708090, 1px -1px 0 #708090, -1px 1px 0 #708090, 1px 1px 0 #708090;
+}
+
 .full-width-line {
     border: none;
     border-top: 1px solid #ddd;
-    /* Adjust the color as needed */
     width: 100%;
     margin: 20px 0;
-    /* Adjust the margin as needed */
-
 }
 
 h2 {
     text-align: center;
     color: #FFFFF0;
     text-shadow: -1px -1px 0 #708090, 1px -1px 0 #708090, -1px 1px 0 #708090, 1px 1px 0 #708090;
-
 }
 
 p {
     text-align: center;
     color: #708090;
-
 }
-
 
 .flex-container {
     display: flex;
@@ -133,24 +135,32 @@ p {
     margin: 0 -10px;
     /* Adjust for negative margin */
     margin-left: 5px;
+}
 
+#top-landmarks {
+    background-color: rgba(112, 128, 144, 0.5);
 }
 
 .landmarks {
-    border: 2px solid #FFFFF0;
+    border: 2px solid #708090;
     margin: 5px;
     border-radius: 10px;
-    background-color: #708090;
     text-shadow: -1px -1px 0 #292929, 1px -1px 0 #292929, -1px 1px 0 #292929, 1px 1px 0 #292929;
-
 }
 
-.landmarks:hover {
+#top-landmarks {
+    cursor: grab;
+}
+
+#bottom-landmarks:hover {
+    opacity: .9;
+}
+
+#top-landmarks:hover {
     background-color: #292929;
 }
 
 #bottom-landmarks {
-
     flex-basis: calc(33.33% - 20px);
     flex-grow: 1;
     margin: 5px;
@@ -158,6 +168,5 @@ p {
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 10px;
-
 }
 </style>
