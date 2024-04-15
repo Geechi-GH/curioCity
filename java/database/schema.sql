@@ -38,7 +38,8 @@ CREATE TABLE landmarks (
 	like_count int,
 	dislike_count int,
 	imagePath varchar(100),
-    website varchar(250)
+    website varchar(250),
+    vote_rep int DEFAULT 0
 );
 
 CREATE TABLE land_itin_helper (

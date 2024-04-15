@@ -66,6 +66,7 @@ export default {
         image() {
             return (new URL(this.landmark.imagePath, import.meta.url)).href;
         },
+
     },
     methods: {
         formatTime(timeString) {
@@ -99,7 +100,19 @@ export default {
 
             const likes = document.querySelector('#thumbs-up');
             likes.classList.remove('liked');
+        },
+        colorCheck() {
+            const likes = document.querySelector('#thumbs-up');
+            const dislikes = document.querySelector('#thumbs-down');
+            if (this.landmark.voteRep == 1) {
+                likes.classList.add('liked');
+            } else if (this.landmark.voteRep == -1) {
+                dislikes.classList.add('disliked');
+            }
         }
+    },
+    mounted() {
+        this.colorCheck();
     }
 }
 </script>
