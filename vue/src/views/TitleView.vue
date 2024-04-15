@@ -14,9 +14,11 @@
                 <!-- <button id="register">Register</button> -->
             </div>
             <h1 class="intro">Travel curation for the curious mind</h1>
-            <div>
-                <img id="cincysundown" src="../assets/cincysundown.jpg" alt="">
-            </div>
+            <div class="slideshow">
+            <!-- <img :src="currentImage" alt="Slideshow Image"> -->
+            <img v-for="(image, index) in images" :key="index" :src="image" alt="Slideshow" v-show="index === currentIndex">
+
+        </div>
         </header>
         <!-- <button id="login">login</button> -->
         <h2 class="about-title">Who we are</h2>
@@ -24,27 +26,130 @@
             doloribus
             iste praesentium
             repellat vel facilis tempora corporis totam deleniti similique minima enim quod sequi itaque! Eum, vero?</p>
-        <section class="imagesHolder">
-
-            <img id="redstadium" src="../assets/redsstadium.jpg" alt="">
-
-        </section>
     </div>
+    
+
 </template>
 
+
 <script>
+import artMuseum from "../assets/Updated photos/art museum.png";
+import bridge from "../assets/Updated photos/bridge.png";
+import cincinnatiZoo from "../assets/Updated photos/cincinnati zoo.png";
+import edenPark from "../assets/Updated photos/eden park.png";
+import fountainSquare from "../assets/Updated photos/fountain square.png";
+import kron from "../assets/Updated photos/kron.png";
+import museum from "../assets/Updated photos/museum.png";
+import musicHall from "../assets/Updated photos/music hall.png";
+import observatory from "../assets/Updated photos/observatory.png";
+import taftMuseum from "../assets/Updated photos/taft museum.png";
+import redsSkyline from "../assets/Updated photos/RedsCincySky.png";
 export default {
     name: "TitleView",
-}
+    data() {
+    return {
+      // List of image paths
+      images: [
+        artMuseum,
+        bridge,
+        cincinnatiZoo,
+        edenPark,
+        fountainSquare,
+        kron,
+        museum,
+        musicHall,
+        observatory,
+        taftMuseum,
+        redsSkyline
+      ],
+      // Index of the current image being displayed
+      currentIndex: 0,
+    };
+},
+computed: {
+    // Get the path of the current image
+    currentImage() {
+      return this.images[this.currentIndex];
+    },
+},
+methods: {
+    // Move to the next image
+    nextImage() {
+      this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    },
+    // Automatically advance to the next image after a delay
+    startSlideshow() {
+      this.slideshowInterval = setInterval(() => {
+        this.nextImage();
+      }, 3000); // Change the delay (in milliseconds) as needed
+    },
+    // Stop the slideshow when component is destroyed
+    stopSlideshow() {
+      clearInterval(this.slideshowInterval);
+    },
+  },
+  mounted() {
+    this.startSlideshow();
+  },
+  destroyed() {
+    this.stopSlideshow();
+  },
+};
 </script>
 
 <style scoped>
 /* Color Palette */
-.imagesHolder {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+
+.slideshow {
+  max-width: 100%;
+  height: auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.slideshow img {
+  width: 50%;
+  height: auto;
+  display: block;
+  transition: opacity 0.5s ease;
+  border: 3px solid #D7B740;
+
+}
+
+.title-container::after {
+  content: "";
+  position: absolute;
+  top: 50%; /* Start from just below the intro heading */
+  left: 0;
+  width: 100%;
+  height: 100%; /* Extend to the bottom of the page */
+  background-image: url('../assets/cincysundown.jpg');
+  background-size: cover;
+  opacity: 0.5; /* Adjust the opacity as needed */
+  z-index: -1; /* Ensure it's behind other content */
+}
+
+#cincysundown { 
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+
+/* Add CSS animations for smooth transition between images */
+.slideshow img.ng-enter,
+.slideshow img.ng-leave {
+  position: absolute;
+}
+
+.slideshow img.ng-enter {
+  opacity: 0;
+}
+
+.slideshow img.ng-enter-active,
+.slideshow img.ng-leave-active {
+  opacity: 1;
 }
 
 :root {
@@ -56,7 +161,7 @@ export default {
 }
 
 #logo {
-    width: 60%;
+    width: 40%;
     margin-bottom: -50px;
     margin-top: -75px;
 }
@@ -82,12 +187,13 @@ export default {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
+    width: 100%;
     background-color: #708090;
     -webkit-text-fill-color: #020202;
     font-size: 2em;
     font-weight: bold;
     font-family: serif;
-    -webkit-text-stroke: #292929 1px;
+    -webkit-text-stroke: #292929 px;
     text-align: center;
     margin-bottom: 5px;
     margin-top: 0px;
