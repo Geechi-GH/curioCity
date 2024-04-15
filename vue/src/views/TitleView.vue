@@ -9,7 +9,7 @@
                 <router-link class="login-link" to="/login"> Login </router-link>
             </div>
             <div class="register">
-                <label for="register">New to the site?</label>
+                <label id="register-label" for="register">New to the site?</label>
                 <router-link class="link" id="register" to="/register"> Register </router-link>
                 <!-- <button id="register">Register</button> -->
             </div>
@@ -21,10 +21,12 @@
         </header>
         <!-- <button id="login">login</button> -->
         <h2 class="about-title">Who we are</h2>
+        <div class="about-info-container">
         <p class="about-info">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia placeat ipsam, iusto
             doloribus
             iste praesentium
             repellat vel facilis tempora corporis totam deleniti similique minima enim quod sequi itaque! Eum, vero?</p>
+        </div>
     </div>
     
 
@@ -123,7 +125,7 @@ methods: {
   left: 0;
   width: 100%;
   height: 100%; /* Extend to the bottom of the page */
-  background-image: url('../assets/cincysundown.jpg');
+  background-image: url('../assets/updated photos/sunsetcincy.png');
   background-size: cover;
   opacity: 0.5; /* Adjust the opacity as needed */
   z-index: -1; /* Ensure it's behind other content */
@@ -169,7 +171,7 @@ methods: {
     font-size: 3em;
     font-weight: bold;
     font-family: serif;
-    -webkit-text-stroke: #292929 1px;
+    /* -webkit-text-stroke: #292929 2px;  */
     text-align: center;
     margin-bottom: 5px;
     margin-top: -50px;
@@ -186,8 +188,9 @@ methods: {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    width: 100%;
     background-color: #708090;
+    margin-left: -10px;
+    margin-right: -10px;
     -webkit-text-fill-color: #020202;
     font-size: 2em;
     font-weight: bold;
@@ -203,6 +206,18 @@ methods: {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+}
+
+#register {
+  font-weight: bold;
+    font-family: serif;
+    /* -webkit-text-stroke: #292929 2px;  */
+    /* margin-bottom: 5px;  */
+    /* margin-top: -50px;  */
+    color: #D7B740;
+    display: inline-block;
+    width: 53px;
+    text-decoration: underline;
 }
 
 .intro {
@@ -238,9 +253,17 @@ methods: {
     margin-bottom: 20px;
     margin-top: 20px;
     color: #fffff0;
-    border-bottom: #708090 3px solid;
-    border-radius: 20px;
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 12px;
 }
+
+.about-info-container {
+    width: 100%; /* Set the container to full width */
+    border-bottom: #708090 3px solid;
+    border-radius: 20px;  
+    }
+
 
 /* Layout and Whitespace */
 body {
@@ -252,7 +275,6 @@ body {
     color: #D7B740;
     border-radius: 5%;
     padding: 1px;
-    padding-left: 5px;
     padding-right: 5px;
     margin: 5px;
     margin-top: 0px;

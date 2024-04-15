@@ -16,8 +16,12 @@ export default {
         },
         itinerary: {
             type: Object
+        },
+        index: {
+            type: Number // Add index prop
         }
     },
+
     methods: {
         landmarkFromArray() {
             this.$emit('remove-landmark', this.landmark);
@@ -26,4 +30,13 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+h1 {
+    margin-left: 10px;
+}
+
+button {
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+</style>
