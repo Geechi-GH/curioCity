@@ -1,18 +1,18 @@
 <template>
     <form v-on:submit.prevent="createItinerary">
         <div class="field">
-            <label for="title">Title</label>
-            <input type="text" id="title" v-model="editItinerary.title" required />
+            <label class="title" for="title">Title :</label>
+            <input class="title-box" type="text" id="title" v-model="editItinerary.title" required />
         </div>
 
         <div class="field">
-            <label for="travel">Travel date</label>
-            <input type="date" id="travel" v-model="editItinerary.dateOfTravel" required />
+            <label class="title-travel" for="travel">Travel date :</label>
+            <input class="title-travel-box" type="date" id="travel" v-model="editItinerary.dateOfTravel" required />
         </div>
 
         <div class="actions">
-            <button type="submit">Add</button>
-            <button type="button" v-on:click="this.$router.back()">Cancel</button>
+            <button class="submit-cancel" type="submit">Add</button>
+            <button class="submit-cancel" type="button" v-on:click="this.$router.back()">Cancel</button>
         </div>
     </form>
 </template>
@@ -51,4 +51,68 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.field {}
+
+.title {
+    font-size: .9em;
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-right: 5px;
+    color: #708090;
+    -webkit-text-fill-color: #fffff0;
+}
+
+.title-box {
+    font-size: .9em;
+    font-size: .75em;
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-right: 5px;
+    color: #708090;
+    background-color: #fffff0;
+    border: #708090 2px solid;
+}
+
+.title-box:focus {
+    outline: none;
+    border: #D7B740 2px solid;
+}
+
+.title-travel {
+    font-size: .9em;
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-right: 5px;
+    color: #fffff0;
+    -webkit-text-fill-color: #fffff0;
+}
+
+.title-travel-box:focus {
+    outline: none;
+    border: #D7B740 2px solid;
+}
+
+.title-travel-box {
+    font-size: .75em;
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-right: 5px;
+    color: #708090;
+    background-color: #fffff0;
+    border: #708090 2px solid;
+
+}
+
+.submit-cancel:hover {
+    background-color: #708090;
+}
+</style>

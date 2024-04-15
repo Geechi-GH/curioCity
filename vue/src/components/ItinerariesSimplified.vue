@@ -1,7 +1,7 @@
 <template>
     <div class="itinerary-card">
-        <h1>{{ itinerary.title }}</h1>
-        <p>{{ itinerary.dateOfTravel }}</p>
+        <h1 class="title">{{ itinerary.title }}</h1>
+        <p class="date">{{ itinerary.dateOfTravel }}</p>
     </div>
 </template>
 
@@ -16,33 +16,31 @@ export default {
 }
 </script>
 
-<style scoped>
-h1 {
-    margin-top: 0;
-    font-size: 1.5rem;
-    padding: 10px;
-    text-align: center;
-}
-
-p {
-    display: flex;
-    padding: 10px;
-    margin-top: auto;
-    text-align: center;
+<style>
+.title {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center !important;
+    margin-bottom: 15px;
+    color: #fffff0;
     justify-content: center;
+    font-family: serif;
+    text-decoration: none;
+    text-decoration-line: underline;
+    text-decoration-style: unset;
+    text-decoration-color: #292929;
 }
 
-.itinerary-title {
-    text-align: center;
-}
-
-div {
-    height: 20vh;
-    width: 25vh;
-    object-position: center;
-    object-fit: contain;
-    border: 1px solid #708090;
-    border-radius: 4px;
-    margin: 10px;
+.date {
+    font-size: 1em;
+    text-align: center !important;
+    margin-bottom: 15px;
+    color: #d7b740;
+    justify-content: center;
+    font-family: serif;
+    text-decoration: none;
+    text-decoration-line: underline;
+    text-decoration-style: unset;
+    text-decoration-color: #292929;
 }
 </style>

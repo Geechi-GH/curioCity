@@ -17,8 +17,7 @@
             <div class="slideshow">
             <!-- <img :src="currentImage" alt="Slideshow Image"> -->
             <img v-for="(image, index) in images" :key="index" :src="image" alt="Slideshow" v-show="index === currentIndex">
-
-        </div>
+            </div>
         </header>
         <!-- <button id="login">login</button> -->
         <h2 class="about-title">Who we are</h2>
