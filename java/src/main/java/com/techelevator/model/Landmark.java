@@ -16,9 +16,10 @@ public class Landmark {
     private int dislikeCount;
     private String imagePath;
     private String website;
+    private int voteRep;
 
     public Landmark(int id, String name, String description, Time weekdayOpen, Time weekdayClose, Time weekendOpen, Time weekendClose,
-                    String category, int cityID, int likeCount, int dislikeCount, String imagePath, String website) {
+                    String category, int cityID, int likeCount, int dislikeCount, String imagePath, String website, int voteRep) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -32,6 +33,15 @@ public class Landmark {
         this.dislikeCount = dislikeCount;
         this.imagePath = imagePath;
         this.website = website;
+        this.voteRep = voteRep;
+    }
+
+    public int getVoteRep() {
+        return voteRep;
+    }
+
+    public void setVoteRep(int voteRep) {
+        this.voteRep = voteRep;
     }
 
     public int getId() {

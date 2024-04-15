@@ -16,7 +16,13 @@ import java.util.Set;
 
 @Component
 public class JdbcLandmarkDao implements LandmarkDao {
+    private final int CLICKED = 1;
+    private final int UNCLICKED = -1;
+    private final int NO_CLICK = 0;
 
+    private final int RED = -1;
+    private final int GREEN = 1;
+    private final int WHITE = 0;
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcLandmarkDao(DataSource dataSource) {
@@ -27,7 +33,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
     public Landmark getLandmarkById(int landmarkId) {
         Landmark landmark = null;
 
-        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website\n" +
+        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website, vote_rep \n" +
                 "\tFROM landmarks \n" +
                 "WHERE landmark_id = ?";
         try {
@@ -46,7 +52,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
         List<Landmark> landmarkList = new ArrayList<>();
 
 
-        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website \n" +
+        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website, vote_rep \n" +
                 "\tFROM landmarks " +
                 "ORDER BY landmark_id ASC;";
 
@@ -96,7 +102,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
 
         String sqlUpdateLandmarks = "\n" +
                 "UPDATE landmarks\n" +
-                "SET like_count = like_count + ?, dislike_count = dislike_count + ? \n" +
+                "SET like_count = like_count + ?, dislike_count = dislike_count + ?, vote_rep = ? \n" +
                 "WHERE landmark_id = ? ;";
 
         String sqlUpdateRatings = "UPDATE ratings\n" +
@@ -112,21 +118,22 @@ public class JdbcLandmarkDao implements LandmarkDao {
             // if we selected a rating that is there and the rating is false (disliked)
             if (!result) {
                 veryUniqueLandmarkId = jdbcTemplate.queryForObject(sqlUpdateRatings, int.class, userId, landmarkId);
-                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, 1, -1, landmarkId);
+                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, CLICKED, UNCLICKED, GREEN, landmarkId);
                 if (moreRowsTouched < 1) {
                     throw new DaoException("Did not properly update the ratings or landmarks when the rating existed");
                 }
             }
             if (result) {
                 veryUniqueLandmarkId = jdbcTemplate.queryForObject(sqlDeleteRating, int.class, landmarkId, userId);
-                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, -1, 0, landmarkId);
+                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, UNCLICKED, NO_CLICK, WHITE, landmarkId);
                 if (moreRowsTouched < 1) {
                     throw new DaoException("Did not properly remove the like");
                 }
             }
         } catch (EmptyResultDataAccessException e) {
+            // if there is no
             int newLandmarkId = this.jdbcTemplate.queryForObject(sqlInsert, int.class, userId, landmarkId);
-            int rowsAffected = this.jdbcTemplate.update(sqlUpdateLandmarks, 1, 0, newLandmarkId);
+            int rowsAffected = this.jdbcTemplate.update(sqlUpdateLandmarks, CLICKED, NO_CLICK, GREEN, newLandmarkId);
             if (rowsAffected < 1) {
                 throw new DaoException("cannot update rating");
             }
@@ -150,7 +157,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
 
         String sqlUpdateLandmarks = "\n" +
                 "UPDATE landmarks\n" +
-                "SET like_count = like_count + ?, dislike_count = dislike_count + ? \n" +
+                "SET like_count = like_count + ?, dislike_count = dislike_count + ?, vote_rep = ? \n" +
                 "WHERE landmark_id = ? ;";
 
         String sqlUpdateRatings = "UPDATE ratings\n" +
@@ -166,21 +173,21 @@ public class JdbcLandmarkDao implements LandmarkDao {
             // if we selected a rating that is there and the rating is false (disliked)
             if (result) {
                 veryUniqueLandmarkId = jdbcTemplate.queryForObject(sqlUpdateRatings, int.class, userId, landmarkId);
-                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, -1, 1, landmarkId);
+                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, UNCLICKED, CLICKED, RED, landmarkId);
                 if (moreRowsTouched < 1) {
                     throw new DaoException("Did not properly update the ratings or landmarks when the rating existed");
                 }
             }
             if (!result) {
                 veryUniqueLandmarkId = jdbcTemplate.queryForObject(sqlDeleteRating, int.class, landmarkId, userId);
-                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, 0, -1, landmarkId);
+                int moreRowsTouched = jdbcTemplate.update(sqlUpdateLandmarks, NO_CLICK, UNCLICKED, WHITE, landmarkId);
                 if (moreRowsTouched < 1) {
                     throw new DaoException("Did not properly remove the like");
                 }
             }
         } catch (EmptyResultDataAccessException e) {
             int newLandmarkId = this.jdbcTemplate.queryForObject(sqlInsert, int.class, userId, landmarkId);
-            int rowsAffected = this.jdbcTemplate.update(sqlUpdateLandmarks, 0, 1, newLandmarkId);
+            int rowsAffected = this.jdbcTemplate.update(sqlUpdateLandmarks, NO_CLICK, CLICKED, RED, newLandmarkId);
             if (rowsAffected < 1) {
                 throw new DaoException("cannot update rating");
             }
@@ -202,7 +209,8 @@ public class JdbcLandmarkDao implements LandmarkDao {
                 results.getInt("like_count"),
                 results.getInt("dislike_count"),
                 results.getString("imagePath"),
-                results.getString("website"));
+                results.getString("website"),
+                results.getInt("vote_rep"));
         return landmark;
     }
 }
