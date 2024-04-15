@@ -154,7 +154,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
                 "WHERE landmark_id = ? ;";
 
         String sqlUpdateRatings = "UPDATE ratings\n" +
-                "SET isLiked = true\n" +
+                "SET isLiked = false\n" +
                 "WHERE user_id = ? AND landmark_id = ? " +
                 "RETURNING landmark_id;";
 
