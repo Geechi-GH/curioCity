@@ -24,6 +24,7 @@
                     @add-landmark="addLandmark">
                 </LandmarksPlus>
             </section>
+            <button @click="deleteItinerary(this.itinerary.itineraryId)">Delete</button>
         </div>
     </div>
 </template>
@@ -72,6 +73,13 @@ export default {
             this.landmarksToVisit = this.landmarksToVisit
                 .filter(lm => lm.id !== landmark.id);
             this.saveItinerary();
+        },
+
+        deleteItinerary(itineraryId) {
+            ItineraryService.deleteItinerary(itineraryId).then(response => {
+                this.itinerary = response.data;
+                this.$router.push({ name: 'home' });
+            });
         },
         formatDate(date) {
             const dateObj = new Date(date);

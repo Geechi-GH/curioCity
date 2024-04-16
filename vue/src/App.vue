@@ -47,7 +47,7 @@ body {
   background-image: linear-gradient(to bottom left, #3c3c3c, #020202);
   background-attachment: fixed;
   color: white;
-  font-family: serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 h1 {
