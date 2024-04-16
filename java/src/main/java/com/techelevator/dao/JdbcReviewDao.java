@@ -39,6 +39,39 @@ public class JdbcReviewDao implements ReviewDao{
         return myList;
     }
 
+    @Override
+    public Review getReviewById(int landmarkId, int userId) {
+        Review review = null;
+        String sql = "SELECT user_id, landmark_id, title, review, name\n" +
+                "\tFROM reviews\n" +
+                "\tWHERE user_id = ? AND landmark_id = ?;";
+        try {
+            SqlRowSet result = this.jdbcTemplate.queryForRowSet(sql);
+            if (result.next()) {
+                review = mapRow(result);
+            }
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return review;
+    }
+
+    @Override
+    public Review createReview(Review review, int userId) {
+        Review newReview = null;
+        String sql = "INSERT INTO reviews(\n" +
+                "\tuser_id, landmark_id, title, review, name)\n" +
+                "\tVALUES (?, ?, ?, ?, ?)\n" +
+                " RETURNING landmark_id;";
+        try {
+            int landmarkId = this.jdbcTemplate.queryForObject(sql,int.class,review.getUserId(),review.getLandmarkId(),review.getTitle(), review.getReview(), review.getName());
+            newReview = getReviewById(landmarkId, userId);
+        } catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+        return newReview;
+    }
+
     public Review mapRow(SqlRowSet rs) {
 
         Review review = new Review();
