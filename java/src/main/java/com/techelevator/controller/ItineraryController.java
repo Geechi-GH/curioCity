@@ -75,12 +75,11 @@ public class ItineraryController {
     }
 
     @DeleteMapping("/itinerary/{id}")
-    public int deleteItinerary(@PathVariable int id){
-//        try {
+    public int deleteItinerary(@PathVariable int id) {
+        try {
             return itineraryDao.deleteItinerary(id);
-//        } catch (DaoException e) {
-//            throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "Something went wrong");
-//        }
+        } catch (DaoException e) {
+            throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "Something went wrong");
+        }
     }
-    }
-
+}

@@ -121,20 +121,20 @@ public class JdbcItineraryDao implements ItineraryDao {
         return itinerary;
     }
 
-    public int deleteItinerary(int id){
+    public int deleteItinerary(int id) {
 
         int numRows;
-        
+
         String sqlLandit = "DELETE FROM land_itin_helper\n" +
                 "WHERE itinerary_id = ?;";
         String sqlItin = "DELETE FROM itinerarys\n" +
                 "WHERE itinerary_id = ?;";
-//        try {
-                     jdbcTemplate.update(sqlLandit, id);
-           numRows = jdbcTemplate.update(sqlItin, id);
-//        } catch (DataIntegrityViolationException e) {
-//            throw new DaoException("Data integrity violation", e);
-//        }
+        try {
+            jdbcTemplate.update(sqlLandit, id);
+            numRows = jdbcTemplate.update(sqlItin, id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
         return numRows;
     }
 
