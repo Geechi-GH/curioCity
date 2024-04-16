@@ -105,42 +105,12 @@ export default {
         },
         likeLandmark() {
             this.$emit('update-likes', this.landmark);
-            // this.likeIt = true;
-            // this.dislikeIt = false;
-            // const likes = document.querySelector('#thumbs-up');
-            // likes.classList.toggle('liked');
 
-            // const dislikes = document.querySelector('#thumbs-down');
-            // dislikes.classList.remove('disliked');
         },
         dislikeLandmark() {
             this.$emit('dislike-landmark', this.landmark);
-            // const dislikes = document.querySelector('#thumbs-down');
-            // dislikes.classList.toggle('disliked');
 
-            // const likes = document.querySelector('#thumbs-up');
-            // likes.classList.remove('liked');
-        },
-        colorCheck() {
-            const likes = document.querySelector('#thumbs-up');
-            const dislikes = document.querySelector('#thumbs-down');
-            if (this.likeStatus == 1) {
-                likes.classList.add('liked');
-                console.log("I made it into liked");
-            } else if (this.likeStatus == -1) {
-                dislikes.classList.add('disliked');
-                console.log("I made it into disliked");
-            } else {
-                likes.classList.remove('liked');
-                dislikes.classList.remove('disliked');
-            }
-            console.log("I made it here");
         }
-    },
-    mounted() {
-
-        // this.colorCheck();
-
     }
 }
 </script>
