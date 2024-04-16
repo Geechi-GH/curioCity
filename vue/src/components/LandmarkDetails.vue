@@ -13,13 +13,14 @@
                         landmark.dislikeCount }}</button> -->
 
                     <button id="likes" v-on:click="likeLandmark()">
-                        <i id="thumbs-up" class="fas fa-thumbs-up" :class="{ liked: likeIt === 1 }"></i> {{
+                        <i id="thumbs-up" class="fas fa-thumbs-up, likes-button" :class="{ liked: likeIt === 1 }"></i> {{
                             landmark.likeCount }}
                     </button>
                     <!-- Thumbs-down icon for Dislikes button -->
                     <button id="dislikes" v-on:click="dislikeLandmark(landmark)">
-                        <i id="thumbs-down" class="fas fa-thumbs-down" :class="{ disliked: likeIt === -1 }"></i> {{
-                            landmark.dislikeCount }}
+                        <i id="thumbs-down" class="fas fa-thumbs-down, likes-button "
+                            :class="{ disliked: likeIt === -1 }"></i> {{
+                                landmark.dislikeCount }}
                     </button>
                 </div>
             </div>
@@ -197,6 +198,19 @@ export default {
     color: #fffff0;
     border-bottom: 3px solid #708090;
     margin-left: 2%;
+    background-color: #d7b740;
+}
+
+
+likes-button {
+    font-size: 1.5em;
+    font-family: serif;
+    text-align: center;
+    margin-bottom: 5px;
+    margin-top: 0px;
+    color: #fffff0;
+    border-bottom: 3px solid #708090;
+    margin-right: 2%;
     background-color: #d7b740;
 }
 
