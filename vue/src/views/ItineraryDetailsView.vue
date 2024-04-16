@@ -1,9 +1,15 @@
 <template>
     <div>
-        <h1 class="section-names"> {{ itinerary.title }} Itinerary</h1>
-        <p>{{ formatDate(itinerary.dateOfTravel) }}</p>
-        <button
-            @click="this.$router.push({ name: 'edit-itinerary', params: { itineraryId: itinerary.itineraryId } })">Edit</button>
+        <div class="header-container">
+            <div class="centered-content">
+                <h1 class="section-names"> {{ itinerary.title }} Itinerary</h1>
+                <p>{{ formatDate(itinerary.dateOfTravel) }}</p>
+            </div>
+            <div class="edit-button-container">
+                <button class="edit-button"
+                    @click="this.$router.push({ name: 'edit-itinerary', params: { itineraryId: itinerary.itineraryId } })">Edit</button>
+            </div>
+        </div>
         <hr class="full-width-lines">
         <h2>Plan Your Trip</h2>
         <p>Drag & drop landmarks to order your itinerary</p>
@@ -14,7 +20,9 @@
                 </LandmarksMinus>
             </template>
         </draggable>
-
+        <div class="save-button-container">
+            <button class="save-button" @click="this.$router.push({ name: 'home' })">Save</button>
+        </div>
         <hr class="full-width-lines">
         <h3 class="subtitle-landmarks">Landmarks</h3>
 
@@ -24,7 +32,9 @@
                     @add-landmark="addLandmark">
                 </LandmarksPlus>
             </section>
-            <button @click="deleteItinerary(this.itinerary.itineraryId)">Delete</button>
+        </div>
+        <div id=delete-button-container>
+            <button class="delete-button" @click="deleteItinerary(this.itinerary.itineraryId)">Delete Itinerary</button>
         </div>
     </div>
 </template>
@@ -74,7 +84,6 @@ export default {
                 .filter(lm => lm.id !== landmark.id);
             this.saveItinerary();
         },
-
         deleteItinerary(itineraryId) {
             ItineraryService.deleteItinerary(itineraryId).then(response => {
                 this.itinerary = response.data;
@@ -115,10 +124,56 @@ export default {
 </script>
 
 <style scoped>
+.centered-content {
+    text-align: center;
+}
+
 .section-names {
     font-size: 2em;
     text-align: center;
     color: #D7B740;
+}
+
+.edit-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.save-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.edit-button {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1em;
+    color: #FFFFF0;
+    background-color: rgba(215, 183, 64, 1);
+    border: none;
+    width: fit-content;
+}
+
+.save-button {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1em;
+    color: #FFFFF0;
+    background-color: rgba(0, 155, 18, 0.5);
+    border: none;
+    width: fit-content;
 }
 
 .subtitle-landmarks {
@@ -188,5 +243,26 @@ p {
     margin-bottom: 20px;
     box-sizing: border-box;
     padding: 10px;
+}
+
+#delete-button-container {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+}
+
+.delete-button {
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 1em;
+    color: #FFFFF0;
+    background-color: rgb(199, 0, 0, 0.7);
+    border: none;
+    width: fit-content;
 }
 </style>

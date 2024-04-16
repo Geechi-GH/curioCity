@@ -1,13 +1,13 @@
 <template>
     <form v-on:submit.prevent="edit">
-        <div class="field">
+        <div>
             <p>Current title: {{ itinerary.title }}</p>
-            <label class="title" for="title">New title :</label>
+            <label class="title-edit" for="title">New title :</label>
             <input class="title-box" type="text" id="title" v-model="editItinerary.title" required />
         </div>
 
         <div class="field">
-            <p>Current travel date: {{ itinerary.dateOfTravel }}</p>
+            <p>Current travel date: {{ formatDate(itinerary.dateOfTravel) }}</p>
             <label class="title-travel" for="travel">New travel date :</label>
             <input class="title-travel-box" type="date" id="travel" v-model="editItinerary.dateOfTravel" required />
         </div>
@@ -47,27 +47,33 @@ export default {
                 .catch(error => {
                     const response = error.response;
                 });
+        },
+        formatDate(date) {
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+            return formattedDate;
         }
     }
 }
 </script>
 
 <style scoped>
-.title {
+.title-edit {
     font-size: .9em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 20px;
     margin-right: 5px;
-    color: #708090;
-    -webkit-text-fill-color: #fffff0;
+    color: #fffff0;
 }
 
 .title-box {
     font-size: .9em;
     font-size: .75em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 20px;
@@ -84,13 +90,11 @@ export default {
 
 .title-travel {
     font-size: .9em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 20px;
     margin-right: 5px;
     color: #fffff0;
-    -webkit-text-fill-color: #fffff0;
 }
 
 .title-travel-box:focus {
@@ -100,7 +104,6 @@ export default {
 
 .title-travel-box {
     font-size: .75em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 20px;
@@ -108,7 +111,6 @@ export default {
     color: #708090;
     background-color: #fffff0;
     border: #708090 2px solid;
-
 }
 
 .submit-cancel:hover {

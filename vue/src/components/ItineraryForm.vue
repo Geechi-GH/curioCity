@@ -54,19 +54,16 @@ export default {
 <style scoped>
 .title {
     font-size: .9em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 20px;
     margin-right: 5px;
     color: #708090;
-    -webkit-text-fill-color: #fffff0;
 }
 
 .title-box {
     font-size: .9em;
     font-size: .75em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 20px;
@@ -83,13 +80,11 @@ export default {
 
 .title-travel {
     font-size: .9em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 20px;
     margin-right: 5px;
     color: #fffff0;
-    -webkit-text-fill-color: #fffff0;
 }
 
 .title-travel-box:focus {
@@ -99,7 +94,6 @@ export default {
 
 .title-travel-box {
     font-size: .75em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 20px;
@@ -112,5 +106,9 @@ export default {
 
 .submit-cancel:hover {
     background-color: #708090;
+}
+
+p {
+    color: #fffff0;
 }
 </style>
