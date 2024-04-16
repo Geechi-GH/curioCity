@@ -1,17 +1,19 @@
 <template>
-    <form v-on:submit.prevent="createItinerary">
+    <form v-on:submit.prevent="edit">
         <div class="field">
-            <label class="title" for="title">Title :</label>
+            <p>Current title: {{ itinerary.title }}</p>
+            <label class="title" for="title">New title :</label>
             <input class="title-box" type="text" id="title" v-model="editItinerary.title" required />
         </div>
 
         <div class="field">
-            <label class="title-travel" for="travel">Travel date :</label>
+            <p>Current travel date: {{ itinerary.dateOfTravel }}</p>
+            <label class="title-travel" for="travel">New travel date :</label>
             <input class="title-travel-box" type="date" id="travel" v-model="editItinerary.dateOfTravel" required />
         </div>
 
         <div class="actions">
-            <button class="submit-cancel" type="submit">Add</button>
+            <button class="submit-cancel" type="submit">Confirm</button>
             <button class="submit-cancel" type="button" v-on:click="this.$router.back()">Cancel</button>
         </div>
     </form>
@@ -32,16 +34,15 @@ export default {
             editItinerary: {
                 title: this.itinerary.title,
                 dateOfTravel: this.itinerary.dateOfTravel,
-                dateCreated: this.itinerary.dateCreated
             }
         }
     },
     methods: {
-        createItinerary() {
-            ItineraryService.create(this.editItinerary)
+        edit() {
+            this.editItinerary.itineraryId = this.itinerary.itineraryId
+            ItineraryService.editItinerary(this.editItinerary)
                 .then(response => {
-                    this.$store.commit('ADD_ITINERARY', response.data)
-                    this.$router.push({ name: 'itinerary-details', params: { itineraryId: response.data.itineraryId } })
+                    this.$router.push({ name: 'itinerary-details', params: { itineraryId: this.itinerary.itineraryId } })
                 })
                 .catch(error => {
                     const response = error.response;
@@ -112,5 +113,9 @@ export default {
 
 .submit-cancel:hover {
     background-color: #708090;
+}
+
+p {
+    color: #fffff0;
 }
 </style>

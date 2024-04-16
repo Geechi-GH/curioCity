@@ -38,7 +38,7 @@ export function createStore(currentToken, currentUser) {
       },
       ADD_ITINERARY(state, itinerary) {
         state.itineraries.push(itinerary);
-      }
+      },
     },
   });
   return store;

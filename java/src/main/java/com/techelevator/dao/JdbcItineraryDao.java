@@ -109,6 +109,18 @@ public class JdbcItineraryDao implements ItineraryDao {
         return itinerary;
     }
 
+    public Itinerary editItinerary(Itinerary itinerary) {
+        String sql = "UPDATE itinerarys\n" +
+                "SET title = ?, date_of_travel = ?\n" +
+                "WHERE itinerary_id = ?;";
+        try {
+            jdbcTemplate.update(sql, itinerary.getTitle(), itinerary.getDateOfTravel(), itinerary.getItineraryId());
+        } catch (DataIntegrityViolationException e) {
+            throw new DaoException("Data integrity violation", e);
+        }
+        return itinerary;
+    }
+
     private Itinerary mapRowToItinerary(SqlRowSet results) {
         final Itinerary itinerary = new Itinerary(
                 results.getInt("itinerary_id"),

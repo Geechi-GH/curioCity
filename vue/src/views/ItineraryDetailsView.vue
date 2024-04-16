@@ -1,9 +1,12 @@
 <template>
     <div>
         <h1 class="section-names"> {{ itinerary.title }} Itinerary</h1>
+        <p>{{ formatDate(itinerary.dateOfTravel) }}</p>
+        <button
+            @click="this.$router.push({ name: 'edit-itinerary', params: { itineraryId: itinerary.itineraryId } })">Edit</button>
         <hr class="full-width-lines">
         <h2>Plan Your Trip</h2>
-        <p>Drag landmarks to order your itinerary</p>
+        <p>Drag & drop landmarks to order your itinerary</p>
         <draggable v-model="landmarksToVisit" item-key="id" @end="saveItinerary">
             <template #item="{ element }">
                 <LandmarksMinus class="landmarks" id="top-landmarks" :landmark="element" :itinerary="itinerary"
@@ -69,6 +72,15 @@ export default {
             this.landmarksToVisit = this.landmarksToVisit
                 .filter(lm => lm.id !== landmark.id);
             this.saveItinerary();
+        },
+        formatDate(date) {
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            });
+            return formattedDate;
         }
     },
     created() {

@@ -12,5 +12,8 @@ export default {
     },
     flushAndFill(itinerary, id) {
         return axios.put(`/itinerary/${id}`, itinerary);
+    },
+    editItinerary(itinerary) {
+        return axios.put(`/itinerary/${itinerary.id}/edit`, itinerary);
     }
 }

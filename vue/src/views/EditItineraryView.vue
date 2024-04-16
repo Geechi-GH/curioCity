@@ -1,29 +1,36 @@
 <template>
-    <h1 class="title">Add itinerary</h1>
+    <h1 class="title">Update itinerary</h1>
     <div class="title-sub">
-        <h2>Please fill in the following information</h2>
+        <h2>Please update in the following information</h2>
     </div>
     <div class="container"></div>
     <div class="selection">
-        <ItineraryForm v-bind:itinerary="itinerary" />
+        <EditItineraryForm v-bind:itinerary="itinerary" />
     </div>
 </template>
 
 <script>
-import ItineraryForm from "../components/ItineraryForm.vue";
+import EditItineraryForm from '../components/EditItineraryForm.vue';
+import ItineraryService from '../services/ItineraryService';
 
 export default {
     components: {
-        ItineraryForm,
+        EditItineraryForm,
     },
     data() {
         return {
-            itinerary: {
-                title: '',
-                dateOfTravel: '',
-                dateCreated: new Date(),
-            }
+            itinerary: {}
         }
+    },
+    methods: {
+        getItinerary(id) {
+            ItineraryService.getItineraryById(id).then(response => {
+                this.itinerary = response.data;
+            });
+        },
+    },
+    created() {
+        this.getItinerary(this.$route.params.itineraryId);
     }
 }
 </script>

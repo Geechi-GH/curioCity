@@ -11,6 +11,7 @@ import LandmarksView from '../views/LandmarksView.vue';
 import LandmarkDetailsView from '../views/LandmarkDetailsView.vue';
 import AddItineraryView from '../views/AddItineraryView.vue';
 import ItineraryDetailsView from '../views/ItineraryDetailsView.vue';
+import EditItineraryView from '../views/EditItineraryView.vue';
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -90,6 +91,14 @@ const routes = [
     path: "/itinerary/:itineraryId",
     name: "itinerary-details",
     component: ItineraryDetailsView,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/itinerary/:itineraryId/edit",
+    name: "edit-itinerary",
+    component: EditItineraryView,
     meta: {
       requiresAuth: true
     }
