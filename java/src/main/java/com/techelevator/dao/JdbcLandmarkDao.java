@@ -31,7 +31,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
     public Landmark getLandmarkById(int landmarkId) {
         Landmark landmark = null;
 
-        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website, vote_rep \n" +
+        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website \n" +
                 "\tFROM landmarks \n" +
                 "WHERE landmark_id = ?";
         try {
@@ -50,7 +50,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
         List<Landmark> landmarkList = new ArrayList<>();
 
 
-        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website, vote_rep \n" +
+        final String sql = "SELECT landmark_id, name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, city_id, like_count, dislike_count, imagePath, website \n" +
                 "\tFROM landmarks " +
                 "ORDER BY landmark_id ASC;";
 
@@ -89,9 +89,9 @@ public class JdbcLandmarkDao implements LandmarkDao {
             "\tFROM landmarks AS l\n" +
             "\tLEFT OUTER JOIN ratings AS r ON l.landmark_id = r.landmark_id AND r.user_id = ? \n" +
             "\tWHERE l.landmark_id = ?;";
-    private final String INSERT_RATING_SQL = "INSERT INTO ratings(user_id, landmark_id, like_status)\n" +
-            "\"VALUES( ?, ?, ?)\n" +
-            "\"RETURNING landmark_id;";
+    private final String INSERT_RATING_SQL = "INSERT INTO ratings (user_id, landmark_id, like_status)\n" +
+            "\tVALUES( ?, ?, ?)\n" +
+            "\tRETURNING landmark_id;";
     private final String UPDATE_LANDMARK_SQL = "UPDATE landmarks\n" +
             "\tSET like_count = like_count + ?, dislike_count = dislike_count + ?\n" +
             "\tWHERE landmark_id = ? ;";
@@ -114,7 +114,9 @@ public class JdbcLandmarkDao implements LandmarkDao {
 
         try {
             SqlRowSet results = this.jdbcTemplate.queryForRowSet(SELECT_JOIN_RATINGS_SQL, userId, landmarkId);
-            landRatDTO = mapRowToLandRat(results);
+            if (results.next()) {
+                landRatDTO = mapRowToLandRat(results);
+            }
             int likeStatus = landRatDTO.getLikeStatus();
             // if it is disliked
             if (likeStatus == DISLIKED) {
@@ -158,7 +160,9 @@ public class JdbcLandmarkDao implements LandmarkDao {
 
         try {
             SqlRowSet results = this.jdbcTemplate.queryForRowSet(SELECT_JOIN_RATINGS_SQL, userId, landmarkId);
-            landRatDTO = mapRowToLandRat(results);
+            if (results.next()) {
+                landRatDTO = mapRowToLandRat(results);
+            }
             int likeStatus = landRatDTO.getLikeStatus();
             if (likeStatus == LIKED) {
                 veryUniqueLandmarkId = jdbcTemplate.queryForObject(UPDATE_RATING_SQL, int.class, DISLIKED, userId, landmarkId);

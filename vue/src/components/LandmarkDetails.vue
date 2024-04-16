@@ -61,6 +61,9 @@ export default {
             type: Object,
             required: true,
         },
+        likeStatus: {
+            type: Number,
+        }
     },
     computed: {
         image() {
@@ -104,15 +107,23 @@ export default {
         colorCheck() {
             const likes = document.querySelector('#thumbs-up');
             const dislikes = document.querySelector('#thumbs-down');
-            if (this.landmark.voteRep == 1) {
+            if (this.likeStatus == 1) {
                 likes.classList.add('liked');
-            } else if (this.landmark.voteRep == -1) {
+                console.log("I made it into liked");
+            } else if (this.likeStatus == -1) {
                 dislikes.classList.add('disliked');
+                console.log("I made it into disliked");
+            } else {
+                likes.classList.remove('liked');
+                dislikes.classList.remove('disliked');
             }
+            console.log("I made it here");
         }
     },
     mounted() {
+
         this.colorCheck();
+
     }
 }
 </script>
