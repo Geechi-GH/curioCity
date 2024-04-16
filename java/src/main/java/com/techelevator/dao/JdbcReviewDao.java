@@ -25,7 +25,8 @@ public class JdbcReviewDao implements ReviewDao{
         List<Review> myList = new ArrayList<>();
         String sql = "SELECT user_id, landmark_id, title, review, name\n" +
                 "\tFROM reviews\n" +
-                "\tWHERE landmark_id = ?;";
+                "\tWHERE landmark_id = ? \n" +
+                "ORDER BY the_time DESC;";
 
         try {
             SqlRowSet results = this.jdbcTemplate.queryForRowSet(sql, landmarkId);
