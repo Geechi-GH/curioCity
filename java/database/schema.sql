@@ -65,6 +65,7 @@ CREATE TABLE reviews (
 	title varchar(30),
 	review varchar(750),
 	name varchar(20) DEFAULT 'anonymous',
+	the_time timestamp WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (user_id, landmark_id),
 	FOREIGN KEY (user_id) REFERENCES users(user_id),
 	FOREIGN KEY (landmark_id) REFERENCES landmarks(landmark_id)

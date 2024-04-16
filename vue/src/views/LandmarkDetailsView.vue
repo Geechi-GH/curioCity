@@ -4,25 +4,30 @@
             v-on:dislike-landmark="dislikeLandmark" v-bind:likeStatus="likeStatus" />
 
         <!-- WORKING HERE----------------------------------------------------------------- -->
-        <button @click="showForm = !showForm">Add New Review</button>
+        <div class="form-container">
+            <!-- <button @click="showForm = !showForm" v-show="showForm === false" v-if="this.reviews.contains(this.$store.state.user.id)">Add New Review</button> -->
+            <button @click="showForm = !showForm" v-if="showAddReviewButton && !showForm">Add New Review</button>
+            <!-- v-show="this.reviews.map(review => review.userId).includes(this.$store.state.user.id)">Add New Review</button> -->
 
-        <form v-on:submit.prevent="addNewReview" v-show="showForm === true" id="frmAddNewReview">
-            <div class="field">
-                <label for="Name">Your Name:</label>
-                <input type="text" id="Name" name="Name" v-model="review.name" />
+            <form v-on:submit="addNewReview" v-show="showForm === true" id="frmAddNewReview">
+                <div class="field">
+                    <label for="Name">Your Name:</label>
+                    <input type="text" id="Name" name="Name" v-model="review.name" />
 
-            </div>
-            <div class="field">
-                <label for="reviewTitle">Review Title:</label>
-                <input type="text" id="reviewTitle" name="reviewTitle" v-model="review.title" />
-            </div>
-            <div class="field">
-                <label for="review">Review:</label>
-                <input type="textarea" id="review" name="review" v-model="review.review" />
-            </div>
-            <button type="submit" class="btn save">Save User</button>
-            <button type="button" class="btn cancel" v-on:click="resetForm()">Cancel</button>
-        </form>
+                </div>
+                <div class="field">
+                    <label for="reviewTitle">Review Title:</label>
+                    <input type="text" id="reviewTitle" name="reviewTitle" v-model="review.title" />
+                </div>
+                <div class="field">
+                    <label for="review">Review:</label>
+                    <textarea type="textarea" rows="5" cols="50" id="review" name="review"
+                        v-model="review.review">   </textarea>
+                </div>
+                <button type="submit" class="btn save">Save Review</button>
+                <button type="button" class="btn cancel" v-on:click="resetForm()">Cancel</button>
+            </form>
+        </div>
         <!-- WORKING HERE----------------------------------------------------------------- -->
 
         <div class="review-container" v-for="review in reviews" :key="review.reviewId">
@@ -49,27 +54,30 @@ export default {
             landmark: {},
             reviews: [],
             likeStatus: 0,
-            review: {
-                name: '',
-                title: '',
-                review: ''
-            }
+            review: {}
+        }
+    },
+    computed: {
+        updateReviews() {
+            return this.reviews;
+        },
+        showAddReviewButton() {
+            return !this.reviews.map(review => review.userId).includes(this.$store.state.user.id);
         }
     },
     methods: {
         addNewReview() {
+            this.review.userId = this.$store.state.user.id;
+            this.review.landmarkId = this.$route.params.landmarkId;
+            console.log(this.review)
             ReviewService.createReview(this.review).then(response => {
-                this.reviews.push(response.data);
+                this.reviews.unshift(response.data);
             })
             //ADD CODE TO ADD NEW REVIEW
             this.resetForm()
         },
         resetForm() {
-            this.review = {
-                name: '',
-                title: '',
-                review: ''
-            },
+            this.review = {},
                 this.showForm = false;
         },
 
@@ -109,4 +117,11 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Optional: Centers vertically within the viewport */
+}
+</style>
