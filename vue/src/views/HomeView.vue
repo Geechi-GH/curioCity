@@ -51,13 +51,13 @@ export default {
 <style scoped>
 .title {
   font-size: 5em;
-  font-weight: bold;
+  font-weight: lighter;
   text-align: center !important;
   margin-bottom: 15px;
   color: #fffff0;
   justify-content: center;
-  -webkit-text-stroke: #292929 1px;
-  font-family: serif;
+
+  font-family: "Quicksand", sans-serif;
   text-decoration-line: underline;
   text-decoration-style: unset;
 }

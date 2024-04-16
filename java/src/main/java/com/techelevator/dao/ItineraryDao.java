@@ -15,4 +15,6 @@ public interface ItineraryDao {
     Itinerary flushAndFill(int[] landmarkArray, Itinerary itinerary);
 
     Itinerary editItinerary(Itinerary itinerary);
+
+    int deleteItinerary(int id);
 }
