@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.LandmarkDao;
 import com.techelevator.dao.UserDao;
 import com.techelevator.exception.DaoException;
+import com.techelevator.model.LandRatDTO;
 import com.techelevator.model.Landmark;
 import com.techelevator.model.User;
 import org.springframework.http.HttpStatus;
@@ -52,7 +53,7 @@ public class LandmarkController {
     }
 
     @PutMapping("/likes")
-    public Landmark likeALandmark(@RequestBody Landmark landmark, Principal principal) {
+    public LandRatDTO likeALandmark(@RequestBody Landmark landmark, Principal principal) {
         User user = this.userDao.getUserByUsername(principal.getName());
         try {
             return landmarkDao.likeALandmark(landmark, user.getId());
@@ -62,7 +63,7 @@ public class LandmarkController {
     }
 
     @PutMapping("/dislikes")
-    public Landmark dislikeALandmark(@RequestBody Landmark landmark, Principal principal) {
+    public LandRatDTO dislikeALandmark(@RequestBody Landmark landmark, Principal principal) {
         User user = this.userDao.getUserByUsername(principal.getName());
         try {
             return landmarkDao.dislikeALandmark(landmark, user.getId());
