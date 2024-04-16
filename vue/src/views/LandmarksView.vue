@@ -7,9 +7,16 @@
             <input class="checkboxisweekend" type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
             <input class="time" type="time" v-model="timeQuery">
             <select class="CategoryCS" v-model="selectedCategory">
+
                 <option value="">All Categories</option>
                 <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
             </select>
+            <select v-model="selectedRatingCategory">
+                <option value="">All Ratings</option>
+                <option value="positive">Positive Rated Landmarks</option>
+                <option value="negative">Negative Rated Landmarks</option>
+            </select>
+
         </div>
         <section class="landmark-list">
             <LandmarkSimplified v-for="landmark in filteredLandmarks" :key="landmark.id" :landmark="landmark"
@@ -29,6 +36,8 @@ export default {
             timeQuery: '',
             searchQuery: '',
             selectedCategory: '',
+            selectedRatingCategory: '',
+
         };
     },
     name: "LandmarksView",
@@ -36,15 +45,37 @@ export default {
         LandmarkSimplified,
     },
     computed: {
+        // selectedLandmarks() {
+        //     console.log("at least I got here")
+
+        //     if (this.selectedRatingCategory === 'positive') {
+        //         console.log("We made it to positivity!")
+        //         return this.landmarks.filter(landmark => landmark.likes > landmark.dislikes);
+        //     } else if (this.selectedRatingCategory === 'negative') {
+        //         console.log("We made it to negativity!")
+        //         return this.landmarks.filter(landmark => landmark.likes < landmark.dislikes);
+        //     }
+        //     return this.filteredLandmarks;
+        // },
+
         landmarks() {
             return this.$store.state.landmarks;
         },
         categories() {
             return this.$store.state.categories;
         },
+        // filteredLandmarks() {
+        //     return this.landmarks.filter(landmark => {
+        //         return landmark.name.toLowerCase().includes(this.searchQuery.toLowerCase()) && (this.selectedCategory === '' || landmark.category.toLowerCase() === this.selectedCategory.toLowerCase()) && (this.timeQuery === '' || landmark.weekdayOpen <= this.timeQuery && landmark.weekdayClose > this.timeQuery);
+        //     });
         filteredLandmarks() {
             return this.landmarks.filter(landmark => {
-                return landmark.name.toLowerCase().includes(this.searchQuery.toLowerCase()) && (this.selectedCategory === '' || landmark.category.toLowerCase() === this.selectedCategory.toLowerCase()) && (this.timeQuery === '' || landmark.weekdayOpen <= this.timeQuery && landmark.weekdayClose > this.timeQuery);
+                return landmark.name.toLowerCase().includes(this.searchQuery.toLowerCase()) &&
+                    (this.selectedCategory === '' || landmark.category.toLowerCase() === this.selectedCategory.toLowerCase()) &&
+                    (this.timeQuery === '' || landmark.weekdayOpen <= this.timeQuery && landmark.weekdayClose > this.timeQuery) &&
+                    (this.selectedRatingCategory === '' ||
+                        (this.selectedRatingCategory === 'positive' && landmark.likeCount > landmark.dislikeCount) ||
+                        (this.selectedRatingCategory === 'negative' && landmark.dislikeCount > landmark.likeCount));
             });
         },
     },
