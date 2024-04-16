@@ -13,11 +13,13 @@
                         landmark.dislikeCount }}</button> -->
 
                     <button id="likes" v-on:click="likeLandmark()">
-                        <i id="thumbs-up" class="fas fa-thumbs-up"></i> {{ landmark.likeCount }}
+                        <i id="thumbs-up" class="fas fa-thumbs-up" :class="{ liked: likeIt === 1 }"></i> {{
+                            landmark.likeCount }}
                     </button>
                     <!-- Thumbs-down icon for Dislikes button -->
                     <button id="dislikes" v-on:click="dislikeLandmark(landmark)">
-                        <i id="thumbs-down" class="fas fa-thumbs-down"></i> {{ landmark.dislikeCount }}
+                        <i id="thumbs-down" class="fas fa-thumbs-down" :class="{ disliked: likeIt === -1 }"></i> {{
+                            landmark.dislikeCount }}
                     </button>
                 </div>
             </div>
@@ -65,14 +67,27 @@ export default {
             type: Number,
         }
     },
+    data() {
+        return {
+            likeIt: this.likeStatus
+        }
+    },
     computed: {
         image() {
             return (new URL(this.landmark.imagePath, import.meta.url)).href;
         },
 
     },
+    watch: {
+        likeStatus(newValue, oldValue) {
+            this.likeIt = newValue;
+        }
+    },
     methods: {
         formatTime(timeString) {
+            if (!timeString) {
+                return 'unavailable';
+            }
             // Parse the time string into hours, minutes, and seconds
             const [hours, minutes] = timeString.split(':').map(Number);
             // Create a Date object to handle conversion to AM/PM format
@@ -90,19 +105,21 @@ export default {
         },
         likeLandmark() {
             this.$emit('update-likes', this.landmark);
-            const likes = document.querySelector('#thumbs-up');
-            likes.classList.toggle('liked');
+            // this.likeIt = true;
+            // this.dislikeIt = false;
+            // const likes = document.querySelector('#thumbs-up');
+            // likes.classList.toggle('liked');
 
-            const dislikes = document.querySelector('#thumbs-down');
-            dislikes.classList.remove('disliked');
+            // const dislikes = document.querySelector('#thumbs-down');
+            // dislikes.classList.remove('disliked');
         },
         dislikeLandmark() {
             this.$emit('dislike-landmark', this.landmark);
-            const dislikes = document.querySelector('#thumbs-down');
-            dislikes.classList.toggle('disliked');
+            // const dislikes = document.querySelector('#thumbs-down');
+            // dislikes.classList.toggle('disliked');
 
-            const likes = document.querySelector('#thumbs-up');
-            likes.classList.remove('liked');
+            // const likes = document.querySelector('#thumbs-up');
+            // likes.classList.remove('liked');
         },
         colorCheck() {
             const likes = document.querySelector('#thumbs-up');
@@ -122,7 +139,7 @@ export default {
     },
     mounted() {
 
-        this.colorCheck();
+        // this.colorCheck();
 
     }
 }

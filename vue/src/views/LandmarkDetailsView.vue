@@ -1,7 +1,7 @@
 <template>
     <div>
         <landmark-details v-bind:landmark="landmark" v-on:update-likes="likeLandmark"
-            v-on:dislike-landmark="dislikeLandmark" v-bind:likeStatus="likeStatus" v-on:get-like-status="getLikeStatus" />
+            v-on:dislike-landmark="dislikeLandmark" v-bind:likeStatus="likeStatus" />
         <div class="review-container" v-for="review in reviews" :key="review.reviewId">
             <reviews-simplified v-bind:review="review" />
         </div>
@@ -30,7 +30,9 @@ export default {
     methods: {
         getLandmark(id) {
             LandmarkService.getLandmarkById(id).then(response => {
-                this.landmark = response.data;
+                this.LandRatDTO = response.data;
+                this.landmark = this.LandRatDTO.landmark;
+                this.likeStatus = this.LandRatDTO.likeStatus;
             });
         },
         getTheReviews() {
@@ -51,12 +53,6 @@ export default {
                 this.landmark = this.LandRatDTO.landmark;
                 this.likeStatus = this.LandRatDTO.likeStatus;
             })
-        },
-        getLikeStatus() {
-            console.log(this.likeStatus)
-            console.log("I am getting the like status")
-            this.likeStatus = this.LandRatDTO.likeStatus;
-            console.log(this.likeStatus)
         }
     },
 
