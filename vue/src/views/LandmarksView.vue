@@ -11,7 +11,7 @@
                 <option value="">All Categories</option>
                 <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
             </select>
-            <select v-model="selectedRatingCategory">
+            <select class="Ratings" v-model="selectedRatingCategory">
                 <option value="">All Ratings</option>
                 <option value="positive">Positive Rated Landmarks</option>
                 <option value="negative">Negative Rated Landmarks</option>
@@ -145,6 +145,16 @@ export default {
 
 .CategoryCS {
     width: 15%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #d7b740;
+    border-radius: 15px;
+    background-color: #292929;
+    color: #fffff0;
+}
+
+.Ratings {
+    width: 10%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #d7b740;

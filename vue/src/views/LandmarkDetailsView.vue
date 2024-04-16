@@ -3,10 +3,10 @@
         <landmark-details v-bind:landmark="landmark" v-on:update-likes="likeLandmark"
             v-on:dislike-landmark="dislikeLandmark" v-bind:likeStatus="likeStatus" />
 
-        <!-- WORKING HERE----------------------------------------------------------------- -->
         <div class="form-container">
             <!-- <button @click="showForm = !showForm" v-show="showForm === false" v-if="this.reviews.contains(this.$store.state.user.id)">Add New Review</button> -->
-            <button @click="showForm = !showForm" v-if="showAddReviewButton && !showForm">Add New Review</button>
+            <button class="Add-Review" @click="showForm = !showForm" v-if="showAddReviewButton && !showForm">Add New
+                Review</button>
             <!-- v-show="this.reviews.map(review => review.userId).includes(this.$store.state.user.id)">Add New Review</button> -->
 
             <form v-on:submit="addNewReview" v-show="showForm === true" id="frmAddNewReview">
@@ -24,11 +24,12 @@
                     <textarea type="textarea" rows="5" cols="50" id="review" name="review"
                         v-model="review.review">   </textarea>
                 </div>
-                <button type="submit" class="btn save">Save Review</button>
-                <button type="button" class="btn cancel" v-on:click="resetForm()">Cancel</button>
+                <div class="button-container">
+                    <button type="submit" class="btn save">Save Review</button>
+                    <button type="button" class="btn cancel" v-on:click="resetForm()">Cancel</button>
+                </div>
             </form>
         </div>
-        <!-- WORKING HERE----------------------------------------------------------------- -->
 
         <div class="review-container" v-for="review in reviews" :key="review.reviewId">
             <reviews-simplified v-bind:review="review" />
@@ -122,6 +123,58 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
     /* Optional: Centers vertically within the viewport */
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+.Add-Review {
+    text-decoration: none;
+    color: #fffff0;
+    padding: 5px 10px;
+    font-family: serif;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: #292929;
+    border: #d7b740 1px solid;
+    border-radius: 15px;
+    margin: 0 auto;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    text-decoration: none;
+    color: #fffff0;
+    padding: 5px 10px;
+    font-family: serif;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: #292929;
+    border: #d7b740 1px solid;
+    border-radius: 15px;
+    margin: 2px;
+}
+
+button:hover {
+    cursor: pointer;
 }
 </style>
