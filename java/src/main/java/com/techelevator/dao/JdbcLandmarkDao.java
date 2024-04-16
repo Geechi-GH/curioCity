@@ -36,7 +36,7 @@ public class JdbcLandmarkDao implements LandmarkDao {
         LandRatDTO landRatDTO = null;
 
         try {
-            final SqlRowSet results = jdbcTemplate.queryForRowSet(SELECT_JOIN_RATINGS_SQL, landmarkId, userId);
+            final SqlRowSet results = jdbcTemplate.queryForRowSet(SELECT_JOIN_RATINGS_SQL, userId, landmarkId);
             if (results.next()) {
                 landRatDTO = mapRowToLandRat(results);
             }
