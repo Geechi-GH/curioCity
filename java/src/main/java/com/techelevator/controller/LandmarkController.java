@@ -35,9 +35,10 @@ public class LandmarkController {
     }
 
     @GetMapping("/landmarks/{id}")
-    public Landmark getLandmarkId(@PathVariable int id) {
+    public LandRatDTO getLandmarkId(@PathVariable int id, Principal principal) {
+        User user = this.userDao.getUserByUsername(principal.getName());
         try {
-            return landmarkDao.getLandmarkById(id);
+            return landmarkDao.getLandmarkById(id, user.getId());
         } catch (DaoException e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
         }

@@ -9,7 +9,7 @@ import java.util.Set;
 public interface LandmarkDao {
     List<Landmark> getAllLandmarks();
 
-    Landmark getLandmarkById(int landmarkId);
+    LandRatDTO getLandmarkById(int landmarkId, int userId);
 
     Set<String> getAllCategories();
 

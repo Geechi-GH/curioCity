@@ -9,4 +9,6 @@ import java.util.List;
 public interface ReviewDao {
 
     List<Review> getAllReviews(int landmarkId);
+    Review getReviewById(int landmarkId, int userId);
+    Review createReview(Review review, int userId);
 }
