@@ -20,13 +20,10 @@
   align-items: center;
   margin-right: 20px;
   margin-left: 10px;
-
 }
-
 
 .logo {
   text-align: left;
-
 }
 
 .logo img {
