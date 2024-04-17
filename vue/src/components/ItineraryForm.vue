@@ -58,7 +58,7 @@ export default {
     margin-bottom: 10px;
     margin-top: 20px;
     margin-right: 5px;
-    color: #708090;
+    color: #fffff0;
 }
 
 .title-box {
