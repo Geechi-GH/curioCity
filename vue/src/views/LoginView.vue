@@ -11,11 +11,11 @@
       </div>
       <div class="login-container">
         <div class="form-input-group">
-          <label for="username">Username</label>
+          <label for="username">Username:</label>
           <input class="username-box" type="text" id="username" v-model="user.username" required autofocus />
         </div>
         <div class="form-input-group">
-          <label for="password">Password</label>
+          <label for="password">Password:</label>
           <input class="password-box" type="password" id="password" v-model="user.password" required />
         </div>
         <button class="login-button" type="submit">Sign in</button>
@@ -79,7 +79,6 @@ body {
   animation-duration: .5s;
   -webkit-animation-timing-function: ease-in-out;
   animation-timing-function: ease-in-out;
-  -webkit-text-stroke: #292929 .5px;
 }
 
 #login {
@@ -104,17 +103,12 @@ body {
   border: 2px solid #708090;
 }
 
-
 .login-button:hover {
   background-color: #708090;
 }
 
 img {
   margin-bottom: -75px;
-}
-
-h1 {
-  color: #CD7F32;
 }
 
 .form-input-group {
@@ -126,7 +120,6 @@ form {
   margin-top: 60px;
   padding-left: 10px;
   padding-right: 10px;
-  font-family: Helvetica, Arial, sans-serif;
   color: #FFFFF0;
 }
 

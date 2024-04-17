@@ -69,10 +69,8 @@ h1 {
 
 .link:hover {
     color: #FFFFF0;
-    -webkit-text-fill-color: #FFFFF0;
     text-decoration: none;
     cursor: pointer;
-
 }
 
 .button-container {

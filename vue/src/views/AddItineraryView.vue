@@ -1,5 +1,4 @@
 <template>
-    <h1 class="title">Add Itinerary</h1>
     <div class="title-sub">
         <h2>Please fill in the following information</h2>
     </div>

@@ -63,7 +63,6 @@ export default {
 
 .title-box {
     font-size: .9em;
-    font-size: .75em;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 20px;

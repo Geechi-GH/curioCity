@@ -87,10 +87,6 @@ img {
   margin-bottom: -75px;
 }
 
-h1 {
-  color: #CD7F32;
-}
-
 .form-input-group {
   margin-bottom: 1rem;
   color: #FFFFF0;
@@ -100,7 +96,6 @@ form {
   margin-top: 60px;
   padding-left: 10px;
   padding-right: 10px;
-  font-family: Helvetica, Arial, sans-serif;
   color: #FFFFF0;
 }
 

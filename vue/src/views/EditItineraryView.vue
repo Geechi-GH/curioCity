@@ -1,5 +1,4 @@
 <template>
-    <h1 class="title-edit">Update Itinerary</h1>
     <div class="title-sub">
         <h2>Please update in the following information</h2>
     </div>

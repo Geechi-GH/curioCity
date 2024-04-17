@@ -4,10 +4,8 @@
             v-on:dislike-landmark="dislikeLandmark" v-bind:likeStatus="likeStatus" />
 
         <div class="form-container">
-            <!-- <button @click="showForm = !showForm" v-show="showForm === false" v-if="this.reviews.contains(this.$store.state.user.id)">Add New Review</button> -->
             <button class="Add-Review" @click="showForm = !showForm" v-if="showAddReviewButton && !showForm">Add New
                 Review</button>
-            <!-- v-show="this.reviews.map(review => review.userId).includes(this.$store.state.user.id)">Add New Review</button> -->
 
             <form v-on:submit="addNewReview" v-show="showForm === true" id="frmAddNewReview">
                 <div class="field">
@@ -92,28 +90,26 @@ export default {
         getTheReviews() {
             ReviewService.getReviews(this.$route.params.landmarkId).then(response => {
                 this.reviews = response.data;
-            })
+            });
         },
         likeLandmark() {
             LandmarkService.likeLandmark(this.landmark).then(response => {
                 this.LandRatDTO = response.data;
                 this.landmark = this.LandRatDTO.landmark;
                 this.likeStatus = this.LandRatDTO.likeStatus;
-            })
+            });
         },
         dislikeLandmark() {
             LandmarkService.dislikeLandmark(this.landmark).then(response => {
                 this.LandRatDTO = response.data;
                 this.landmark = this.LandRatDTO.landmark;
                 this.likeStatus = this.LandRatDTO.likeStatus;
-            })
+            });
         }
     },
-
     created() {
         this.getLandmark(this.$route.params.landmarkId);
         this.getTheReviews();
-
     }
 }
 </script>
@@ -123,7 +119,6 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-
     /* Optional: Centers vertically within the viewport */
 }
 
@@ -131,9 +126,9 @@ export default {
     margin-bottom: 20px;
 }
 
-label {
+/* label {
     font-weight: bold;
-}
+} */
 
 input,
 textarea {
@@ -147,8 +142,6 @@ textarea {
     text-decoration: none;
     color: #fffff0;
     padding: 5px 10px;
-    font-family: serif;
-    font-weight: bold;
     font-size: 1em;
     background-color: #292929;
     border: #d7b740 1px solid;
@@ -165,8 +158,6 @@ button {
     text-decoration: none;
     color: #fffff0;
     padding: 5px 10px;
-    font-family: serif;
-    font-weight: bold;
     font-size: 1em;
     background-color: #292929;
     border: #d7b740 1px solid;

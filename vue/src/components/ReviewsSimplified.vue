@@ -7,8 +7,6 @@
 </template>
 
 <script>
-
-
 export default {
     name: "ReviewsSimplified",
     props: {
@@ -32,27 +30,22 @@ export default {
     padding: 10px;
     margin: 10px auto;
     max-width: 25%;
-
 }
 
 .title {
     font-size: 1.5em;
-    font-weight: bold;
     border-top: #708090 1px solid;
     border-bottom: #708090 1px solid;
     padding: 5px;
     margin-bottom: -5px;
-
 }
 
 .name {
     font-size: 1em;
-    font-weight: bold;
     margin-bottom: 5px;
     color: #d7b740;
     border-bottom: #708090 1px solid;
     margin-bottom: 15px;
-
 }
 
 .review {
@@ -64,6 +57,5 @@ export default {
     border-radius: 5px;
     padding: 5px;
     color: #fffff0;
-    -webkit-text-stroke: #292929 .3px;
 }
 </style>

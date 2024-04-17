@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <h1 class="title">Home</h1>
     <div class="button-container">
       <router-link :to="{ name: 'landmarks' }" class="link">See Landmarks</router-link>
       <h2 class="title-sub">Your Itineraries</h2>
@@ -13,12 +12,10 @@
     </section>
     <h3 class="footer-title">CurioCity</h3>
     <h2 class="footer">Travel curation for the curious mind</h2>
-
   </div>
 
   <body>
     <div class="container">
-
       <!-- background image -->
       <img class="gfg" src="../assets/verylargecinciy.jpg" alt="fireworks">
     </div>
@@ -51,25 +48,19 @@ export default {
 <style scoped>
 .title {
   font-size: 5em;
-  font-weight: lighter;
   text-align: center !important;
   margin-bottom: 15px;
   color: #fffff0;
   justify-content: center;
-
-  font-family: "Quicksand", sans-serif;
-  text-decoration-line: underline;
-  text-decoration-style: unset;
 }
 
 .title-sub {
   font-size: 1.5em;
-  font-weight: bold;
+  font-weight: 500;
   text-align: center !important;
   margin-bottom: 15px;
   color: #292929;
-  justify-content: center;
-  font-family: serif;
+  padding-right: 32px;
 }
 
 .button-container {
@@ -78,7 +69,7 @@ export default {
   align-items: center;
   border: #708090 2px solid;
   background-color: #708090;
-  padding: 0px;
+  margin-top: -10px;
   margin-bottom: 40px;
   margin-right: -10px;
   margin-left: -10px;
@@ -87,8 +78,6 @@ export default {
 .link {
   text-decoration: none;
   padding: 5px 10px;
-  font-family: serif;
-  font-weight: bold;
   color: #fffff0;
   background-color: #292929;
   border: #d7b740 1px solid;
@@ -98,8 +87,6 @@ export default {
 .btn-add {
   margin-left: 0px;
 }
-
-
 
 .link:hover {
   text-decoration: underline;
@@ -113,8 +100,6 @@ export default {
   text-decoration: none;
   color: #fffff0;
   padding: 5px 10px;
-  font-family: serif;
-  font-weight: bold;
   font-size: 1em;
   background-color: #292929;
   border: #d7b740 1px solid;
@@ -130,8 +115,6 @@ export default {
   text-decoration: none;
   color: #fffff0;
   padding: 5px 10px;
-  font-family: serif;
-  font-weight: bold;
   font-size: 1em;
   background-color: #292929;
   border: #d7b740 1px solid;
@@ -141,44 +124,36 @@ export default {
 #itineraries {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
   color: #fffff0;
-  font-family: serif;
-  font-weight: bold;
   font-size: 1em;
   text-align: center;
   padding: 10px;
-
-
   color: #fffff0;
   padding: 10px;
   margin: 10px;
-  flex: 0 0 10%;
   color: #fffff0;
   margin-bottom: 10px;
 }
 
 .itinerary-list {
   flex-wrap: wrap;
-  justify-content: space-around;
-  justify-content: center;
   align-items: center;
   margin-top: 20px;
   margin-bottom: 20px;
   margin-left: 20px;
   margin-right: 20px;
   color: #fffff0;
-  font-family: serif;
-  font-weight: bold;
   font-size: 1em;
   text-align: center;
   padding: 10px;
   border: 1.5px solid #708090;
   border-radius: 4px;
+  height: 150px;
+  width: 150px;
 }
 
 .itinerary-list>* {
@@ -200,14 +175,10 @@ export default {
 
 .footer-title {
   font-size: 2em;
-  font-weight: bold;
   text-align: center !important;
   margin-bottom: 0px;
   color: #d7b740;
   justify-content: center;
-  -webkit-text-stroke: #292929 .5px;
-  font-family: serif;
-  text-decoration-line: underline;
 }
 
 .footer {
@@ -217,10 +188,6 @@ export default {
   margin-top: 0px;
   margin-bottom: 20px;
   color: #d7b740;
-  -webkit-text-stroke: #292929 .5px;
-
-  font-weight: bold;
-  font-family: serif;
   font-size: 1.5em;
   text-align: center;
   padding: 10px;
@@ -231,14 +198,10 @@ export default {
   text-decoration-style: double;
   text-decoration-thickness: 1px;
   background-color: rgba(112, 128, 144, 0.7);
-
-
 }
-
 
 .gfg {
   position: absolute;
-
   top: 28%;
   left: 0;
   width: 100%;

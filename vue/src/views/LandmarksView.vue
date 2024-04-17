@@ -1,13 +1,11 @@
 <template>
     <div>
-        <h1 class="title">Landmarks</h1>
         <div class="search-bar">
             <input type="text" v-model="searchQuery" placeholder="Search...">
             <label class="checkboxisweekend" for="weekendButton">Weekend</label>
             <input class="checkboxisweekend" type="checkbox" id="weekendButton" @click="isTheWeekend = !isTheWeekend">
             <input class="time" type="time" v-model="timeQuery">
             <select class="CategoryCS" v-model="selectedCategory">
-
                 <option value="">All Categories</option>
                 <option v-for="category in categories" :key="category" :value="category">{{ category }}</option>
             </select>
@@ -16,7 +14,6 @@
                 <option value="positive">Positive Rated Landmarks</option>
                 <option value="negative">Negative Rated Landmarks</option>
             </select>
-
         </div>
         <section class="landmark-list">
             <LandmarkSimplified v-for="landmark in filteredLandmarks" :key="landmark.id" :landmark="landmark"
@@ -37,7 +34,6 @@ export default {
             searchQuery: '',
             selectedCategory: '',
             selectedRatingCategory: '',
-
         };
     },
     name: "LandmarksView",
@@ -45,29 +41,12 @@ export default {
         LandmarkSimplified,
     },
     computed: {
-        // selectedLandmarks() {
-        //     console.log("at least I got here")
-
-        //     if (this.selectedRatingCategory === 'positive') {
-        //         console.log("We made it to positivity!")
-        //         return this.landmarks.filter(landmark => landmark.likes > landmark.dislikes);
-        //     } else if (this.selectedRatingCategory === 'negative') {
-        //         console.log("We made it to negativity!")
-        //         return this.landmarks.filter(landmark => landmark.likes < landmark.dislikes);
-        //     }
-        //     return this.filteredLandmarks;
-        // },
-
         landmarks() {
             return this.$store.state.landmarks;
         },
         categories() {
             return this.$store.state.categories;
         },
-        // filteredLandmarks() {
-        //     return this.landmarks.filter(landmark => {
-        //         return landmark.name.toLowerCase().includes(this.searchQuery.toLowerCase()) && (this.selectedCategory === '' || landmark.category.toLowerCase() === this.selectedCategory.toLowerCase()) && (this.timeQuery === '' || landmark.weekdayOpen <= this.timeQuery && landmark.weekdayClose > this.timeQuery);
-        //     });
         filteredLandmarks() {
             return this.landmarks.filter(landmark => {
                 return landmark.name.toLowerCase().includes(this.searchQuery.toLowerCase()) &&
@@ -87,7 +66,7 @@ export default {
         const categories = LandmarkService.getCategories()
             .then(response => {
                 this.$store.commit('SET_CATEGORIES', response.data);
-            })
+            });
     },
 };
 </script>
@@ -95,9 +74,6 @@ export default {
 <style scoped>
 .title {
     font-size: 5em;
-    font-weight: bold;
-    font-family: serif;
-    -webkit-text-stroke: #292929 1px;
     text-align: center;
     margin-bottom: 5px;
     margin-top: 0px;
@@ -110,7 +86,6 @@ export default {
     align-items: center;
     margin-bottom: 20px;
     background-color: #708090;
-    -webkit-text-fill-color: #fffff0;
     border-radius: 15px;
 }
 
@@ -142,7 +117,6 @@ export default {
     border-radius: 4px;
 }
 
-
 .CategoryCS {
     width: 15%;
     padding: 10px;
@@ -167,7 +141,6 @@ export default {
     display: inline-block;
     margin: 10px 0;
     width: fit-content;
-    font-weight: bold;
     text-shadow: #292929 0 0 2px;
 }
 
@@ -187,9 +160,6 @@ export default {
 }
 
 .landmark-list>*:hover {
-    background-color: #708090;
-    /* Change this to the color you want when hovered */
-    color: #292929;
-    /* Change this to the text color you want when hovered */
+    background-color: rgba(112, 128, 144, 0.5);
 }
 </style>

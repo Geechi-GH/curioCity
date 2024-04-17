@@ -19,12 +19,10 @@ export default {
 <style>
 .title {
     font-size: 1.5em;
-    font-weight: bold;
     text-align: center !important;
     margin-bottom: 15px;
     color: #fffff0;
     justify-content: center;
-    font-family: serif;
     text-decoration: none;
     text-decoration-line: underline;
     text-decoration-style: unset;

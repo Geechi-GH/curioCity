@@ -1,45 +1,19 @@
 <template>
   <div class="title-view">
     <header class="title-container">
-      <img id="logo" src="../assets/CurioCity.png" alt="Logo Image">
-      <div class="login">
-        <label for="login"> Welcome to CurioCity! </label>
-      </div>
-      <div>
-        <router-link class="login-link" to="/login"> Login </router-link>
-      </div>
-      <div class="register">
-        <label id="register-label" for="register">New to the site?</label>
-        <router-link class="link" id="register" to="/register"> Register </router-link>
-        <!-- <button id="register">Register</button> -->
-      </div>
       <h1 class="intro">Travel curation for the curious mind</h1>
       <div class="slideshow">
-        <!-- <img :src="currentImage" alt="Slideshow Image"> -->
         <img v-for="(image, index) in images" :key="index" :src="image" alt="Slideshow" v-show="index === currentIndex">
       </div>
     </header>
-    <!-- <button id="login">login</button> -->
     <h2 class="about-title">Who we are</h2>
     <div class="about-info-container">
-      <p class="about-info"> Welcome to CurioCity, your ultimate destination for
-        crafting unforgettable city
-        adventures! At
-        CurioCity, we're passionate about exploring the hidden gems and iconic landmarks that make every city unique.
-        Whether you're a seasoned traveler or a curious explorer, our platform empowers you to create personalized
-        itineraries tailored to your interests and preferences.<br>
-        <br>
-        With CurioCity, embark on a journey of discovery as you uncover captivating landmarks, vibrant neighborhoods, and
-        local treasures. From historic monuments to trendy hotspots, our curated collection of destinations ensures that
-        every moment of your trip is filled with excitement and wonder.
-        <br>
-        Join us in celebrating the essence of each city, one landmark at a time. Start planning your next urban escapade
-        with CurioCity and let the adventure begin
+      <p class="about-info"> Embark on personalized city adventures with CurioCity! Explore hidden gems, iconic landmarks,
+        vibrant neighborhoods, and local treasures tailored to your interests. Plan your unforgettable urban escapade now!
       </p>
     </div>
   </div>
 </template>
-
 
 <script>
 import artMuseum from "../assets/Updated photos/art museum.png";
@@ -53,6 +27,7 @@ import musicHall from "../assets/Updated photos/music hall.png";
 import observatory from "../assets/Updated photos/observatory.png";
 import taftMuseum from "../assets/Updated photos/taft museum.png";
 import redsSkyline from "../assets/Updated photos/RedsCincySky.png";
+
 export default {
   name: "TitleView",
   data() {
@@ -100,15 +75,13 @@ export default {
   mounted() {
     this.startSlideshow();
   },
-  destroyed() {
+  unmounted() {
     this.stopSlideshow();
   },
 };
 </script>
 
 <style scoped>
-/* Color Palette */
-
 .slideshow {
   max-width: 100%;
   height: auto;
@@ -123,24 +96,20 @@ export default {
   display: block;
   transition: opacity 0.5s ease;
   border: 3px solid #D7B740;
-
 }
 
 .title-container::after {
   content: "";
   position: absolute;
-  top: 50%;
-  /* Start from just below the intro heading */
+  top: 25%;
   left: 0;
   width: 100%;
   height: 100%;
-  /* Extend to the bottom of the page */
   background-image: url('../assets/updated photos/sunsetcincy.png');
   background-size: cover;
+  background-position: center;
   opacity: 0.5;
-  /* Adjust the opacity as needed */
   z-index: -1;
-  /* Ensure it's behind other content */
 }
 
 #cincysundown {
@@ -148,7 +117,6 @@ export default {
   height: auto;
   object-fit: cover;
 }
-
 
 /* Add CSS animations for smooth transition between images */
 .slideshow img.ng-enter,
@@ -181,9 +149,6 @@ export default {
 
 .login-link {
   font-size: 3em;
-  font-weight: bold;
-  font-family: serif;
-  /* -webkit-text-stroke: #292929 2px;  */
   text-align: center;
   margin-bottom: 5px;
   margin-top: -50px;
@@ -201,13 +166,9 @@ export default {
   align-items: center;
   margin-bottom: 20px;
   background-color: #708090;
-  margin-left: -10px;
-  margin-right: -10px;
-  -webkit-text-fill-color: #020202;
+  margin-left: -30px;
+  margin-right: -30px;
   font-size: 2em;
-  font-weight: bold;
-  font-family: serif;
-  -webkit-text-stroke: #292929 px;
   text-align: center;
   margin-bottom: 5px;
   margin-top: 0px;
@@ -221,11 +182,6 @@ export default {
 }
 
 #register {
-  font-weight: bold;
-  font-family: serif;
-  /* -webkit-text-stroke: #292929 2px;  */
-  /* margin-bottom: 5px;  */
-  /* margin-top: -50px;  */
   color: #D7B740;
   display: inline-block;
   width: 53px;
@@ -234,22 +190,18 @@ export default {
 
 .intro {
   font-size: 3em;
-  font-weight: bold;
-  font-family: serif;
-  -webkit-text-stroke: #292929 1px;
-  text-align: center;
+  font-weight: lighter;
   margin-bottom: 5px;
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-top: 30px;
   color: #fffff0;
-  border-top: #708090 3px solid;
-  border-radius: 20px;
+  border-top: #708090 10px solid;
 }
 
 .about-title {
   font-size: 2em;
-  font-weight: bold;
-  font-family: serif;
-  -webkit-text-stroke: #292929 1px;
   text-align: center;
   margin-bottom: 5px;
   margin-top: 20px;
@@ -260,7 +212,6 @@ export default {
 
 .about-info {
   font-size: 1.5em;
-  font-family: serif;
   text-align: center;
   margin-bottom: 20px;
   margin-top: 20px;
@@ -273,10 +224,7 @@ export default {
 .about-info-container {
   width: 100%;
   /* Set the container to full width */
-  border-bottom: #708090 3px solid;
-  border-radius: 20px;
 }
-
 
 /* Layout and Whitespace */
 body {
@@ -303,7 +251,6 @@ p {
 
 /* Font Styles */
 .title-view {
-  font-family: 'Helvetica', sans-serif;
   text-align: center;
   color: #FFFFF0;
 }
@@ -312,7 +259,6 @@ p {
   margin-top: 0px;
   padding-left: 0px;
   padding-right: 0px;
-  font-family: Helvetica, Arial, sans-serif;
   color: #FFFFF0;
 }
 </style>

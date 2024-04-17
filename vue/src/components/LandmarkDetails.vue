@@ -52,7 +52,6 @@
 <script>
 import '@fortawesome/fontawesome-free/css/all.css';
 
-
 export default {
     name: "LandmarkDetails",
     props: {
@@ -126,7 +125,6 @@ export default {
     object-fit: contain;
     border: 1px solid #708090;
     border-radius: 4px;
-
 }
 
 #title {
@@ -134,9 +132,6 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 3em;
-    font-weight: bold;
-    font-family: serif;
-    -webkit-text-stroke: #292929 1px;
     text-align: center;
     margin-bottom: 5px;
     margin-top: 0px;
@@ -148,8 +143,6 @@ export default {
     justify-content: center;
     align-items: center;
     font-size: 1 em;
-    font-weight: bold;
-    font-family: serif;
     text-align: center;
     margin-bottom: 20px;
     margin-top: 5px;
@@ -172,7 +165,6 @@ export default {
     justify-content: left;
     align-items: center;
     font-size: 1.5em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 5px;
     margin-top: 0px;
@@ -187,7 +179,6 @@ export default {
     justify-content: left;
     align-items: center;
     font-size: 1.5em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 5px;
     margin-top: 0px;
@@ -200,7 +191,6 @@ export default {
 
 .likes-button {
     font-size: 1.5em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 5px;
     margin-top: 0px;
@@ -215,7 +205,6 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
 
 button:hover {
@@ -226,8 +215,6 @@ button i {
     margin-right: 10px;
     vertical-align: middle;
 }
-
-
 
 .liked {
     color: green;
@@ -242,7 +229,6 @@ button i {
     justify-content: left;
     align-items: center;
     font-size: 1.5em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 0px;
     margin-top: 0px;
@@ -269,7 +255,6 @@ button i {
     padding-right: 5px;
     padding-left: 5px;
     background-color: rgba(112, 128, 144, 0.2);
-
 }
 
 #weekdayhours {
@@ -313,25 +298,20 @@ button i {
     justify-content: center;
     align-items: center;
     font-size: .5em;
-    font-family: serif;
     text-align: center;
     margin-bottom: 0px;
     margin-top: 0px;
     color: #fffff0;
-
 }
 
 #website {
     text-align: center;
     color: #708090;
-    font-weight: bold;
     font-size: .7em;
     text-decoration: #292929 underline;
     text-decoration-style: solid;
     margin-bottom: 20px;
     margin-top: 0px;
-
-
 }
 
 #website a:hover {

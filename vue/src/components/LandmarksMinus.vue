@@ -22,7 +22,6 @@ export default {
             type: Number // Add index prop
         }
     },
-
     methods: {
         landmarkFromArray() {
             this.$emit('remove-landmark', this.landmark);
@@ -42,7 +41,6 @@ export default {
 #landmark-name:hover {
     cursor: pointer;
     color: #FFFFF0;
-    -webkit-text-fill-color: #FFFFF0;
 }
 
 button {
@@ -50,14 +48,11 @@ button {
     margin-left: 5px;
     color: #FFFFF0;
     background-color: #292929;
-
-
 }
 
 button:hover {
     color: #d7b740;
     background-color: #292929;
     cursor: pointer;
-
 }
 </style>
