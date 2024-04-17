@@ -5,22 +5,17 @@
                 <img id="image" v-bind:src="image" v-bind:alt="landmark.name" />
                 <h1 id="title">{{ landmark.name }}</h1>
                 <div class="likes-dislikes">
-                    <!-- <p id="likes" v-on:click="likeLandmark()">Likes: {{ landmark.likeCount }} </p>
-                    <p id="dislikes" v-on:click="dislikeLandmark(landmark)">Dislikes: {{ landmark.dislikeCount }}</p> -->
-
-                    <!-- <button id="likes" v-on:click="likeLandmark()">Likes: {{ landmark.likeCount }} </button>
-                    <button id="dislikes" v-on:click="dislikeLandmark(landmark)">Dislikes: {{
-                        landmark.dislikeCount }}</button> -->
+                    <!-- Thumbs-up icon for Likes button -->
 
                     <button id="likes" v-on:click="likeLandmark()">
-                        <i id="thumbs-up" class="fas fa-thumbs-up, likes-button" :class="{ liked: likeIt === 1 }"></i> {{
+                        <i id="thumbs-up" class="fas fa-thumbs-up" :class="{ liked: likeIt === 1 }"></i> {{
                             landmark.likeCount }}
                     </button>
+
                     <!-- Thumbs-down icon for Dislikes button -->
                     <button id="dislikes" v-on:click="dislikeLandmark(landmark)">
-                        <i id="thumbs-down" class="fas fa-thumbs-down, likes-button "
-                            :class="{ disliked: likeIt === -1 }"></i> {{
-                                landmark.dislikeCount }}
+                        <i id="thumbs-down" class="fas fa-thumbs-down" :class="{ disliked: likeIt === -1 }"></i> {{
+                            landmark.dislikeCount }}
                     </button>
                 </div>
             </div>
@@ -56,6 +51,7 @@
 
 <script>
 import '@fortawesome/fontawesome-free/css/all.css';
+
 
 export default {
     name: "LandmarkDetails",
@@ -202,7 +198,7 @@ export default {
 }
 
 
-likes-button {
+.likes-button {
     font-size: 1.5em;
     font-family: serif;
     text-align: center;
