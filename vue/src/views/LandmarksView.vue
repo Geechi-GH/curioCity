@@ -97,6 +97,7 @@ export default {
     border: 1px solid #d7b740;
     border-radius: 15px;
     background-color: #292929;
+    color: #fffff0;
 }
 
 .search-bar input {
@@ -107,6 +108,7 @@ export default {
     border: 1px solid #d7b740;
     border-radius: 15px;
     background-color: #292929;
+    color: #fffff0;
 }
 
 .search-bar .checkboxisweekend {

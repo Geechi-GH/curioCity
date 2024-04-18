@@ -105,7 +105,6 @@ export default {
         },
         dislikeLandmark() {
             this.$emit('dislike-landmark', this.landmark);
-
         }
     }
 }
@@ -162,7 +161,7 @@ export default {
 
 #likes {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     font-size: 1.5em;
     text-align: center;
@@ -176,7 +175,7 @@ export default {
 
 #dislikes {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     font-size: 1.5em;
     text-align: center;
@@ -191,6 +190,8 @@ export default {
 
 .likes-button {
     font-size: 1.5em;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     margin-bottom: 5px;
     margin-top: 0px;
@@ -226,7 +227,7 @@ button i {
 
 #description {
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     font-size: 1.5em;
     text-align: center;
@@ -234,6 +235,7 @@ button i {
     margin-top: 0px;
     color: #fffff0;
     border-bottom: 3px solid #708090;
+    padding-bottom: 15px;
 }
 
 #hours-container {
