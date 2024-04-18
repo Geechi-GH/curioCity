@@ -45,6 +45,47 @@ VALUES ('Taft Museum of Art', 'The Taft Museum of Art in Ohio is a hidden gem ne
 INSERT INTO landmarks (name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, like_count, dislike_count, imagePath, website)
 VALUES ('Cincinnati Observatory', 'The Cincinnati Observatory is a historic and iconic landmark that has been observing the wonders of the night sky for over two centuries. Located in Cincinnati, Ohio, the observatory is known for its rich astronomical heritage, stunning telescopes, and commitment to public education and outreach.', '19:00:00', '22:00:00', '19:00:00', '22:00:00', 'Observatory', 0, 0, '../assets/Observatory.jpg', 'https://www.cincinnatiobservatory.org/');
 
+-- Chats new addition
+
+INSERT INTO landmarks (name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, like_count, dislike_count, imagePath, website) VALUES
+('John A. Roebling Suspension Bridge', 'A historic suspension bridge connecting Cincinnati, Ohio, and Covington, Kentucky, spanning the Ohio River.', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 'Bridge', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/RoeblingSuspensionBridge.jpg', 'https://en.wikipedia.org/wiki/John_A._Roebling_Suspension_Bridge'),
+('Carew Tower', 'A historic skyscraper in downtown Cincinnati, offering observation decks with panoramic views of the city and surrounding areas.', '09:00:00', '17:00:00', '09:00:00', '18:00:00', 'Tower', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/CarewTower.jpg', 'https://www.cincinnati-oh.gov/dote/digital/carew-tower-observation-deck/'),
+('Paul Brown Stadium', 'Home to the Cincinnati Bengals NFL team, this stadium features modern architecture and hosts football games and other events.', '09:00:00', '17:00:00', '09:00:00', '18:00:00', 'Sports Venue', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/PaulBrownStadium.jpg', 'https://www.bengals.com/stadium/'),
+('Great American Tower at Queen City Square', 'A distinctive skyscraper in downtown Cincinnati, known for its modern design and observation deck offering stunning views of the city.', '09:00:00', '17:00:00', '09:00:00', '18:00:00', 'Tower', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/GreatAmericanTower.jpg', 'https://www.greatamericantower.com/'),
+('Roebling Bridge', 'A historic suspension bridge connecting Covington, Kentucky, and Cincinnati, Ohio, over the Ohio River.', '00:00:00', '00:00:00', '00:00:00', '00:00:00', 'Bridge', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/RoeblingBridge.jpg', 'https://en.wikipedia.org/wiki/Roebling_Bridge_(Cincinnati)'),
+('Fifth Third Arena', 'The home of the University of Cincinnati Bearcats basketball teams, featuring modern architecture and state-of-the-art facilities.', '09:00:00', '17:00:00', '09:00:00', '18:00:00', 'Sports Venue', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/FifthThirdArena.jpg', 'https://gobearcats.com/sports/2017/6/15/ot-fifth-third-arena-html.aspx')
+-- Add more landmarks here as needed
+;
+INSERT INTO landmarks (name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, like_count, dislike_count, imagePath, website) VALUES
+('Eden Park', 'A scenic park offering gardens, lakes, walking trails, playgrounds, and beautiful views of the Ohio River.', '06:00:00', '22:00:00', '06:00:00', '22:00:00', 'Park', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/EdenPark.jpg', 'https://www.cincinnatiparks.com/central/eden-park/'),
+('Devou Park', 'A large park in Covington, Kentucky, featuring hiking trails, golf courses, playgrounds, and panoramic views of the Cincinnati skyline.', '07:00:00', '21:00:00', '07:00:00', '22:00:00', 'Park', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/DevouPark.jpg', 'https://www.devoupark.com/'),
+('Spring Grove Cemetery and Arboretum', 'One of the largest nonprofit cemeteries in the US, known for its beautiful gardens, sculptures, and historic gravesites.', '08:00:00', '17:00:00', '08:00:00', '18:00:00', 'Park', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/SpringGroveCemetery.jpg', 'https://www.springgrove.org/'),
+('Smale Riverfront Park', 'A riverfront park offering interactive fountains, playgrounds, gardens, and walking paths along the Ohio River.', '06:00:00', '22:00:00', '06:00:00', '23:00:00', 'Park', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/SmaleRiverfrontPark.jpg', 'https://www.cincinnatiparks.com/smale-riverfront-park/'),
+('Graeter''s Ice Cream', 'A Cincinnati institution known for its handcrafted ice cream flavors and famous French Pot process.', '11:00:00', '22:00:00', '11:00:00', '23:00:00', 'Dessert', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/GraetersIceCream.jpg', 'https://www.graeters.com/'),
+('Loveland Bike Trail', 'A scenic bike trail stretching over 70 miles from Cincinnati to Springfield, passing through parks, historic landmarks, and natural landscapes.', '06:00:00', '22:00:00', '06:00:00', '22:00:00', 'Outdoor Recreation', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/LovelandBikeTrail.jpg', 'https://www.lovelandbiketrail.com/'),
+('Findlay Market', 'Ohio''s oldest continuously operated public market, offering a wide variety of fresh produce, meats, baked goods, and artisanal products.', '08:00:00', '18:00:00', '08:00:00', '18:00:00', 'Market', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/FindlayMarket.jpg', 'http://www.findlaymarket.org/'),
+('Taft Museum of Art', 'A historic house museum featuring an extensive art collection, including European and American masterpieces.', '11:00:00', '16:00:00', '11:00:00', '17:00:00', 'Museum', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/TaftMuseumOfArt.jpg', 'https://www.taftmuseum.org/'),
+('Coney Island', 'A family-friendly amusement park with rides, water attractions, and a classic wooden roller coaster.', '10:00:00', '20:00:00', '10:00:00', '21:00:00', 'Amusement Park', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/ConeyIsland.jpg', 'https://www.coneyislandpark.com/')
+-- Add more landmarks here as needed
+;
+INSERT INTO landmarks (name, description, weekday_open, weekday_close, weekend_open, weekend_close, category, like_count, dislike_count, imagePath, website) VALUES
+('Skyline Chili', 'A Cincinnati classic, known for its unique chili served over spaghetti, hot dogs, or coneys.', '10:00:00', '22:00:00', '10:00:00', '23:00:00', 'Restaurant', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/SkylineChili.jpg', 'https://www.skylinechili.com/'),
+('LaRosa''s Pizzeria', 'A popular local chain serving delicious pizza, pasta, and other Italian-American dishes.', '11:00:00', '22:00:00', '11:00:00', '23:00:00', 'Restaurant', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/LaRosasPizzeria.jpg', 'https://www.larosas.com/'),
+('Montgomery Inn', 'Famous for its ribs and BBQ sauce, Montgomery Inn offers a casual dining experience with river views.', '11:30:00', '22:00:00', '11:30:00', '23:00:00', 'Restaurant', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/MontgomeryInn.jpg', 'https://www.montgomeryinn.com/'),
+('Underground Railroad Freedom Center', 'A museum dedicated to telling the story of slavery and the Underground Railroad.', '10:00:00', '17:00:00', '10:00:00', '18:00:00', 'Museum', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/FreedomCenter.jpg', 'https://freedomcenter.org/'),
+('Cincinnati Reds Hall of Fame & Museum', 'Celebrating the history of the Cincinnati Reds baseball team with exhibits and memorabilia.', '10:00:00', '17:00:00', '10:00:00', '18:00:00', 'Museum', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/RedsMuseum.jpg', 'https://www.mlb.com/reds/hall-of-fame'),
+('King''s Island', 'A large amusement park with roller coasters, water rides, and family-friendly attractions.', '10:00:00', '22:00:00', '10:00:00', '23:00:00', 'Amusement Park', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/KingsIsland.jpg', 'https://www.visitkingsisland.com/'),
+('Great Wolf Lodge', 'A family-friendly resort featuring indoor water parks, activities, and themed suites.', '08:00:00', '22:00:00', '08:00:00', '23:00:00', 'Resort', ROUND(RANDOM() * 100), ROUND(RANDOM() * 50), '../assets/GreatWolfLodge.jpg', 'https://www.greatwolf.com/mason')
+-- Add more landmarks here as needed
+;
+
+
+
+
+
+
+
+
 ------------------------------------------------------------------------------------------------------------------------
 
 INSERT INTO itinerarys (title, city_id, user_id, date_of_travel) VALUES ('Trip to Cincinnati', 1, 1, '2024-05-15');
