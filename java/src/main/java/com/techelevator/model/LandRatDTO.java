@@ -1,9 +1,6 @@
 package com.techelevator.model;
 
-import java.sql.Time;
-
 public class LandRatDTO {
-
     private Landmark landmark;
     private int likeStatus;
 

@@ -34,8 +34,7 @@ public class Landmark {
         this.website = website;
     }
 
-    public Landmark(){
-
+    public Landmark() {
     }
 
     public int getId() {

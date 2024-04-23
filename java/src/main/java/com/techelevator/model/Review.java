@@ -1,7 +1,6 @@
 package com.techelevator.model;
 
 public class Review {
-
     private int userId;
     private int landmarkId;
     private String review;
@@ -15,8 +14,8 @@ public class Review {
         this.title = title;
         this.name = name;
     }
-    public Review() {
 
+    public Review() {
     }
 
     public int getUserId() {

@@ -17,7 +17,6 @@ import java.util.List;
 @RestController
 @CrossOrigin
 public class ReviewController {
-
     final LandmarkDao landmarkDao;
     final UserDao userDao;
     final ReviewDao reviewDao;
@@ -36,6 +35,7 @@ public class ReviewController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Cannot connect to server");
         }
     }
+
     @PostMapping("/reviews")
     public Review createReview(@RequestBody Review review, Principal principal) {
         User user = this.userDao.getUserByUsername(principal.getName());

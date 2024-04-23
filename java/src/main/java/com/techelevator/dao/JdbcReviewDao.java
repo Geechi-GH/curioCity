@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.util.ArrayList;
 import java.util.List;
-@Component
-public class JdbcReviewDao implements ReviewDao{
 
+@Component
+public class JdbcReviewDao implements ReviewDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public JdbcReviewDao (DataSource dataSource) {
+    public JdbcReviewDao(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
@@ -30,11 +30,11 @@ public class JdbcReviewDao implements ReviewDao{
 
         try {
             SqlRowSet results = this.jdbcTemplate.queryForRowSet(sql, landmarkId);
-            while(results.next()) {
+            while (results.next()) {
                 Review review = mapRow(results);
                 myList.add(review);
             }
-        }  catch (CannotGetJdbcConnectionException e) {
+        } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         }
         return myList;
@@ -65,7 +65,7 @@ public class JdbcReviewDao implements ReviewDao{
                 "\tVALUES (?, ?, ?, ?, ?)\n" +
                 " RETURNING landmark_id;";
         try {
-            int landmarkId = this.jdbcTemplate.queryForObject(sql,int.class,review.getUserId(),review.getLandmarkId(),review.getTitle(), review.getReview(), review.getName());
+            int landmarkId = this.jdbcTemplate.queryForObject(sql, int.class, review.getUserId(), review.getLandmarkId(), review.getTitle(), review.getReview(), review.getName());
             newReview = getReviewById(landmarkId, userId);
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);

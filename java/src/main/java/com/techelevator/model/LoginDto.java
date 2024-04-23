@@ -7,7 +7,6 @@ package com.techelevator.model;
     from the server to the client from a login endpoint.
  */
 public class LoginDto {
-
    private String username;
    private String password;
 

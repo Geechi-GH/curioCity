@@ -8,7 +8,6 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import javax.validation.constraints.Future;
 import java.time.LocalDate;
 
-
 public class Itinerary {
     private int itineraryId;
     private String title;

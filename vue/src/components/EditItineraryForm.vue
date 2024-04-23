@@ -7,7 +7,7 @@
         </div>
 
         <div class="field">
-            <p>Current travel date: {{ formatDate(itinerary.dateOfTravel) }}</p>
+            <p>Current travel date: {{ itinerary.dateOfTravel }}</p>
             <label class="title-travel" for="travel">New travel date :</label>
             <input class="title-travel-box" type="date" id="travel" v-model="editItinerary.dateOfTravel" required />
         </div>

@@ -3,7 +3,7 @@
         <div class="header-container">
             <div class="centered-content">
                 <h1 class="section-names"> {{ itinerary.title }} Itinerary</h1>
-                <p>{{ formatDate(itinerary.dateOfTravel) }}</p>
+                <p>{{ itinerary.dateOfTravel }}</p>
             </div>
             <div class="edit-button-container">
                 <button class="edit-button"
